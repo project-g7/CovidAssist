@@ -1,6 +1,12 @@
 //Android 14 figma
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import VaccinationName from './VaccinationName';
 import DatePicker from './DatePicker';
 
@@ -16,50 +22,53 @@ const RegisterScreen = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="RegisterScreen">
       <Stack.Screen name="Register" component={RegisterScreenPage} />
-      <Stack.Screen name="VaccineBooking" component={VaccineBooking} />
     </Stack.Navigator>
   );
 };
 
 const RegisterScreenPage = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.boxBoder}>
-        <View style={styles.body}>
-          <Text style={styles.text}></Text>
-          <VaccineCenter />
-          <VaccinationName />
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.boxBoder}>
+          <View style={styles.body}>
+            <Text style={styles.text}></Text>
+            <VaccineCenter />
+            <VaccinationName />
+          </View>
         </View>
+
+        <View>
+          <DatePicker />
+        </View>
+
+        <TouchableOpacity>
+          <View style={styles.buttonNext2}>
+            <Text style={styles.butonText1}>Check Availaility</Text>
+          </View>
+        </TouchableOpacity>
+
+        <View style={styles.box}>
+          <View style={styles.inner}>
+            <Text style={styles.text1}>Time & Availability</Text>
+          </View>
+        </View>
+
+        <VaccineBooking />
+
+        <TouchableOpacity>
+          <View style={styles.buttonNext}>
+            <Text style={styles.butonText}>Register</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <View style={styles.buttonNext}>
+            <Text style={styles.butonText}>Cancel</Text>
+          </View>
+        </TouchableOpacity>
       </View>
-
-      <View>
-        <DatePicker />
-      </View>
-
-      <TouchableOpacity>
-        <View style={styles.buttonNext2}>
-          <Text style={styles.butonText1}>Check Availaility</Text>
-        </View>
-      </TouchableOpacity>
-
-      <View style={styles.box}>
-        <View style={styles.inner}>
-          <Text style={styles.text1}>Time & Availability</Text>
-        </View>
-      </View>
-
-      <TouchableOpacity onPress={() => navigation.navigate('VaccineBooking')}>
-        <View style={styles.buttonNext}>
-          <Text style={styles.butonText}>Next</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <View style={styles.buttonNext}>
-          <Text style={styles.butonText}>Cancel</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -88,7 +97,7 @@ const styles = StyleSheet.create({
   },
   box: {
     width: '100%',
-    height: '15%',
+    height: 60,
     marginTop: -95,
   },
   inner: {
@@ -98,13 +107,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonNext: {
-    marginTop: 180,
+    marginTop: -20,
+    marginBottom: 10,
     width: 150,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
     backgroundColor: '#1167b1',
-    marginTop: 100,
     alignContent: 'center',
     marginLeft: 38,
   },

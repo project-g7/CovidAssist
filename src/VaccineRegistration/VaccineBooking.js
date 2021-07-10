@@ -16,7 +16,7 @@ export default class VaccineBooking extends Component {
     return (
       <View style={styles.credentialText}>
         <Text style={styles.headText}>
-          You will be registering for 2nd dose of the Vaccine
+          You will be registering for the Vaccine
         </Text>
         <ScrollView style={styles.ScrollView}>
           <Icon name="user" color="#1167b1" size={22}></Icon>
@@ -114,8 +114,9 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '100%',
-    marginTop: 50,
-    marginLeft: 60,
+    height: 540,
+    marginTop: 300,
+    marginLeft: 25,
   },
   textinput: {
     marginTop: 8,
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'blue',
   },
   headText: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'left',
     marginLeft: -15,
     marginTop: -18,
@@ -144,7 +145,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   buttonNext1: {
-    marginTop: -50,
+    marginTop: -100,
+    marginBottom: 100,
     width: 150,
     height: 50,
     borderRadius: 10,
@@ -170,7 +172,8 @@ const styles = StyleSheet.create({
     color: '#1167b1',
   },
   genderText: {
-    marginTop: -40,
+    marginTop: -30,
     marginLeft: -180,
+    marginBottom: 60,
   },
 });
