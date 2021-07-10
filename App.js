@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   StyleSheet,
@@ -16,41 +15,22 @@ import Sign from './src/LoginRegistration/Sign';
 import Login from './src/LoginRegistration/Login';
 import Forget_password from './src/LoginRegistration/Forget_password';
 import Register from './src/LoginRegistration/Register';
-const HomeScreen = ({navigation}) => {
-  setTimeout(()=>{
-    navigation.navigate('Welcome')
+import HomeScreen from './src/LoginRegistration/HomeScreen';
+import DetailsScreen from './src/LoginRegistration/DetailsScreen';
+import MainTabsScreen from './src/VaccineRegistration/MainTabsScreen';
 
-  },2500);
-  return (
-    <View style={styles.view}>
-      <Image
-        style={{
-          height: 250,
-          width: '80%',
-          marginBottom: 100,
-          marginTop: 150,
-          marginLeft: '10%',
-          marginRight: '10%',
-        }}
-        source={require('./assets/logo.jpg')}
-      />
-    </View>
-  );
-};
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
-const DetailsScreen = ({navigation}) => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to home"
-        onPress={() => navigation.navigate('Welcome')}
-      />
-    </View>
-  );
-};
+const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
+const Home = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={MainTabsScreen} />
+    </Drawer.Navigator>
+  );
+};
 const App = () => {
   return (
     <NavigationContainer>
@@ -67,6 +47,7 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Forget_password" component={Forget_password} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="MainTabsScreen" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
