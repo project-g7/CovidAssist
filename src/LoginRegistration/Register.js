@@ -6,9 +6,11 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from 'react-native';
 import Axios from 'axios';
-class Register extends Component { 
+//import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,23 +25,21 @@ class Register extends Component {
     };
   }
 
-  
+  // useEffect(()=>{
+  //   fetchData();
+  // },[])
 
-    // useEffect(()=>{
-    //   fetchData();
-    // },[])
+  // const fetchData = async ()=>{
+  //   const response = await fetch('http://192.168.1.3:3001/api/get');
+  //   const users = await response.json();
+  //   setTest(users);
+  //   // console.log(data);
+  // }
 
-    // const fetchData = async ()=>{
-    //   const response = await fetch('http://192.168.1.3:3001/api/get');
-    //   const users = await response.json();
-    //   setTest(users);
-    //   // console.log(data);
-    // }
- 
-    submitDetails = () => {
-        const {firstName, lastName, nic, contactNumber, email, userName, password} =
-      this.state; 
-    // this.props.navigation.navigate('Forget_password');
+  submitDetails = () => {
+    const {firstName, lastName, nic, contactNumber, email, userName, password} =
+      this.state;
+    //this.props.navigation.navigate('MainTabsScreen');
     Axios.post('http://3.21.100.220:3000/api/insert', {
       firstName: firstName,
       lastName: lastName,
@@ -48,7 +48,7 @@ class Register extends Component {
       email: email,
       userName: userName,
       password: password,
-    }) 
+    })
       .then(() => {
         alert('Successful insert');
       })
@@ -57,89 +57,88 @@ class Register extends Component {
       });
   };
   render() {
-  return (
-    <View style={styles.view}>
-      {
-        <Image
-          style={{
-            height: 200,
-            width: 200,
-            marginBottom: 16,
-            marginTop: 20,
-          }}
-          source={require('../../assets/logo.jpg')}
-        />
-      }
-      <View style={styles.regform}>
-        <TextInput
-          style={styles.textinput}
-          placeholder="First name"
-          name="firstName"
-          onChangeText={value => this.setState({firstName: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="Last name"
-          name="lastName"
-          onChangeText={value => this.setState({lastName: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="NIC"
-          name="nic"
-          onChangeText={value => this.setState({nic: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="Phone Number"
-          name="contactNumber"
-          onChangeText={value => this.setState({contactNumber: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="Email"
-          name="email"
-          onChangeText={value => this.setState({email: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="User name"
-          name="userName"
-          onChangeText={value => this.setState({userName: value})}
-          underlineColorAndroid={'transparent'}
-        />
-        <TextInput
-          style={styles.textinput}
-          placeholder="Password"
-          name="password"
-          secureTextEntry={true}
-          onChangeText={value => this.setState({password: value})}
-          underlineColorAndroid={'transparent'}
-        />
-      </View>
-      <View>
-        <TouchableOpacity 
-        onPress={() => this.submitDetails()}
-        >
-          <View style={styles.button_signin}>
-            <Text style={styles.buttonText}>Register</Text>
+    return (
+      <ScrollView>
+        <View style={styles.view}>
+          {
+            <Image
+              style={{
+                height: 200,
+                width: 200,
+                marginBottom: 16,
+                marginTop: 20,
+              }}
+              source={require('../../assets/logo.jpg')}
+            />
+          }
+          <View style={styles.regform}>
+            <TextInput
+              style={styles.textinput}
+              placeholder="First name"
+              name="firstName"
+              onChangeText={value => this.setState({firstName: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="Last name"
+              name="lastName"
+              onChangeText={value => this.setState({lastName: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="NIC"
+              name="nic"
+              onChangeText={value => this.setState({nic: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="Phone Number"
+              name="contactNumber"
+              onChangeText={value => this.setState({contactNumber: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="Email"
+              name="email"
+              onChangeText={value => this.setState({email: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="User name"
+              name="userName"
+              onChangeText={value => this.setState({userName: value})}
+              underlineColorAndroid={'transparent'}
+            />
+            <TextInput
+              style={styles.textinput}
+              placeholder="Password"
+              name="password"
+              secureTextEntry={true}
+              onChangeText={value => this.setState({password: value})}
+              underlineColorAndroid={'transparent'}
+            />
           </View>
-        </TouchableOpacity>
-      </View>
-      {/* {testData.map((val)=>{
+          <View>
+            <TouchableOpacity onPress={() => this.submitDetails()}>
+              <View style={styles.button_signin}>
+                <Text style={styles.buttonText}>Register</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          {/* {testData.map((val)=>{
           return(
             <Text> id: {val.id} | testNum: {val.test_num} | testText: {val.test_text}</Text>
       );
         })} */}
-    </View>
-    
-  );
-      }
+        </View>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

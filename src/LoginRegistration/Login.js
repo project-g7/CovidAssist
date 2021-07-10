@@ -24,6 +24,7 @@ class Login extends Component {
       alert('Please enter the password');
       return false;
     }
+    this.props.navigation.navigate('MainTabsScreen');
     return true;
   };
   render() {
