@@ -18,16 +18,27 @@ import Register from './src/LoginRegistration/Register';
 import HomeScreen from './src/LoginRegistration/HomeScreen';
 import DetailsScreen from './src/LoginRegistration/DetailsScreen';
 import MainTabsScreen from './src/VaccineRegistration/MainTabsScreen';
+import MyProfileStackScreen from './src/Profile/MyProfileStackScreen'
+import EditProfileStackScreen from './src/Profile/EditProfileStackScreen'
+
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
+
 const Home = () => {
   return (
     <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="Home" component={MainTabsScreen} />
+      <Drawer.Screen name="Home" component={MainTabsScreen} options={{
+        headerLeft: () => (
+          <Icon.Button name="menu" size={25} backgroundColor="#009387" 
+          onPress={() => navigation.openDrawer()}></Icon.Button>
+        )
+      }}/>
+      <Drawer.Screen name="MyProfile" component={MyProfileStackScreen} />
+      <Drawer.Screen name="EditProfile" component={EditProfileStackScreen} options={ {drawerLabel:()=>null}}/>
     </Drawer.Navigator>
   );
 };

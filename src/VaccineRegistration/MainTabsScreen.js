@@ -3,6 +3,8 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {createStackNavigator} from '@react-navigation/stack';
 //import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import IconI from 'react-native-vector-icons/Ionicons'
+
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
 import RegisterScreen from './RegisterScreen';
@@ -16,7 +18,13 @@ const MainTabScreen = () => (
   <Tab.Navigator
     initialRouteName="Home"
     activeColor="white"
-    style={{backgroundColor: 'red'}}>
+    style={{backgroundColor: 'red'}} 
+     options={{
+        headerLeft: () => (
+          <Icon.Button name="menu" size={25} backgroundColor="#009387" 
+          onPress={() => navigation.openDrawer()}></Icon.Button>
+        )
+      }}>
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
@@ -46,6 +54,10 @@ const HomeStackScreen = ({navigation}) => (
       headerTitleStyle: {
         fontWeight: 'bold',
       },
+      headerLeft:() => (
+          <IconI.Button name="menu" size={25} backgroundColor="#1167b1" 
+          onPress={() => navigation.openDrawer()}></IconI.Button>
+        ),
     }}>
     <HomeStack.Screen
       name="Home"
@@ -64,6 +76,10 @@ const DetailStackScreen = ({navigation}) => (
       headerTitleStyle: {
         fontWeight: 'bold',
       },
+      headerLeft:() => (
+          <IconI.Button name="menu" size={25} backgroundColor="#1167b1" 
+          onPress={() => navigation.openDrawer()}></IconI.Button>
+        ),
     }}>
     <DetailStack.Screen
       name="Detail"
