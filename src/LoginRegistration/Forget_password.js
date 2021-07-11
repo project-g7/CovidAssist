@@ -7,9 +7,26 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 class Forget_password extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: '',
+    };
+  }
+  userNameValidator(){
+    if(this.state.userName=="")
+    {
+         this.setState({UsernameError:"User name is empty"})
+    }
+    else{
+      this.setState({UsernameError:""})
+    }
+  }
   render() {
     return (
+    
       <View style={styles.view}>
         {
           <Image
@@ -26,12 +43,14 @@ class Forget_password extends Component {
         <Text style={styles.bodyText}>
           Enter your user name and we’ll send you a link to reset your password.
         </Text>
-        <View style={styles.username}>
+        <View style={styles.username}><Icon name="user" color="#1167b1" size={22}></Icon>
           <TextInput
             style={styles.textinput}
             placeholder="Username"
+            onBlur={()=>this.userNameValidator()}
+            onChangeText={(text) => {this.setState({userName: text})}}
             underlineColorAndroid={'transparent'}
-          />
+          /><Text style={{color:'red', marginBottom:10,textAlign:'center'}}>{this.state.UsernameError}</Text>
         </View>
         <View style={{marginTop: '20%'}}>
           <TouchableOpacity>

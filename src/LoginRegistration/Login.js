@@ -7,14 +7,39 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Username: '',
-      Password: '',
+      userName: '',
+      password: '',
+      passwordError: '',
+      UsernameError: '',
     };
   }
+  
+  passwordValidator(){
+    if(this.state.password=="")
+    {
+         this.setState({passwordError:"Password can't be empty"})
+    }
+    else if(this.state.password.length<5){
+      this.setState({passwordError:"Password must be more than 4 characters"})
+    }
+    else{
+      this.setState({passwordError:""})
+    }
+  }
+  userNameValidator(){
+  if(this.state.userName=="")
+  {
+       this.setState({UsernameError:"User Name can't be empty"})
+  }
+  else{
+    this.setState({UsernameError:""})
+  }
+}
   validate_feild = () => {
     const {Username, Password} = this.state;
     if (Username == '') {
@@ -42,18 +67,23 @@ class Login extends Component {
           />
         }
         <View style={styles.credentialText}>
+        <Icon name="user" color="#1167b1" size={22}></Icon>
           <TextInput
             style={styles.textinput}
             placeholder="Username"
-            onChangeText={value => this.setState({Username: value})}
+            onBlur={()=>this.userNameValidator()}
+            onChangeText={(text) => {this.setState({userName: text})}}
             underlineColorAndroid={'transparent'}
-          />
+          /><Text style={{color:'red', marginBottom:10,textAlign:'center'}}>{this.state.UsernameError}</Text>
+          <Icon name="lock" color="#1167b1" size={22}></Icon>
           <TextInput
             style={styles.textinput}
             placeholder="Password"
-            onChangeText={value => this.setState({Password: value})}
+            secureTextEntry={true}
+            onBlur={()=>this.passwordValidator()}
+            onChangeText={(text) => {this.setState({password: text})}}
             underlineColorAndroid={'transparent'}
-          />
+          /><Text style={{color:'red', textAlign:'center'}}>{this.state.passwordError}</Text>
         </View>
         <View style={{marginTop: '30%'}}>
           <TouchableOpacity onPress={() => this.validate_feild()}>
