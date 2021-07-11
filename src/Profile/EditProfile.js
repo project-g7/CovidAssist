@@ -22,7 +22,12 @@ const EditProfile = ({route,navigation}) => {
   const [data,setData] = useState([]);
       // const [data,setData] = useState([]);
       useEffect(()=>{
+        const interval = setInterval(() => {
+        // console.log('This will run every second!');
         fetchData();
+
+        }, 2000);
+        return () => clearInterval(interval);
       },[])
 
 
