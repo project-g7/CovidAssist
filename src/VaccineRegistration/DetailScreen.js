@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -25,7 +25,7 @@ const DetailScreen = () => {
     </Stack.Navigator>
   );
 };
- 
+
 const DetailScreenPage = ({navigation}) => {
   return (
     <ScrollView>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   text: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     textAlign: 'left',
   },
