@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import {
   View,
   Text,
@@ -25,7 +25,7 @@ const DetailScreen = () => {
     </Stack.Navigator>
   );
 };
-
+ 
 const DetailScreenPage = ({navigation}) => {
   return (
     <ScrollView>
@@ -37,9 +37,6 @@ const DetailScreenPage = ({navigation}) => {
         </View>
         <View style={styles.Radio}>
           <VaccineDose />
-        </View>
-        <View style={styles.box3}>
-          <Dose />
         </View>
         <View style={styles.box1}>
           <View style={styles.inner}>
