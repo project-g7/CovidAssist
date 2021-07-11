@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Axios from 'axios';
 const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+const name = /^[a-zA-Z]+ [a-zA-Z]+$/;
 //import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
 class Register extends Component {
   constructor(props) {
@@ -27,14 +28,57 @@ class Register extends Component {
       address: '',
       UsernameError: '',
       emailError: '',
+      addressError: '',
+      nicError: '',
+      lastNameError: '',
+      FirstNameError: '',
     };
   }
+
+  firstNameValidator() {
+    if (this.state.firstName == '') {
+      this.setState({firstNameError: "First Name can't be empty"});
+    } 
+    else if(name.test(this.state.firstName)) {
+      this.setState({firstNameError: "First Name can't be Numbers"});
+    }
+    else {
+      this.setState({firstNameError: ''});
+    }
+  }
+
+  lastNameValidator() {
+    if (this.state.lastName == '') {
+      this.setState({lastNameError: "Last Name can't be empty"});
+    } 
+    else {
+      this.setState({lastNameError: ''});
+    }
+  }
+  nicValidator() {
+    if (this.state.nic == '') {
+      this.setState({nicError: "NIC can't be empty"});
+    } 
+    else {
+      this.setState({nicError: ''});
+    }
+  }
+
+  addressValidator() {
+    if (this.state.address == '') {
+      this.setState({addressError: "Address can't be empty"});
+    } 
+    else {
+      this.setState({addressError: ''});
+    }
+  }
+
   emailValidator() {
     if (rx_live.test(this.state.email)) {
       this.setState({emailError: 'Wrong Email'});
     }
     else if (this.state.email == '') {
-      this.setState({emailError: "User Name can't be empty"});
+      this.setState({emailError: "Email can't be empty"});
     } 
     else {
       this.setState({emailError: ''});
@@ -51,7 +95,7 @@ class Register extends Component {
   passwordValidator() {
     if (this.state.Password == '') {
       this.setState({passwordError: "Password can't be empty"});
-    } else if (this.state.password.length < 5) {
+    } else if (this.state.password.length < 8) {
       this.setState({passwordError: 'Password must be more than 4 characters'});
     } else {
       this.setState({passwordError: ''});
@@ -118,23 +162,43 @@ class Register extends Component {
               style={styles.textinput}
               placeholder="First name"
               name="firstName"
-              onChangeText={value => this.setState({firstName: value})}
+              keyboardType='text'
+              onBlur={() => this.firstNameValidator()}
+              onChangeText={text => {
+                this.setState({firstName: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.firstNameError}
+            </Text>
             <TextInput
               style={styles.textinput}
               placeholder="Last name"
               name="lastName"
-              onChangeText={value => this.setState({lastName: value})}
+              keyboardType='text'
+              onBlur={() => this.lastNameValidator()}
+              onChangeText={text => {
+                this.setState({lastName: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.lastNameError}
+            </Text>
             <TextInput
               style={styles.textinput}
               placeholder="NIC"
               name="nic"
-              onChangeText={value => this.setState({nic: value})}
+              onBlur={() => this.nicValidator()}
+              onChangeText={text => {
+                this.setState({nic: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.nicError}
+            </Text>
             <TextInput
               style={styles.textinput}
               placeholder="Phone Number"
@@ -147,9 +211,15 @@ class Register extends Component {
               style={styles.textinput}
               placeholder="Address"
               name="address"
-              onChangeText={value => this.setState({address: value})}
+              onBlur={() => this.addressValidator()}
+              onChangeText={text => {
+                this.setState({address: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.addressError}
+            </Text>
             <TextInput
               style={styles.textinput}
               placeholder="Email"
