@@ -12,8 +12,8 @@ class DropDown extends Component {
   render() {
     return (
       <View style={styles.body}>
-        <Text style={styles.text}>
-          Photo ID card type, that will bring to Vaccination Center
+        <Text style={styles.text4}>
+          Photo ID card type, that will bring to Vaccination
         </Text>
         <Picker
           onValueChange={this.showVaccine}
@@ -34,12 +34,13 @@ class DropDown extends Component {
 }
 export default DropDown;
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    alignItems: 'center',
+  text4: {
+    fontSize: 16,
   },
   body: {
     flex: 1,
     margin: 30,
+    marginLeft: 120,
+    fontSize: 22,
   },
 });
