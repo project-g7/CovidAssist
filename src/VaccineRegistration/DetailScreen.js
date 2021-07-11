@@ -1,8 +1,17 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import DropDown from './Dropdown';
 import {createStackNavigator} from '@react-navigation/stack';
 import RegisterScreen from './RegisterScreen';
+import VaccineDose from './VaccineDose';
+import Dose from './Dose';
 
 const Stack = createStackNavigator();
 
@@ -19,33 +28,43 @@ const DetailScreen = () => {
 
 const DetailScreenPage = ({navigation}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.box}>
-        <View style={styles.inner}>
-          <Text style={styles.text1}>Are You Vaccinated before?</Text>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.box}>
+          <View style={styles.inner}>
+            <Text style={styles.text1}>Are You Vaccinated before?</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.box1}>
-        <View style={styles.inner}>
-          <Text style={styles.text1}>Registration for vaccination</Text>
+        <View style={styles.Radio}>
+          <VaccineDose />
         </View>
-      </View>
-      <View style={styles.box2}>
-        <View style={styles.inner1}>
-          <Text style={styles.text}>
-            Photo ID card type, that will bring to Vaccination Center
-          </Text>
+        <View style={styles.box3}>
+          <Dose />
         </View>
-      </View>
-      <View>
-        <DropDown />
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-        <View style={styles.buttonNext}>
-          <Text style={styles.butonText}>Next</Text>
+        <View style={styles.box1}>
+          <View style={styles.inner}>
+            <Text style={styles.text1}>Registration for vaccination</Text>
+          </View>
         </View>
-      </TouchableOpacity>
-    </View>
+        <View style={styles.box2}>
+          <View style={styles.inner1}>
+            <Text style={styles.text}>
+              Photo ID card type, that will bring to Vaccination Center
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.dropdown}>
+          <DropDown />
+        </View>
+
+        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+          <View style={styles.buttonNext}>
+            <Text style={styles.butonText}>Next</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 export default DetailScreen;
@@ -68,21 +87,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dropdown: {
+    marginLeft: -100,
+  },
   box1: {
-    marginTop: 180,
+    marginTop: 15,
     width: '100%',
-    height: '15%',
+    height: '12%',
   },
   box2: {
     marginTop: -1,
     width: '100%',
-    height: '15%',
+    height: '10%',
   },
   inner1: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  box3: {
+    marginLeft: -180,
+    marginTop: 45,
+    backgroundColor: 'grey',
+    width: 200,
+    borderRadius: 8,
   },
   text1: {
     color: 'white',
@@ -95,20 +124,23 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   buttonNext: {
-    marginTop: 40,
+    marginTop: 20,
     width: 150,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
     backgroundColor: '#1167b1',
-    marginBottom: 5,
+    marginBottom: 130,
     alignContent: 'center',
-    marginLeft: 125,
+    marginLeft: 130,
   },
   butonText: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 22,
     textAlign: 'center',
+  },
+  Radio: {
+    marginLeft: 120,
   },
 });
