@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Axios from 'axios';
+const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 //import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
 class Register extends Component {
   constructor(props) {
@@ -22,7 +23,39 @@ class Register extends Component {
       userName: '',
       password: '',
       testData: '',
+      passwordError: '',
+      address: '',
+      UsernameError: '',
+      emailError: '',
     };
+  }
+  emailValidator() {
+    if (rx_live.test(this.state.email)) {
+      this.setState({emailError: 'Wrong Email'});
+    }
+    else if (this.state.email == '') {
+      this.setState({emailError: "User Name can't be empty"});
+    } 
+    else {
+      this.setState({emailError: ''});
+    }
+  }
+  userNameValidator() {
+    if (this.state.userName == '') {
+      this.setState({UsernameError: "User Name can't be empty"});
+    } else {
+      this.setState({UsernameError: ''});
+    }
+  }
+
+  passwordValidator() {
+    if (this.state.Password == '') {
+      this.setState({passwordError: "Password can't be empty"});
+    } else if (this.state.password.length < 5) {
+      this.setState({passwordError: 'Password must be more than 4 characters'});
+    } else {
+      this.setState({passwordError: ''});
+    }
   }
 
   // useEffect(()=>{
@@ -37,8 +70,16 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-    const {firstName, lastName, nic, contactNumber, email, userName, password} =
-      this.state;
+    const {
+      firstName,
+      lastName,
+      nic,
+      contactNumber,
+      email,
+      userName,
+      password,
+      address,
+    } = this.state;
     //this.props.navigation.navigate('MainTabsScreen');
     Axios.post('http://3.21.100.220:3000/api/insert', {
       firstName: firstName,
@@ -48,6 +89,7 @@ class Register extends Component {
       email: email,
       userName: userName,
       password: password,
+      address: address,
     })
       .then(() => {
         alert('Successful insert');
@@ -96,32 +138,57 @@ class Register extends Component {
             <TextInput
               style={styles.textinput}
               placeholder="Phone Number"
+              keyboardType="numeric"
               name="contactNumber"
               onChangeText={value => this.setState({contactNumber: value})}
               underlineColorAndroid={'transparent'}
             />
             <TextInput
               style={styles.textinput}
-              placeholder="Email"
-              name="email"
-              onChangeText={value => this.setState({email: value})}
+              placeholder="Address"
+              name="address"
+              onChangeText={value => this.setState({address: value})}
               underlineColorAndroid={'transparent'}
             />
             <TextInput
               style={styles.textinput}
-              placeholder="User name"
-              name="userName"
-              onChangeText={value => this.setState({userName: value})}
+              placeholder="Email"
+              onBlur={() => this.emailValidator()}
+              onChangeText={text => {
+                this.setState({email: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.emailError}
+            </Text>
+            <TextInput
+              style={styles.textinput}
+              placeholder="User name"
+              name="userName"
+              onBlur={() => this.userNameValidator()}
+              onChangeText={text => {
+                this.setState({userName: text});
+              }}
+              underlineColorAndroid={'transparent'}
+            />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.UsernameError}
+            </Text>
             <TextInput
               style={styles.textinput}
               placeholder="Password"
               name="password"
               secureTextEntry={true}
-              onChangeText={value => this.setState({password: value})}
+              onBlur={() => this.passwordValidator()}
+              onChangeText={text => {
+                this.setState({password: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
+              {this.state.passwordError}
+            </Text>
           </View>
           <View>
             <TouchableOpacity onPress={() => this.submitDetails()}>
@@ -155,7 +222,7 @@ const styles = StyleSheet.create({
   textinput: {
     alignSelf: 'stretch',
     height: 40,
-    marginBottom: 20,
+    marginBottom: 10,
     borderBottomColor: '#199187',
     borderBottomWidth: 1,
   },
