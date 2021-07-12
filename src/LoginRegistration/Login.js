@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -47,13 +48,14 @@ class Login extends Component {
       alert('Please enter the password');
       return false;
     }
+
     this.props.navigation.navigate('MainTabsScreen');
     return true;
   };
 
   login = () => {
     const {userName, password} = this.state;
-    Axios.post('http://192.168.1.3:3001/api/login', {
+    Axios.post('http://192.168.1.103:3001/api/login', {
       userName: userName,
       password: password,
     })
@@ -63,7 +65,9 @@ class Login extends Component {
           alert('Invalid');
         }else{
           alert('Successful login');
-        this.props.navigation.navigate('MainTabsScreen');
+          this.props.navigation.navigate('MainTabsScreen');
+          AsyncStorage.multiSet([["username", this.state.userName]]);
+          console.log(this.state.userName);
         }
         
       })

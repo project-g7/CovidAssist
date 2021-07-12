@@ -6,6 +6,7 @@ import { Avatar, Title , Caption, Text , TouchableRipple } from 'react-native-pa
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Iconf from 'react-native-vector-icons/FontAwesome';
 import EditProfile from './EditProfile'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -36,14 +37,21 @@ const MyProfile = ({navigation}) => {
     useEffect(()=>{
       const interval = setInterval(() => {
       // console.log('This will run every second!');
-      fetchData();
+      AsyncStorage.multiGet(['username']).then((data) => {
+      let username = data[0][1];
+      // console.log(username);
+      fetchData(username);
+      });
 
       }, 2000);
+
       return () => clearInterval(interval);
     },[])
 
-    const fetchData = async ()=>{
-      const response = await fetch('http://192.168.1.103:3001/api/users');
+    const fetchData = async (username)=>{
+      // console.log(username);
+      const encodedUsername = encodeURIComponent(username);
+      const response = await fetch(`http://192.168.1.103:3001/api/users?username=${encodedUsername}`,{method: "GET"});
       const users = await response.json();
       setData(users);
       // console.log(data);
@@ -136,6 +144,7 @@ const MyProfile = ({navigation}) => {
                                 marginBottom: 5,
                                 }]}>Email</Title>
                         </View>
+                        {/* <Text>{username}</Text> */}
                         {/* <Caption style={styles.caption}>manjitha@gmail</Caption> */}
                         {/* <Caption style={styles.caption}>{data[0].email}</Caption> */}
                         {data.map((val)=>{
