@@ -33,7 +33,7 @@ class DropDown extends Component {
         <Picker
           onValueChange={this.showVaccine}
           selectedValue={this.state.vaccine}>
-          <Picker.Item label="Vaccine Name" value="disabled" color="grey" />
+          <Picker.Item label="Vaccine Name" value="disabled" color="blue" />
           {/* <Picker.Item label="Sputnik V" value="sputnikV" />
           <Picker.Item label="Covishield" value="covishield" />
           <Picker.Item label="Sinopharm" value="sinopharm" /> */}
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: -80,
     marginLeft: -15,
-    width: '100%',
+    width: 380,
   },
 });

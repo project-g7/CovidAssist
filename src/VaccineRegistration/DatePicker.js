@@ -26,13 +26,13 @@ export default class MyDatePicker extends Component {
           customStyles={{
             dateIcon: {
               position: 'absolute',
-              right: 80,
+              right: 10,
               top: 4,
               marginLeft: 0,
             },
             dateInput: {
               marginLeft: 26,
-              marginRight: 80,
+              marginRight: 13,
             },
             // ... You can check the source to find the other keys.
           }}
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     fontSize: 18,
     marginLeft: 30,
-    color: 'grey',
+    color: 'blue',
   },
   container: {
     flex: 1,

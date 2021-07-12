@@ -40,7 +40,7 @@ export default class VaccineCenter extends Component {
               <Picker.Item
                 label="Select Vaccination center"
                 value="disabled"
-                color="grey"
+                color="blue"
               />
               {/* <Picker.Item label="NIC" value="nic" />
               <Picker.Item label="Drving Licene" value="driving licene" />
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     margin: 30,
-    width: 300,
-    height: 1,
+    width: 380,
   },
 });

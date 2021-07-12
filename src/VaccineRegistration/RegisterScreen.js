@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   buttonNext: {
     marginTop: -20,
-    marginBottom: 10,
+    marginBottom: 5,
     width: 150,
     borderRadius: 10,
     paddingVertical: 10,
