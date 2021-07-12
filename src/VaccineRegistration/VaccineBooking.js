@@ -44,11 +44,13 @@ const VaccineBooking = () => {
         You will be registering for the Vaccine
       </Text>
       <ScrollView style={styles.ScrollView}>
-        <Icon name="user" color="#3342C8" size={25}></Icon>
+        <View style={{marginTop: 1, marginLeft: 20}}>
+          <Icon name="user" color="#3342C8" size={23}></Icon>
+        </View>
         <Title
           style={[
             styles.title,
-            {marginLeft: 25, marginTop: -30, marginBottom: -10},
+            {marginLeft: 55, marginTop: -30, marginBottom: -10},
           ]}>
           Full Name
         </Title>
@@ -60,13 +62,13 @@ const VaccineBooking = () => {
             </Text>
           );
         })}
-        <View style={{marginTop: 20}}>
-          <Icon name="user" color="#3342C8" size={25}></Icon>
+        <View style={{marginTop: 20, marginLeft: 20}}>
+          <Icon name="user" color="#3342C8" size={23}></Icon>
         </View>
         <Title
           style={[
             styles.title,
-            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+            {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
           NIC Number
         </Title>
@@ -77,13 +79,13 @@ const VaccineBooking = () => {
             </Text>
           );
         })}
-        <View style={{marginTop: 20}}>
-          <Icon name="phone" color="#3342C8" size={25}></Icon>
+        <View style={{marginTop: 20, marginLeft: 20}}>
+          <Icon name="phone" color="#3342C8" size={23}></Icon>
         </View>
         <Title
           style={[
             styles.title,
-            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+            {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
           Contact Number
         </Title>
@@ -94,13 +96,13 @@ const VaccineBooking = () => {
             </Text>
           );
         })}
-        <View style={{marginTop: 20}}>
-          <Icon name="home" color="#3342C8" size={25}></Icon>
+        <View style={{marginTop: 20, marginLeft: 20}}>
+          <Icon name="home" color="#3342C8" size={23}></Icon>
         </View>
         <Title
           style={[
             styles.title,
-            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+            {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
           Address
         </Title>
@@ -150,10 +152,22 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '100%',
+    height: '80%',
     height: 540,
     marginTop: 300,
     marginLeft: 25,
+    borderStartColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
+
   textinput: {
     // marginTop: 8,
     // alignSelf: 'stretch',
@@ -162,18 +176,18 @@ const styles = StyleSheet.create({
 
     // borderBottomWidth: 0.5,
     // borderBottomColor: 'blue',
-    fontSize: 20,
+    fontSize: 18,
     color: 'black',
     fontWeight: '500',
-    marginLeft: '7%',
+    marginLeft: '15%',
     marginTop: 15,
   },
   headText: {
-    fontSize: 22,
+    fontSize: 20,
     textAlign: 'left',
-    marginLeft: -15,
+    marginLeft: 18,
     marginTop: -18,
-    color: 'blue',
+    color: 'black',
     //color: '#3342C8',
   },
   buttonNext: {

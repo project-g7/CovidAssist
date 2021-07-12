@@ -74,7 +74,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   box3: {
-    marginLeft: -20,
+    marginLeft: -30,
     marginTop: 25,
     backgroundColor: 'white',
     width: 200,

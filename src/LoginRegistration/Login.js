@@ -57,8 +57,6 @@ class Login extends Component {
     const {userName, password} = this.state;
 
     Axios.post('http://192.168.8.100:3001/api/login', {
-
-  
       userName: userName,
       password: password,
     })
