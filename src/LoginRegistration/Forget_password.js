@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 class Forget_password extends Component {
   constructor(props) {
@@ -15,18 +16,15 @@ class Forget_password extends Component {
       userName: '',
     };
   }
-  userNameValidator(){
-    if(this.state.userName=="")
-    {
-         this.setState({UsernameError:"User name is empty"})
-    }
-    else{
-      this.setState({UsernameError:""})
+  userNameValidator() {
+    if (this.state.userName == '') {
+      this.setState({UsernameError: 'User name is empty'});
+    } else {
+      this.setState({UsernameError: ''});
     }
   }
   render() {
     return (
-    
       <View style={styles.view}>
         {
           <Image
@@ -43,14 +41,27 @@ class Forget_password extends Component {
         <Text style={styles.bodyText}>
           Enter your user name and we’ll send you a link to reset your password.
         </Text>
-        <View style={styles.username}><Icon name="user" color="#1167b1" size={22}></Icon>
+        <View style={styles.username}>
+          <Icon name="user" color="#3342C8" size={22}></Icon>
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 25, marginTop: -25, marginBottom: -10},
+            ]}>
+            User Name
+          </Title>
           <TextInput
             style={styles.textinput}
             placeholder="Username"
-            onBlur={()=>this.userNameValidator()}
-            onChangeText={(text) => {this.setState({userName: text})}}
+            onBlur={() => this.userNameValidator()}
+            onChangeText={text => {
+              this.setState({userName: text});
+            }}
             underlineColorAndroid={'transparent'}
-          /><Text style={{color:'red', marginBottom:10,textAlign:'center'}}>{this.state.UsernameError}</Text>
+          />
+          <Text style={{color: 'red', marginBottom: 10, textAlign: 'center'}}>
+            {this.state.UsernameError}
+          </Text>
         </View>
         <View style={{marginTop: '20%'}}>
           <TouchableOpacity>
@@ -73,8 +84,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button_signin: {
-    width: 260,
-    borderRadius: 20,
+    width: 220,
+    borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',
@@ -82,17 +93,18 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 28,
+    //fontWeight: 'bold',
+    fontSize: 25,
     textAlign: 'center',
   },
   headText: {
-    fontSize: 30,
+    fontSize: 25,
     marginBottom: 25,
-    marginTop: 15,
+    marginTop: 0,
+    fontWeight: 'bold',
   },
   bodyText: {
-    fontSize: 20,
+    fontSize: 18,
     alignContent: 'center',
     marginRight: 20,
     marginLeft: 20,
@@ -108,8 +120,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 40,
     marginBottom: 20,
-    borderBottomColor: '#199187',
+    borderBottomColor: '#3342C8',
     borderBottomWidth: 1,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'normal',
+    color: '#3342C8',
   },
 });
 

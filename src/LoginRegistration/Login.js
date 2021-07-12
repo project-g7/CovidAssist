@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Axios from 'axios';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 class Login extends Component {
@@ -54,8 +55,31 @@ class Login extends Component {
     this.props.navigation.navigate('MainTabsScreen');
     return true;
   };
+
+  login = () => {
+    const {userName, password} = this.state;
+    Axios.post('http://192.168.1.3:3001/api/login', {
+      userName: userName,
+      password: password,
+    })
+      .then((data) => {
+        console.log(data.data);
+        if(data.data=='wrong'){
+          alert('Invalid');
+        }else{
+          alert('Successful login');
+        this.props.navigation.navigate('MainTabsScreen');
+        }
+        
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
   render() {
     return (
+
       <ScrollView>
         <View style={styles.view}>
           {
@@ -117,7 +141,7 @@ class Login extends Component {
           </View>
 
           <View style={{marginTop: '30%'}}>
-            <TouchableOpacity onPress={() => this.validate_feild()}>
+            <TouchableOpacity onPress={() => this.login()}>
               <View style={styles.button_signin}>
                 <Text style={styles.buttonText}>Sign In</Text>
               </View>

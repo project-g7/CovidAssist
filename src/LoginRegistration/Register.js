@@ -8,6 +8,8 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import {Title} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const name = /^[a-zA-Z]+ [a-zA-Z]+$/;
@@ -38,11 +40,9 @@ class Register extends Component {
   firstNameValidator() {
     if (this.state.firstName == '') {
       this.setState({firstNameError: "First Name can't be empty"});
-    } 
-    else if(name.test(this.state.firstName)) {
+    } else if (name.test(this.state.firstName)) {
       this.setState({firstNameError: "First Name can't be Numbers"});
-    }
-    else {
+    } else {
       this.setState({firstNameError: ''});
     }
   }
@@ -50,16 +50,14 @@ class Register extends Component {
   lastNameValidator() {
     if (this.state.lastName == '') {
       this.setState({lastNameError: "Last Name can't be empty"});
-    } 
-    else {
+    } else {
       this.setState({lastNameError: ''});
     }
   }
   nicValidator() {
     if (this.state.nic == '') {
       this.setState({nicError: "NIC can't be empty"});
-    } 
-    else {
+    } else {
       this.setState({nicError: ''});
     }
   }
@@ -67,8 +65,7 @@ class Register extends Component {
   addressValidator() {
     if (this.state.address == '') {
       this.setState({addressError: "Address can't be empty"});
-    } 
-    else {
+    } else {
       this.setState({addressError: ''});
     }
   }
@@ -76,11 +73,9 @@ class Register extends Component {
   emailValidator() {
     if (rx_live.test(this.state.email)) {
       this.setState({emailError: 'Wrong Email'});
-    }
-    else if (this.state.email == '') {
+    } else if (this.state.email == '') {
       this.setState({emailError: "Email can't be empty"});
-    } 
-    else {
+    } else {
       this.setState({emailError: ''});
     }
   }
@@ -158,11 +153,19 @@ class Register extends Component {
             />
           }
           <View style={styles.regform}>
+            <Icon name="user" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              First Name
+            </Title>
             <TextInput
               style={styles.textinput}
-              placeholder="First name"
+              placeholder="First Name"
               name="firstName"
-              keyboardType='text'
+              keyboardType="text"
               onBlur={() => this.firstNameValidator()}
               onChangeText={text => {
                 this.setState({firstName: text});
@@ -172,11 +175,19 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.firstNameError}
             </Text>
+            <Icon name="user" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Last Name
+            </Title>
             <TextInput
               style={styles.textinput}
-              placeholder="Last name"
+              placeholder="Last Name"
               name="lastName"
-              keyboardType='text'
+              keyboardType="text"
               onBlur={() => this.lastNameValidator()}
               onChangeText={text => {
                 this.setState({lastName: text});
@@ -186,6 +197,14 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.lastNameError}
             </Text>
+            <Icon name="user" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              NIC Number
+            </Title>
             <TextInput
               style={styles.textinput}
               placeholder="NIC"
@@ -199,14 +218,30 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.nicError}
             </Text>
+            <Icon name="phone" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Contact Number
+            </Title>
             <TextInput
               style={styles.textinput}
-              placeholder="Phone Number"
+              placeholder="Contact Number"
               keyboardType="numeric"
               name="contactNumber"
               onChangeText={value => this.setState({contactNumber: value})}
               underlineColorAndroid={'transparent'}
             />
+            <Icon name="home" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Address
+            </Title>
             <TextInput
               style={styles.textinput}
               placeholder="Address"
@@ -220,6 +255,14 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.addressError}
             </Text>
+            <Icon name="home" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Email Address
+            </Title>
             <TextInput
               style={styles.textinput}
               placeholder="Email"
@@ -232,9 +275,17 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.emailError}
             </Text>
+            <Icon name="user" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              User Name
+            </Title>
             <TextInput
               style={styles.textinput}
-              placeholder="User name"
+              placeholder="User Name"
               name="userName"
               onBlur={() => this.userNameValidator()}
               onChangeText={text => {
@@ -245,6 +296,15 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.UsernameError}
             </Text>
+            <Icon name="lock" color="#3342C8" size={22}></Icon>
+
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Password
+            </Title>
             <TextInput
               style={styles.textinput}
               placeholder="Password"
@@ -293,12 +353,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 40,
     marginBottom: 10,
-    borderBottomColor: '#199187',
+    borderBottomColor: '#3342C8',
     borderBottomWidth: 1,
   },
   button_signin: {
     width: 260,
-    borderRadius: 20,
+    borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',
@@ -306,9 +366,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 28,
+    // fontWeight: 'bold',
+    fontSize: 25,
     textAlign: 'center',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'normal',
+    color: '#3342C8',
   },
 });
 
