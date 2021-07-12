@@ -7,10 +7,42 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
 // import third from './third';
 class Welcome extends Component {
+
+  componentDidMount(){
+    const storeData = async() => {
+      try {
+      // console.log("ffdd");
+        await AsyncStorage.setItem('appStatus', "2");
+
+      } catch (e) {
+        // saving error
+      }
+    }
+    
+    const getData = async () => {
+        console.log("sss");
+      try {
+        const value = await AsyncStorage.getItem('appStatus');
+        if(value !== null) {
+          // value previously stored
+
+          console.log(value);
+        }
+      } catch(e) {
+        // error reading value
+      }
+    }
+  storeData();
+  getData();
+  
+  }
+
   render(navigation) {
     return (
       <ScrollView>

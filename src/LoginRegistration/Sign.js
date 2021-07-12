@@ -1,6 +1,21 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 class Sign extends Component {
+
+  componentDidMount(){
+        // AsyncStorage.setItem('username', "logout");
+        // let checkVal = AsyncStorage.getItem('username');
+        // console.log(checkVal);
+    AsyncStorage.multiSet([["username", "logout"]]);
+    AsyncStorage.multiGet(['username']).then((data) => {
+          let username = data[0][1];
+          console.log(username);
+          // fetchData(username);
+        });
+  }
+
   render(navigation) {
     return (
       <View style={styles.view}>

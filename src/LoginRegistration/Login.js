@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 class Login extends Component {
   constructor(props) {
@@ -48,7 +50,11 @@ class Login extends Component {
     } else if (Password == '') {
       alert('Please enter the password');
       return false;
+    } else{
+          AsyncStorage.multiSet([["username", this.state.userName]]);
+          console.log(this.state.userName);
     }
+
     this.props.navigation.navigate('MainTabsScreen');
     return true;
   };
