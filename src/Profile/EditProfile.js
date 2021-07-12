@@ -5,6 +5,8 @@ import Iconf from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { Avatar, Title , Caption, Text , TouchableRipple } from 'react-native-paper'
 import Axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 
@@ -19,27 +21,35 @@ const EditProfile = ({route,navigation}) => {
     // const {first_name,last_name,nic,contact_number,email,user_name} = route.params;
     // console.log(route.params);
 
-  const [data,setData] = useState([]);
+    const [data,setData] = useState([]);
       // const [data,setData] = useState([]);
       useEffect(()=>{
         const interval = setInterval(() => {
         // console.log('This will run every second!');
-        fetchData();
+        AsyncStorage.multiGet(['username']).then((data) => {
+          let username = data[0][1];
+          console.log(username);
+          fetchData(username);
+        });
+        // fetchData();
+        // console.log(lastName);
 
         }, 2000);
         return () => clearInterval(interval);
       },[])
 
 
-    const fetchData = async ()=>{
-      const response = await fetch('http://192.168.1.103:3001/api/users');
+    const fetchData = async (username)=>{
+      console.log(username);
+      const encodedUsername = encodeURIComponent(username);
+      const response = await fetch(`http://192.168.1.103:3001/api/users?username=${encodedUsername}`,{method: "GET"});
       const users = await response.json();
       setData(users);
 
       // data.map((val)=>{
       //   setFirstName(val.first_name);
       // })
-            data.map((val)=>{
+            users.map((val)=>{
                         setFirstName(val.first_name);
                         setLastName(val.last_name);
                         setNic(val.nic);
@@ -47,7 +57,7 @@ const EditProfile = ({route,navigation}) => {
                         setEmail(val.email);
                         setUsername(val.user_name);
                          // setFirstName(val.first_name); */}
-              console.log(lastName);
+              // console.log(val.first_name);
                         
                       })
 
@@ -55,7 +65,7 @@ const EditProfile = ({route,navigation}) => {
     }
   const SaveProfile = () => {
     
-    // console.log(lastName);
+    // console.log(nn);
       Axios.put('http://10.0.2.2:3001/api/editprofile',{firstName:firstName,lastName:lastName,nic:nic,contactNumber:contactNumber,email:email,username:username})
       .then(()=>{
     // console.log("save po");
@@ -67,8 +77,9 @@ const EditProfile = ({route,navigation}) => {
   }
 
     return (
+      
        <SafeAreaView>
- 
+                  
             <View style={styles.userInfoSection}>
                 <ScrollView style={styles.scrollView}>
                     <View style={{alignItems: 'center', marginTop: '8%', marginBottom:'11%'}}>
@@ -86,6 +97,7 @@ const EditProfile = ({route,navigation}) => {
                         {/* <TextInput style={styles.caption} underlineColorAndroid={'blue'} width={'80%'} onChange={(e) => { setFirstName(e.nativeEvent.text) }}>Limal</TextInput> */}
                         {data.map((val)=>{
                           {/* setFirstName(val.first_name); */}
+                          {/* const nn = val.first_name; */}
                           return(
                             <TextInput key={val.first_name} style={styles.caption} 
                             underlineColorAndroid={'blue'} width={'80%'} 

@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -47,6 +48,7 @@ class Login extends Component {
       alert('Please enter the password');
       return false;
     }
+
     this.props.navigation.navigate('MainTabsScreen');
     return true;
   };
@@ -64,6 +66,8 @@ class Login extends Component {
         } else {
           alert('Successful login');
           this.props.navigation.navigate('MainTabsScreen');
+          AsyncStorage.multiSet([['username', this.state.userName]]);
+          console.log(this.state.userName);
         }
       })
       .catch(error => {

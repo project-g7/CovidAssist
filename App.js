@@ -22,7 +22,7 @@ import MyProfileStackScreen from './src/Profile/MyProfileStackScreen'
 import EditProfileStackScreen from './src/Profile/EditProfileStackScreen'
 
 
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator, DrawerContentScrollView,DrawerItem,DrawerItemList, DrawerContentComponentProps} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +30,14 @@ const Stack = createStackNavigator();
 
 const Home = () => {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator initialRouteName="Home" drawerContent={props => {
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem label="Logout" onPress={() => props.navigation.navigate("Sign")} />
+      </DrawerContentScrollView>
+    )
+  }}> 
       <Drawer.Screen name="Home" component={MainTabsScreen} options={{
         headerLeft: () => (
           <Icon.Button name="menu" size={25} backgroundColor="#009387" 

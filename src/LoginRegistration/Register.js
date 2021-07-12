@@ -34,6 +34,7 @@ class Register extends Component {
       nicError: '',
       lastNameError: '',
       FirstNameError: '',
+      ContactNumberError: '',
     };
   }
 
@@ -97,6 +98,14 @@ class Register extends Component {
     }
   }
 
+  numberValidator() {
+    if (this.state.contactNumber == '') {
+      this.setState({contactNumberError: "Contact Number can't be empty"});
+    } else {
+      this.setState({ContactNumberError: ''});
+    }
+  }
+
   // useEffect(()=>{
   //   fetchData();
   // },[])
@@ -120,7 +129,7 @@ class Register extends Component {
       address,
     } = this.state;
     //this.props.navigation.navigate('MainTabsScreen');
-    Axios.post('http://3.21.100.220:3000/api/insert', {
+    Axios.post('http://3.21.100.220:3001/api/insert', {
       firstName: firstName,
       lastName: lastName,
       nic: nic,
@@ -231,9 +240,15 @@ class Register extends Component {
               placeholder="Contact Number"
               keyboardType="numeric"
               name="contactNumber"
-              onChangeText={value => this.setState({contactNumber: value})}
+              onBlur={() => this.numberValidator()}
+              onChangeText={text => {
+                this.setState({contactNumber: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.contactNumberError}
+            </Text>
             <Icon name="home" color="#3342C8" size={22}></Icon>
             <Title
               style={[
