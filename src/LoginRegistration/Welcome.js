@@ -40,6 +40,7 @@ class Welcome extends Component {
     }
   storeData();
   getData();
+      AsyncStorage.multiSet([["appStatus", "2"]]);
   
   }
 

@@ -57,6 +57,7 @@ const MyProfile = ({navigation}) => {
     return () => clearInterval(interval);
   }, []);
 
+
   const fetchData = async username => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
@@ -70,6 +71,7 @@ const MyProfile = ({navigation}) => {
   };
   // let name = data.map((item)=> {item})
   // console.log(name);
+
 
   return (
     // <MyProfileScreen/>
