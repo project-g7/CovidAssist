@@ -47,9 +47,6 @@ class Login extends Component {
     } else if (Password == '') {
       alert('Please enter the password');
       return false;
-    } else{
-          AsyncStorage.multiSet([["username", this.state.userName]]);
-          console.log(this.state.userName);
     }
 
     this.props.navigation.navigate('MainTabsScreen');
@@ -58,7 +55,7 @@ class Login extends Component {
 
   login = () => {
     const {userName, password} = this.state;
-    Axios.post('http://192.168.1.3:3001/api/login', {
+    Axios.post('http://192.168.1.103:3001/api/login', {
       userName: userName,
       password: password,
     })
@@ -68,7 +65,9 @@ class Login extends Component {
           alert('Invalid');
         }else{
           alert('Successful login');
-        this.props.navigation.navigate('MainTabsScreen');
+          this.props.navigation.navigate('MainTabsScreen');
+          AsyncStorage.multiSet([["username", this.state.userName]]);
+          console.log(this.state.userName);
         }
         
       })
