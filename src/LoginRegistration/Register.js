@@ -153,7 +153,7 @@ class Register extends Component {
       alert('Address is empty.. Invalid!');
     } else {
       //this.props.navigation.navigate('MainTabsScreen');
-      Axios.post('http://192.168.1.3:3001/api/insert', {
+      Axios.post('http://192.168.1.103:3001/api/insert', {
         firstName: firstName,
         lastName: lastName,
         nic: nic,

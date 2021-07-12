@@ -15,6 +15,7 @@ const radioButtonsData = [
     label: 'No',
     value: false,
     color: '#1167b1',
+    selected : true
   },
 ];
 
