@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -25,7 +25,7 @@ const DetailScreen = () => {
     </Stack.Navigator>
   );
 };
- 
+
 const DetailScreenPage = ({navigation}) => {
   return (
     <ScrollView>
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
   },
   box: {
     width: '100%',
-    height: '15%',
+    height: '12%',
   },
   inner: {
     flex: 1,
-    backgroundColor: '#7393B3',
+    backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   text: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     textAlign: 'left',
   },
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    backgroundColor: '#1167b1',
+    backgroundColor: '#3342C8',
     marginBottom: 130,
     alignContent: 'center',
     marginLeft: 130,

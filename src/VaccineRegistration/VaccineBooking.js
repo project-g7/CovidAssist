@@ -19,7 +19,7 @@ export default class VaccineBooking extends Component {
           You will be registering for the Vaccine
         </Text>
         <ScrollView style={styles.ScrollView}>
-          <Icon name="user" color="#1167b1" size={22}></Icon>
+          <Icon name="user" color="#3342C8" size={22}></Icon>
           <Title
             style={[
               styles.title,
@@ -33,7 +33,7 @@ export default class VaccineBooking extends Component {
             onChangeText={value => this.setState({FullName: value})}
             underlineColorAndroid={'transparent'}
           />
-          <Icon name="user" color="#1167b1" size={22}></Icon>
+          <Icon name="user" color="#3342C8" size={22}></Icon>
           <Title
             style={[
               styles.title,
@@ -47,7 +47,7 @@ export default class VaccineBooking extends Component {
             onChangeText={value => this.setState({NICNumber: value})}
             underlineColorAndroid={'transparent'}
           />
-          <Icon name="phone" color="#1167b1" size={22}></Icon>
+          <Icon name="phone" color="#3342C8" size={22}></Icon>
           <Title
             style={[
               styles.title,
@@ -61,7 +61,7 @@ export default class VaccineBooking extends Component {
             onChangeText={value => this.setState({ContactNumber: value})}
             underlineColorAndroid={'transparent'}
           />
-          <Icon name="home" color="#1167b1" size={22}></Icon>
+          <Icon name="home" color="#3342C8" size={22}></Icon>
           <Title
             style={[
               styles.title,
@@ -77,7 +77,7 @@ export default class VaccineBooking extends Component {
             underlineColorAndroid={'transparent'}
           />
 
-          <Icon name="home" color="#1167b1" size={22}></Icon>
+          <Icon name="home" color="#3342C8" size={22}></Icon>
           <Title
             style={[
               styles.title,
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginLeft: -15,
     marginTop: -18,
+    //color: '#3342C8',
   },
   buttonNext: {
     marginTop: 15,
@@ -169,11 +170,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'normal',
-    color: '#1167b1',
+    color: '#3342C8',
   },
   genderText: {
     marginTop: -30,
     marginLeft: -180,
     marginBottom: 60,
+    color: '#3342C8',
   },
 });

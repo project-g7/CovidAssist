@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   button_signin: {
     width: 260,
-    borderRadius: 20,
+    borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   button_signup: {
     width: 260,
-    borderRadius: 20,
+    borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: 'white',
@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 28,
+    //fontWeight: 'bold',
+    fontSize: 25,
     textAlign: 'center',
   },
   buttonText2: {
     color: '#3342C8',
-    fontWeight: 'bold',
-    fontSize: 28,
+    //fontWeight: 'bold',
+    fontSize: 25,
     textAlign: 'center',
   },
 });

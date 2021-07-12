@@ -1,8 +1,27 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 export default class VaccineCenter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      // isLoading: true,
+      // PickerValueHolder : '',
+    };
+  }
+
+  componentDidMount() {
+    this.apicall();
+  }
+  async apicall() {
+    let resp = await fetch('http://192.168.8.100:3001/api/VaccineCenter');
+    let respJson = await resp.json();
+    //console.warn(respJson);
+    this.setState({data: respJson});
+  }
+
   state = {vaccine: ''};
   showVaccine = option => {
     if (option !== 'disabled') {
@@ -21,14 +40,21 @@ export default class VaccineCenter extends Component {
               <Picker.Item
                 label="Select Vaccination center"
                 value="disabled"
-                color="#aaa"
+                color="grey"
               />
-              <Picker.Item label="NIC" value="nic" />
+              {/* <Picker.Item label="NIC" value="nic" />
               <Picker.Item label="Drving Licene" value="driving licene" />
-              <Picker.Item label="Passport" value="passport" />
+              <Picker.Item label="Passport" value="passport" /> */}
+              {this.state.data.map((item, index) => (
+                <Picker.Item key={index} label={item.name} value={item.name} />
+              ))}
             </Picker>
           </View>
         </View>
+        {/* <FlatList
+          data={this.state.data}
+          renderItem={({item}) => <Text>{item.name}</Text>}
+        /> */}
       </View>
     );
   }
