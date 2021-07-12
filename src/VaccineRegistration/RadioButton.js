@@ -26,6 +26,10 @@ export default function App() {
   }
 
   return (
-    <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
+    <RadioGroup
+      radioButtons={radioButtons}
+      onPress={onPressRadioButton}
+      layout="row"
+    />
   );
 }

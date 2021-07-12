@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 //import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconI from 'react-native-vector-icons/Ionicons';
-
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
 import RegisterScreen from './RegisterScreen';
@@ -33,7 +33,9 @@ const MainTabScreen = () => (
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'YourStatus',
-        tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
+        tabBarIcon: ({color}) => (
+          <Icons name="hand-heart" color={color} size={26} />
+        ),
       }}
     />
     <Tab.Screen
@@ -41,7 +43,9 @@ const MainTabScreen = () => (
       component={DetailStackScreen}
       options={{
         tabBarLabel: 'Vaccination',
-        tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
+        tabBarIcon: ({color}) => (
+          <Icons name="medical-bag" color={color} size={26} />
+        ),
       }}
     />
   </Tab.Navigator>
@@ -86,7 +90,7 @@ const DetailStackScreen = ({navigation}) => (
         <IconI.Button
           name="menu"
           size={25}
-          backgroundColor="#3342C8"
+          backgroundColor="#1167b1"
           onPress={() => navigation.openDrawer()}></IconI.Button>
       ),
     }}>

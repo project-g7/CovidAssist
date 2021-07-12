@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -10,106 +10,142 @@ import {
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButton from './RadioButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default class VaccineBooking extends Component {
-  render() {
-    return (
-      <View style={styles.credentialText}>
-        <Text style={styles.headText}>
-          You will be registering for the Vaccine
-        </Text>
-        <ScrollView style={styles.ScrollView}>
-          <Icon name="user" color="#3342C8" size={22}></Icon>
-          <Title
-            style={[
-              styles.title,
-              {marginLeft: 25, marginTop: -25, marginBottom: -10},
-            ]}>
-            Full Name
-          </Title>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Full Name"
-            onChangeText={value => this.setState({FullName: value})}
-            underlineColorAndroid={'transparent'}
-          />
-          <Icon name="user" color="#3342C8" size={22}></Icon>
-          <Title
-            style={[
-              styles.title,
-              {marginLeft: 25, marginTop: -25, marginBottom: -10},
-            ]}>
-            NIC Number
-          </Title>
-          <TextInput
-            style={styles.textinput}
-            placeholder="NIC Number"
-            onChangeText={value => this.setState({NICNumber: value})}
-            underlineColorAndroid={'transparent'}
-          />
-          <Icon name="phone" color="#3342C8" size={22}></Icon>
-          <Title
-            style={[
-              styles.title,
-              {marginLeft: 25, marginTop: -25, marginBottom: -10},
-            ]}>
-            Contact Number
-          </Title>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Contact Number"
-            onChangeText={value => this.setState({ContactNumber: value})}
-            underlineColorAndroid={'transparent'}
-          />
-          <Icon name="home" color="#3342C8" size={22}></Icon>
-          <Title
-            style={[
-              styles.title,
-              {marginLeft: 25, marginTop: -25, marginBottom: -10},
-            ]}>
-            Address
-          </Title>
+const VaccineBooking = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // console.log('This will run every second!');
+      AsyncStorage.multiGet(['username']).then(data => {
+        let username = data[0][1];
+        // console.log(username);
+        fetchData(username);
+      });
+    }, 2000);
 
-          <TextInput
-            style={styles.textinput}
-            placeholder="Address"
-            onChangeText={value => this.setState({ContactNumber: value})}
-            underlineColorAndroid={'transparent'}
-          />
+    return () => clearInterval(interval);
+  }, []);
 
-          <Icon name="home" color="#3342C8" size={22}></Icon>
-          <Title
-            style={[
-              styles.title,
-              {marginLeft: 25, marginTop: -25, marginBottom: -10},
-            ]}>
-            Gender
-          </Title>
-          <TextInput
-            onChangeText={value => this.setState({Gender: value})}
-            //underlineColorAndroid={'transparent'}
-          />
-          <View style={styles.genderText}>
-            <RadioButton />
-          </View>
-
-          <TouchableOpacity>
-            <View style={styles.buttonNext}>
-              <Text style={styles.butonText}>Register</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <View style={styles.buttonNext1}>
-              <Text style={styles.butonText}>Cancel</Text>
-            </View>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
+  const fetchData = async username => {
+    // console.log(username);
+    const encodedUsername = encodeURIComponent(username);
+    const response = await fetch(
+      `http://192.168.8.100:3001/api/users?username=${encodedUsername}`,
+      {method: 'GET'},
     );
-  }
-}
+    const users = await response.json();
+    setData(users);
+    // console.log(data);
+  };
+  return (
+    <View style={styles.credentialText}>
+      <Text style={styles.headText}>
+        You will be registering for the Vaccine
+      </Text>
+      <ScrollView style={styles.ScrollView}>
+        <Icon name="user" color="#3342C8" size={25}></Icon>
+        <Title
+          style={[
+            styles.title,
+            {marginLeft: 25, marginTop: -30, marginBottom: -10},
+          ]}>
+          Full Name
+        </Title>
+        {data.map(val => {
+          return (
+            <Text key={val.first_name} style={styles.textinput}>
+              {val.first_name}
+              {val.last_name}
+            </Text>
+          );
+        })}
+        <View style={{marginTop: 20}}>
+          <Icon name="user" color="#3342C8" size={25}></Icon>
+        </View>
+        <Title
+          style={[
+            styles.title,
+            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+          ]}>
+          NIC Number
+        </Title>
+        {data.map(val => {
+          return (
+            <Text key={val.nic} style={styles.textinput}>
+              {val.nic}
+            </Text>
+          );
+        })}
+        <View style={{marginTop: 20}}>
+          <Icon name="phone" color="#3342C8" size={25}></Icon>
+        </View>
+        <Title
+          style={[
+            styles.title,
+            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+          ]}>
+          Contact Number
+        </Title>
+        {data.map(val => {
+          return (
+            <Text key={val.contact_number} style={styles.textinput}>
+              {val.contact_number}
+            </Text>
+          );
+        })}
+        <View style={{marginTop: 20}}>
+          <Icon name="home" color="#3342C8" size={25}></Icon>
+        </View>
+        <Title
+          style={[
+            styles.title,
+            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+          ]}>
+          Address
+        </Title>
 
+        {data.map(val => {
+          return (
+            <Text key={val.address} style={styles.textinput}>
+              {val.address}
+            </Text>
+          );
+        })}
+        {/* <View style={{marginTop: 20}}>
+          <Icon name="home" color="#3342C8" size={25}></Icon>
+        </View> */}
+        {/* <Title
+          style={[
+            styles.title,
+            {marginLeft: 25, marginTop: -25, marginBottom: -10},
+          ]}>
+          Gender
+        </Title>
+        <TextInput
+           onChangeText={value => this.setState({Gender: value})}
+           underlineColorAndroid={'transparent'}
+        /> */}
+        {/* <View style={styles.genderText}>
+          <RadioButton />
+        </View> */}
+
+        {/* <TouchableOpacity>
+          <View style={styles.buttonNext}>
+            <Text style={styles.butonText}>Register</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <View style={styles.buttonNext1}>
+            <Text style={styles.butonText}>Cancel</Text>
+          </View>
+        </TouchableOpacity> */}
+      </ScrollView>
+    </View>
+  );
+};
+export default VaccineBooking;
 const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
@@ -119,19 +155,25 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   textinput: {
-    marginTop: 8,
-    alignSelf: 'stretch',
-    height: 40,
-    marginBottom: 20,
+    // marginTop: 8,
+    // alignSelf: 'stretch',
+    // height: 40,
+    // marginBottom: 20,
 
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'blue',
+    // borderBottomWidth: 0.5,
+    // borderBottomColor: 'blue',
+    fontSize: 20,
+    color: 'black',
+    fontWeight: '500',
+    marginLeft: '7%',
+    marginTop: 15,
   },
   headText: {
-    fontSize: 20,
+    fontSize: 22,
     textAlign: 'left',
     marginLeft: -15,
     marginTop: -18,
+    color: 'blue',
     //color: '#3342C8',
   },
   buttonNext: {
@@ -168,7 +210,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'normal',
     color: '#3342C8',
   },
@@ -177,5 +219,12 @@ const styles = StyleSheet.create({
     marginLeft: -180,
     marginBottom: 60,
     color: '#3342C8',
+    fontSize: 18,
+  },
+  caption: {
+    fontSize: 15,
+    color: 'black',
+    fontWeight: '500',
+    marginLeft: '9%',
   },
 });
