@@ -11,6 +11,8 @@ import {
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
+import RadioButton from '../VaccineRegistration/RadioButton';
+import {Value} from 'react-native-reanimated';
 const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const name = /^[a-zA-Z]+ [a-zA-Z]+$/;
 //import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
@@ -35,6 +37,7 @@ class Register extends Component {
       lastNameError: '',
       FirstNameError: '',
       ContactNumberError: '',
+      Gender: '',
     };
   }
 
@@ -127,24 +130,53 @@ class Register extends Component {
       userName,
       password,
       address,
+      Gender,
     } = this.state;
-    //this.props.navigation.navigate('MainTabsScreen');
-    Axios.post('http://3.21.100.220:3001/api/insert', {
-      firstName: firstName,
-      lastName: lastName,
-      nic: nic,
-      contactNumber: contactNumber,
-      email: email,
-      userName: userName,
-      password: password,
-      address: address,
-    })
-      .then(() => {
-        alert('Successful insert');
+
+    if (firstName == '') {
+      alert('First Name is empty.. Invalid!');
+    } else if (lastName == '') {
+      alert('Last Name is empty.. Invalid!');
+    } else if (nic == '') {
+      alert('NIC is empty.. Invalid!');
+    } else if (contactNumber == '') {
+      alert('Contact Number is empty.. Invalid!');
+    } else if (email == '') {
+      alert('email is empty.. Invalid!');
+    } else if (userName == '') {
+      alert('User Name is empty.. Invalid!');
+    } else if (password == '') {
+      alert('Password is empty.. Invalid!');
+    } else if (password.length < 8) {
+      alert('Password must have more than 8 characters.. Invalid!');
+    } else if (address == '') {
+      alert('Address is empty.. Invalid!');
+    } else {
+      //this.props.navigation.navigate('MainTabsScreen');
+      Axios.post('http://192.168.1.3:3001/api/insert', {
+        firstName: firstName,
+        lastName: lastName,
+        nic: nic,
+        contactNumber: contactNumber,
+        email: email,
+        userName: userName,
+        password: password,
+        address: address,
+        Gender: Gender,
       })
-      .catch(error => {
-        alert(error);
-      });
+        .then(data => {
+          console.log(data.data);
+          if (data.data == 'wrong') {
+            alert('Duplicate User Name. Invalid..!');
+          } else {
+            alert('Successful login');
+            this.props.navigation.navigate('MainTabsScreen');
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+    }
   };
   render() {
     return (
@@ -174,7 +206,6 @@ class Register extends Component {
               style={styles.textinput}
               placeholder="First Name"
               name="firstName"
-              keyboardType="text"
               onBlur={() => this.firstNameValidator()}
               onChangeText={text => {
                 this.setState({firstName: text});
@@ -196,7 +227,6 @@ class Register extends Component {
               style={styles.textinput}
               placeholder="Last Name"
               name="lastName"
-              keyboardType="text"
               onBlur={() => this.lastNameValidator()}
               onChangeText={text => {
                 this.setState({lastName: text});
@@ -334,8 +364,26 @@ class Register extends Component {
             <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
               {this.state.passwordError}
             </Text>
+
+            <Icon name="home" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Gender
+            </Title>
+            <TextInput
+              onValueChange={id => {
+                this.setState({Gender: id});
+              }}
+              //underlineColorAndroid={'transparent'}
+            />
+            <View style={styles.genderText}>
+              <RadioButton />
+            </View>
           </View>
-          <View>
+          <View style={{marginBottom: 10}}>
             <TouchableOpacity onPress={() => this.submitDetails()}>
               <View style={styles.button_signin}>
                 <Text style={styles.buttonText}>Register</Text>
@@ -388,6 +436,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'normal',
+    color: '#3342C8',
+  },
+  genderText: {
+    marginTop: -30,
+    marginLeft: -40,
+    marginBottom: 40,
     color: '#3342C8',
   },
 });
