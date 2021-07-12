@@ -5,13 +5,15 @@ const radioButtonsData = [
   {
     id: '1', // acts as primary key, should be unique and non-empty string
     label: 'Female',
-    value: 'female',
+    Value: 'female',
+    name: 'female',
     color: '#3342C8',
   },
   {
     id: '2',
     label: 'Male',
-    value: 'male',
+    Value: 'male',
+    name: 'male',
     color: '#3342C8',
   },
 ];
