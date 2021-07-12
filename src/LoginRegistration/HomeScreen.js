@@ -12,8 +12,8 @@ const HomeScreen = ({navigation}) => {
           height: 250,
           width: '80%',
           marginBottom: 100,
-          marginTop: 150,
-          marginLeft: '10%',
+          marginTop: 50,
+          marginLeft: '15%',
           marginRight: '10%',
         }}
         source={require('../../assets/logo.jpg')}

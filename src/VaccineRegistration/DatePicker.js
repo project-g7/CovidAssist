@@ -1,48 +1,98 @@
 //Android 14 select data figma
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+//import DateTimePicker from 'react-native-modal-datetime-picker';
+import DatePicker from 'react-native-datepicker';
 
-export default class DatePicker extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isVisible: false,
-    };
+export default class MyDatePicker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: '2021-07-12'};
   }
-  handlePicker = () => {
-    this.setState({
-      isVisible: false,
-    });
-  };
-  hidePicker = () => {
-    this.setState({
-      isVisible: false,
-    });
-  };
-  showPicker = () => {
-    this.setState({
-      isVisible: true,
-    });
-  };
   render() {
     return (
-      <View style={styles.Container}>
-        <TouchableOpacity style={styles.button1} onPress={this.showPicker}>
-          <Text style={styles.text}>Set Date</Text>
-        </TouchableOpacity>
-        <DateTimePicker
-          isVisible={this.state.isVisible}
-          onConfirm={this.handlePicker}
-          onCancel={this.hidePicker}
-          mode={'date'}
+      <View style={styles.row}>
+        <Text style={styles.label}>set date</Text>
+        <DatePicker
+          style={{width: 400}}
+          date={this.state.date}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          minDate="2020-05-01"
+          maxDate="2030-05-01"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              right: 80,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+              marginLeft: 26,
+              marginRight: 80,
+            },
+            // ... You can check the source to find the other keys.
+          }}
+          onDateChange={date => {
+            this.setState({date: date});
+          }}
         />
       </View>
     );
   }
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     isVisible: false,
+  //   };
+  // }
+  // handlePicker = () => {
+  //   this.setState({
+  //     isVisible: false,
+  //   });
+  // };
+  // hidePicker = () => {
+  //   this.setState({
+  //     isVisible: false,
+  //   });
+  // };
+  // showPicker = () => {
+  //   this.setState({
+  //     isVisible: true,
+  //   });
+  // };
+  // render() {
+  //   return (
+  //     // <View style={styles.Container}>
+  //     //   <TouchableOpacity style={styles.button1} onPress={this.showPicker}>
+  //     //     <Text style={styles.text}>Set Date</Text>
+  //     //   </TouchableOpacity>
+  //     //   <DateTimePicker
+  //     //     isVisible={this.state.isVisible}
+  //     //     onConfirm={this.handlePicker}
+  //     //     onCancel={this.hidePicker}
+  //     //     mode={'date'}
+  //     //   />
+  //     // </View>
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({
+  row: {
+    marginTop: 50,
+    marginLeft: -100,
+  },
+  label: {
+    marginTop: 100,
+    fontSize: 18,
+    marginLeft: 30,
+    color: 'grey',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
