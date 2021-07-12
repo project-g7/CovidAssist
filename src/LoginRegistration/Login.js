@@ -53,19 +53,18 @@ class Login extends Component {
 
   login = () => {
     const {userName, password} = this.state;
-    Axios.post('http://192.168.1.3:3001/api/login', {
+    Axios.post('http://192.168.8.100:3001/api/login', {
       userName: userName,
       password: password,
     })
-      .then((data) => {
+      .then(data => {
         console.log(data.data);
-        if(data.data=='wrong'){
+        if (data.data == 'wrong') {
           alert('Invalid');
-        }else{
+        } else {
           alert('Successful login');
-        this.props.navigation.navigate('MainTabsScreen');
+          this.props.navigation.navigate('MainTabsScreen');
         }
-        
       })
       .catch(error => {
         alert(error);
@@ -74,7 +73,6 @@ class Login extends Component {
 
   render() {
     return (
-
       <ScrollView>
         <View style={styles.view}>
           {
