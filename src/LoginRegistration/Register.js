@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 40,
     marginBottom: 10,
-    borderBottomColor: '#199187',
+    borderBottomColor: '#3342C8',
     borderBottomWidth: 1,
   },
   button_signin: {
