@@ -52,7 +52,7 @@ const EditProfile = ({route, navigation}) => {
     console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.1.103:3001/api/users?username=${encodedUsername}`,
+      `http://192.168.8.100:3001/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();
@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    backgroundColor: '#1167b1',
+    backgroundColor: '#3342C8',
     marginBottom: 5,
     alignContent: 'center',
     // marginLeft: 100,
