@@ -26,7 +26,7 @@ class Welcome extends Component {
               source={require('../../assets/logo.jpg')}
             />
           }
-          <Text style={styles.headText}>How CovidAssist works</Text>
+          <Text style={styles.headText}>How CovidAssist Works</Text>
           <Text style={styles.bodyText}>
             Bluetooth signals are used to determine you’re near another
             CovidAssist user.
@@ -65,20 +65,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bodyText: {
-    fontSize: 20,
+    fontSize: 18,
     alignContent: 'flex-start',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
   },
   headText: {
-    fontSize: 30,
+    fontSize: 25,
     marginBottom: 25,
-    marginTop: 15,
+    marginTop: 0,
+    marginLeft: 10,
+    fontWeight: 'bold',
   },
   button_signin: {
-    width: 260,
-    borderRadius: 20,
+    width: 200,
+    borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',
@@ -86,8 +88,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 28,
+    // fontWeight: 'bold',
+    fontSize: 25,
     textAlign: 'center',
   },
 });
