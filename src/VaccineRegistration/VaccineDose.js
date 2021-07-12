@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import RadioGroup from 'react-native-radio-buttons-group';
-import { StyleSheet, View} from 'react-native'
-
+import {StyleSheet, View} from 'react-native';
 
 const radioButtonsData = [
   {
@@ -35,9 +34,9 @@ const newRadioButtonsData = [
 ];
 
 export default function App() {
-const [radioButtons, setRadioButtons] = useState(radioButtonsData);
+  const [radioButtons, setRadioButtons] = useState(radioButtonsData);
   const [newRadioButtons, setNewRadioButtons] = useState(newRadioButtonsData);
-  const [isYes,setIsYes] = useState(false);
+  const [isYes, setIsYes] = useState(false);
 
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
@@ -50,26 +49,38 @@ const [radioButtons, setRadioButtons] = useState(radioButtonsData);
 
   let selectedButton = radioButtons.find(e => e.selected == true);
   let newSelectedButton = newRadioButtons.find(e => e.selected == true);
-  selectedButton = selectedButton ? selectedButton.value : console.log("no vals");
+  selectedButton = selectedButton
+    ? selectedButton.value
+    : console.log('no vals');
 
   return (
-        <View>
-            <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} layout="row"/>
-            {selectedButton && <View style={styles.box3}>
-              <RadioGroup radioButtons={newRadioButtons} onPress={onPressNewRadioButton} layout="column"/>
-            </View>}
+    <View>
+      <RadioGroup
+        radioButtons={radioButtons}
+        onPress={onPressRadioButton}
+        layout="row"
+      />
+      {selectedButton && (
+        <View style={styles.box3}>
+          <RadioGroup
+            radioButtons={newRadioButtons}
+            onPress={onPressNewRadioButton}
+            layout="column"
+          />
         </View>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    box3: {
-      marginLeft: -10,
-      marginTop: 25,
-      backgroundColor: 'white',
-      width: 200,
-      height: 80,
-      borderRadius: 8,
-      padding:10
+  box3: {
+    marginLeft: -20,
+    marginTop: 25,
+    backgroundColor: 'white',
+    width: 200,
+    height: 80,
+    borderRadius: 8,
+    padding: 10,
   },
-})
+});

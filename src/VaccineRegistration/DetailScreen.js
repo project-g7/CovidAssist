@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   butonText: {
     color: 'white',
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontSize: 22,
     textAlign: 'center',
   },
