@@ -34,7 +34,7 @@ const HomeScreen = ({navigation}) => {
           // fetchData(username);
         if(username == "logout"){
           setTimeout(() => {
-            navigation.navigate('Sign');
+            navigation.navigate('Welcome');
           }, 2500);
         }else{
             navigation.navigate('MainTabsScreen');

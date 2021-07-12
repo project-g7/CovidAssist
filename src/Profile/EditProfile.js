@@ -24,7 +24,7 @@ const EditProfile = ({route,navigation}) => {
     const [data,setData] = useState([]);
       // const [data,setData] = useState([]);
       useEffect(()=>{
-        const interval = setInterval(() => {
+        // const interval = setInterval(() => {
         // console.log('This will run every second!');
         AsyncStorage.multiGet(['username']).then((data) => {
           let username = data[0][1];
@@ -34,7 +34,7 @@ const EditProfile = ({route,navigation}) => {
         // fetchData();
         // console.log(lastName);
 
-        }, 2000);
+        // }, 2000);
         return () => clearInterval(interval);
       },[])
 
@@ -45,31 +45,37 @@ const EditProfile = ({route,navigation}) => {
       const response = await fetch(`http://192.168.1.103:3001/api/users?username=${encodedUsername}`,{method: "GET"});
       const users = await response.json();
       setData(users);
-
+      setFirstName(users[0].first_name);
+      setLastName(users[0].last_name);
+      setNic(users[0].nic);
+      setContactNumber(users[0].contact_number);
+      setEmail(users[0].email);
+      setUsername(users[0].user_name);
       // data.map((val)=>{
       //   setFirstName(val.first_name);
       // })
-            users.map((val)=>{
-                        setFirstName(val.first_name);
-                        setLastName(val.last_name);
-                        setNic(val.nic);
-                        setContactNumber(val.contact_number);
-                        setEmail(val.email);
-                        setUsername(val.user_name);
-                         // setFirstName(val.first_name); */}
-              // console.log(val.first_name);
+            // users.map((val)=>{
+            //             setFirstName(val.first_name);
+            //             setLastName(val.last_name);
+            //             setNic(val.nic);
+            //             setContactNumber(val.contact_number);
+            //             setEmail(val.email);
+            //             setUsername(val.user_name);
+            //              // setFirstName(val.first_name); */}
+            //   // console.log(val.first_name);
                         
-                      })
+            //           })
 
       // console.log(firstName);
     }
   const SaveProfile = () => {
     
-    // console.log(nn);
+    // console.log(firstName);
       Axios.put('http://10.0.2.2:3001/api/editprofile',{firstName:firstName,lastName:lastName,nic:nic,contactNumber:contactNumber,email:email,username:username})
       .then(()=>{
     // console.log("save po");
           alert("Updated");
+          fetchData(username);
       }).catch((error)=>{
     // console.log("errrr");
         alert(error);
@@ -172,23 +178,7 @@ const EditProfile = ({route,navigation}) => {
                           );
                       })}
                     </View>
-                    <View style={{marginTop:'5%'}}>
-                        <View style={{flexDirection: 'row'}} >
-                            <Iconf name="user" color="black" size={24}/>
-                            <Title style={[styles.title, {
-                                marginLeft: 10,
-                                marginTop: -3,
-                                marginBottom: 5,
-                                }]}>Username</Title>
-                        </View>
-                        {data.map((val)=>{
-                          {/* setUsername(val.user_name); */}
-                          return(
-                        <TextInput style={styles.caption} key={val.user_name} underlineColorAndroid={'blue'} width={'80%'} onChange={(e)=>{setUsername(e.nativeEvent.text)}}>{val.user_name}</TextInput>
-                            
-                          );
-                      })}
-                    </View>
+                    
             <View >
                 <View style={{ alignItems:'center', flexDirection:'row', justifyContent:'space-around'}}>
                           <TouchableOpacity

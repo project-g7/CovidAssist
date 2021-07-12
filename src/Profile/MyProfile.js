@@ -54,7 +54,7 @@ const MyProfile = ({navigation}) => {
       const response = await fetch(`http://192.168.1.103:3001/api/users?username=${encodedUsername}`,{method: "GET"});
       const users = await response.json();
       setData(users);
-      // console.log(data);
+      // console.log(users[0].address); 
     }
       // let name = data.map((item)=> {item})
       // console.log(name);

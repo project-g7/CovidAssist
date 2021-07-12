@@ -120,7 +120,7 @@ class Register extends Component {
       address,
     } = this.state;
     //this.props.navigation.navigate('MainTabsScreen');
-    Axios.post('http://3.21.100.220:3001/api/insert', {
+    Axios.post('http://192.168.1.103:3001/api/insert', {
       firstName: firstName,
       lastName: lastName,
       nic: nic,
