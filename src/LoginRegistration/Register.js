@@ -34,6 +34,7 @@ class Register extends Component {
       nicError: '',
       lastNameError: '',
       FirstNameError: '',
+      ContactNumberError: '',
     };
   }
 
@@ -94,6 +95,14 @@ class Register extends Component {
       this.setState({passwordError: 'Password must be more than 4 characters'});
     } else {
       this.setState({passwordError: ''});
+    }
+  }
+
+  numberValidator() {
+    if (this.state.contactNumber == '') {
+      this.setState({contactNumberError: "Contact Number can't be empty"});
+    } else {
+      this.setState({ContactNumberError: ''});
     }
   }
 
@@ -231,9 +240,15 @@ class Register extends Component {
               placeholder="Contact Number"
               keyboardType="numeric"
               name="contactNumber"
-              onChangeText={value => this.setState({contactNumber: value})}
+              onBlur={() => this.numberValidator()}
+              onChangeText={text => {
+                this.setState({contactNumber: text});
+              }}
               underlineColorAndroid={'transparent'}
             />
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.contactNumberError}
+            </Text>
             <Icon name="home" color="#3342C8" size={22}></Icon>
             <Title
               style={[
