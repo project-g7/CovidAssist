@@ -21,7 +21,7 @@ class DropDown extends Component {
           <Picker.Item
             label="please select ID"
             value="disabled"
-            color="#aaa"
+            color="#grey"
             height="-1"
           />
           <Picker.Item label="NIC" value="nic" />

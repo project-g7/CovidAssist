@@ -40,7 +40,7 @@ export default class VaccineCenter extends Component {
               <Picker.Item
                 label="Select Vaccination center"
                 value="disabled"
-                color="#aaa"
+                color="grey"
               />
               {/* <Picker.Item label="NIC" value="nic" />
               <Picker.Item label="Drving Licene" value="driving licene" />
