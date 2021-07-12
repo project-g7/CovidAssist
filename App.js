@@ -13,7 +13,6 @@ import Welcome from './src/LoginRegistration/Welcome';
 import Welcome2 from './src/LoginRegistration/Welcome2';
 import Sign from './src/LoginRegistration/Sign';
 import Login from './src/LoginRegistration/Login';
-import LogOut from './src/LoginRegistration/LogOut';
 import Forget_password from './src/LoginRegistration/Forget_password';
 import Register from './src/LoginRegistration/Register';
 import HomeScreen from './src/LoginRegistration/HomeScreen';
