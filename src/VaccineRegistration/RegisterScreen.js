@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     flex: 1,
-    backgroundColor: '#7393B3',
+    backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    backgroundColor: '#1167b1',
+    backgroundColor: '#3342C8',
     alignContent: 'center',
     marginLeft: 38,
   },
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderColor: '#1167b1',
   },
   butonText1: {
-    color: 'black',
+    color: '#3342C8',
     fontSize: 16,
     textAlign: 'center',
   },

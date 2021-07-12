@@ -3,7 +3,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {createStackNavigator} from '@react-navigation/stack';
 //import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IconI from 'react-native-vector-icons/Ionicons'
+import IconI from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './HomeScreen';
 import DetailScreen from './DetailScreen';
@@ -18,13 +18,16 @@ const MainTabScreen = () => (
   <Tab.Navigator
     initialRouteName="Home"
     activeColor="white"
-    style={{backgroundColor: 'red'}} 
-     options={{
-        headerLeft: () => (
-          <Icon.Button name="menu" size={25} backgroundColor="#009387" 
+    style={{backgroundColor: 'red'}}
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="menu"
+          size={25}
+          backgroundColor="#3342C8"
           onPress={() => navigation.openDrawer()}></Icon.Button>
-        )
-      }}>
+      ),
+    }}>
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
@@ -48,16 +51,19 @@ const HomeStackScreen = ({navigation}) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1167b1',
+        backgroundColor: '#3342C8',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft:() => (
-          <IconI.Button name="menu" size={25} backgroundColor="#1167b1" 
+      headerLeft: () => (
+        <IconI.Button
+          name="menu"
+          size={25}
+          backgroundColor="#3342C8"
           onPress={() => navigation.openDrawer()}></IconI.Button>
-        ),
+      ),
     }}>
     <HomeStack.Screen
       name="Home"
@@ -70,16 +76,19 @@ const DetailStackScreen = ({navigation}) => (
   <DetailStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1167b1',
+        backgroundColor: '#3342C8',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft:() => (
-          <IconI.Button name="menu" size={25} backgroundColor="#1167b1" 
+      headerLeft: () => (
+        <IconI.Button
+          name="menu"
+          size={25}
+          backgroundColor="#3342C8"
           onPress={() => navigation.openDrawer()}></IconI.Button>
-        ),
+      ),
     }}>
     <DetailStack.Screen
       name="Detail"

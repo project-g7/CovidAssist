@@ -66,7 +66,7 @@ class Login extends Component {
             />
           }
           <View style={styles.credentialText}>
-            <Icon name="user" color="#1167b1" size={22}></Icon>
+            <Icon name="user" color="#3342C8" size={22}></Icon>
             <Title
               style={[
                 styles.title,
@@ -86,7 +86,7 @@ class Login extends Component {
             <Text style={{color: 'red', marginBottom: 10, textAlign: 'center'}}>
               {this.state.UsernameError}
             </Text>
-            <Icon name="lock" color="#1167b1" size={22}></Icon>
+            <Icon name="lock" color="#3342C8" size={22}></Icon>
 
             <Title
               style={[
@@ -159,19 +159,19 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '60%',
-    marginTop: 50,
+    marginTop: 12,
   },
   textinput: {
     alignSelf: 'stretch',
     height: 40,
     marginBottom: 20,
-    borderBottomColor: '#199187',
+    borderBottomColor: '#3342C8',
     borderBottomWidth: 1,
   },
   title: {
     fontSize: 16,
     fontWeight: 'normal',
-    color: '#1167b1',
+    color: '#3342C8',
   },
 });
 
