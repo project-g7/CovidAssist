@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowOpacity: 0,
+    shadowRadius: 4.65,
 
-    elevation: 5,
+    elevation: 8,
   },
   buttonNext: {
     marginTop: -20,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'left',
   },
   buttonNext2: {

@@ -69,7 +69,7 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    //height: '85%',
+    height: '100%',
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'left',
   },
   text: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'left',
   },
   buttonNext: {
