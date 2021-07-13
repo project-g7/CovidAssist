@@ -139,14 +139,20 @@ class Register extends Component {
 
     if (firstName == '') {
       alert('First Name is empty.. Invalid!');
+    } else if (!name.test(this.state.firstName)) {
+      alert('First name Invalid.!');
     } else if (lastName == '') {
       alert('Last Name is empty.. Invalid!');
+    } else if (!name.test(this.state.lastName)) {
+      alert('Last name Invalid.!');
     } else if (nic == '') {
       alert('NIC is empty.. Invalid!');
     } else if (contactNumber == '') {
       alert('Contact Number is empty.. Invalid!');
     } else if (email == '') {
       alert('email is empty.. Invalid!');
+    } if (!rx_live.test(this.state.email)) {
+      alert('Invalid Email.!');
     } else if (userName == '') {
       alert('User Name is empty.. Invalid!');
     } else if (password == '') {
@@ -161,7 +167,7 @@ class Register extends Component {
     // } 
     else {
       //this.props.navigation.navigate('MainTabsScreen');
-      Axios.post('http://192.168.1.103:3001/api/insert', {
+      Axios.post('http://192.168.1.3:3001/api/insert', {
         firstName: firstName,
         lastName: lastName,
         nic: nic,
