@@ -13,6 +13,7 @@ import DatePicker from './DatePicker';
 import {createStackNavigator} from '@react-navigation/stack';
 import VaccineBooking from './VaccineBooking';
 import VaccineCenter from './VaccineCenter';
+import TimeAvailable from './TimeAvailable';
 
 const Stack = createStackNavigator();
 
@@ -53,8 +54,10 @@ const RegisterScreenPage = ({navigation}) => {
             <Text style={styles.text1}>Time & Availability</Text>
           </View>
         </View>
-
-        <VaccineBooking />
+        <TimeAvailable />
+        <View style={{marginTop: -250}}>
+          <VaccineBooking />
+        </View>
 
         <TouchableOpacity>
           <View style={styles.buttonNext}>
@@ -81,6 +84,7 @@ const styles = StyleSheet.create({
   boxBoder: {
     flex: 1,
     marginTop: -60,
+    borderColor: 'red',
   },
   body: {
     flex: 1,
@@ -90,10 +94,11 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height: '65%',
+
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    backgroundColor: 'white',
   },
   box: {
     width: '100%',
@@ -105,6 +110,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
   buttonNext: {
     marginTop: -20,

@@ -1,6 +1,7 @@
 //Android 10 figma
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
+import LottieView from 'lottie-react-native';
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -14,6 +15,9 @@ const HomeScreen = ({navigation}) => {
           </Text>
         </View>
       </View>
+      {/* <View> */}
+      <LottieView style={styles.anime} source={require('../../assets/40375-health-loader-radar.json')} autoPlay loop />
+      {/* </View> */}
     </View>
   );
 };
@@ -25,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    backgroundColor: 'white',
   },
   box: {
     width: '100%',
@@ -37,6 +42,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
   text1: {
     color: 'white',
@@ -48,4 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
   },
+  anime:{
+    marginTop: 110
+  }
 });
