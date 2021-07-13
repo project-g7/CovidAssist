@@ -20,13 +20,14 @@ import DetailsScreen from './src/LoginRegistration/DetailsScreen';
 import MainTabsScreen from './src/VaccineRegistration/MainTabsScreen';
 import MyProfileStackScreen from './src/Profile/MyProfileStackScreen'
 import EditProfileStackScreen from './src/Profile/EditProfileStackScreen'
-
-
+import { LogBox } from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView,DrawerItem,DrawerItemList, DrawerContentComponentProps} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Home = () => {
   return (

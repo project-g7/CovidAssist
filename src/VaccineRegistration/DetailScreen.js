@@ -69,10 +69,11 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '85%',
+    //height: '85%',
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    backgroundColor: 'white',
   },
   box: {
     width: '100%',
@@ -83,9 +84,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
   dropdown: {
     marginLeft: -100,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 5,
   },
   box1: {
     marginTop: 15,
