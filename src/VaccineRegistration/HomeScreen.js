@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: 'white',
   },
   box: {
     width: '100%',
@@ -42,15 +41,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-
-    elevation: 5,
   },
   text1: {
     color: 'white',

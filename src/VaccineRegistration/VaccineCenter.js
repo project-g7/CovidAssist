@@ -25,6 +25,7 @@ export default class VaccineCenter extends Component {
   state = {vaccine: ''};
   showVaccine = option => {
     if (option !== 'disabled') {
+      console.log(option);
       this.setState({vaccine: option});
     }
   };
