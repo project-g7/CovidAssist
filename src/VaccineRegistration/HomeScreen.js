@@ -16,7 +16,12 @@ const HomeScreen = ({navigation}) => {
         </View>
       </View>
       {/* <View> */}
-      <LottieView style={styles.anime} source={require('../../assets/40375-health-loader-radar.json')} autoPlay loop />
+      <LottieView
+        style={styles.anime}
+        source={require('../../assets/40375-health-loader-radar.json')}
+        autoPlay
+        loop
+      />
       {/* </View> */}
     </View>
   );
@@ -25,7 +30,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '85%',
+    height: '100%',
     padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
   },
-  anime:{
-    marginTop: 110
-  }
+  anime: {
+    marginTop: 110,
+  },
 });
