@@ -8,12 +8,15 @@ const radioButtonsData = [
     label: 'Yes',
     value: true,
     color: '#1167b1',
+    // selected : true
+
   },
   {
     id: '2',
     label: 'No',
     value: false,
     color: '#1167b1',
+    // selected : true
   },
 ];
 
@@ -35,7 +38,7 @@ const newRadioButtonsData = [
 export default function App() {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
   const [newRadioButtons, setNewRadioButtons] = useState(newRadioButtonsData);
-  const [isYes, setIsYes] = useState(false);
+  // const [isYes, setIsYes] = useState(false);
 
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
@@ -48,9 +51,7 @@ export default function App() {
 
   let selectedButton = radioButtons.find(e => e.selected == true);
   let newSelectedButton = newRadioButtons.find(e => e.selected == true);
-  selectedButton = selectedButton
-    ? selectedButton.value
-    : console.log('no vals');
+  selectedButton = selectedButton ? selectedButton.value : false;
 
   return (
     <View>
