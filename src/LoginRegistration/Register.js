@@ -14,7 +14,7 @@ import Axios from 'axios';
 import RadioButton from '../VaccineRegistration/RadioButton';
 import {Value} from 'react-native-reanimated';
 const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-const name = /^[a-zA-Z]+ [a-zA-Z]+$/;
+const name = /^[a-zA-Z]+[a-zA-Z]+$/;
 //import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
 class Register extends Component {
   constructor(props) {
@@ -38,14 +38,16 @@ class Register extends Component {
       FirstNameError: '',
       ContactNumberError: '',
       Gender: '',
+      data: ['Male', 'Female'],
+      Checked: 0,
     };
   }
 
   firstNameValidator() {
     if (this.state.firstName == '') {
-      this.setState({firstNameError: "First Name can't be empty"});
-    } else if (name.test(this.state.firstName)) {
-      this.setState({firstNameError: "First Name can't be Numbers"});
+      this.setState({firstNameError: "First Name is required."});
+    } else if (!name.test(this.state.firstName)) {
+      this.setState({firstNameError: "First Name can't have Numbers"});
     } else {
       this.setState({firstNameError: ''});
     }
@@ -53,14 +55,16 @@ class Register extends Component {
 
   lastNameValidator() {
     if (this.state.lastName == '') {
-      this.setState({lastNameError: "Last Name can't be empty"});
+      this.setState({lastNameError: "Last Name is required."});
+    } else if (!name.test(this.state.lastName)) {
+      this.setState({lastNameError: "Last Name can't have Numbers"});
     } else {
       this.setState({lastNameError: ''});
     }
   }
   nicValidator() {
     if (this.state.nic == '') {
-      this.setState({nicError: "NIC can't be empty"});
+      this.setState({nicError: "NIC is required."});
     } else {
       this.setState({nicError: ''});
     }
@@ -68,24 +72,24 @@ class Register extends Component {
 
   addressValidator() {
     if (this.state.address == '') {
-      this.setState({addressError: "Address can't be empty"});
+      this.setState({addressError: "Address is required."});
     } else {
       this.setState({addressError: ''});
     }
   }
 
   emailValidator() {
-    if (rx_live.test(this.state.email)) {
-      this.setState({emailError: 'Wrong Email'});
+    if (!rx_live.test(this.state.email)) {
+      this.setState({emailError: 'Invalid Email'});
     } else if (this.state.email == '') {
-      this.setState({emailError: "Email can't be empty"});
+      this.setState({emailError: "Email is required."});
     } else {
       this.setState({emailError: ''});
     }
   }
   userNameValidator() {
     if (this.state.userName == '') {
-      this.setState({UsernameError: "User Name can't be empty"});
+      this.setState({UsernameError: "User Name is required."});
     } else {
       this.setState({UsernameError: ''});
     }
@@ -93,9 +97,9 @@ class Register extends Component {
 
   passwordValidator() {
     if (this.state.Password == '') {
-      this.setState({passwordError: "Password can't be empty"});
+      this.setState({passwordError: "Password is required."});
     } else if (this.state.password.length < 8) {
-      this.setState({passwordError: 'Password must be more than 4 characters'});
+      this.setState({passwordError: 'Password must be more than 8 characters'});
     } else {
       this.setState({passwordError: ''});
     }
@@ -103,7 +107,7 @@ class Register extends Component {
 
   numberValidator() {
     if (this.state.contactNumber == '') {
-      this.setState({contactNumberError: "Contact Number can't be empty"});
+      this.setState({contactNumberError: "Contact Number is required."});
     } else {
       this.setState({ContactNumberError: ''});
     }
@@ -151,7 +155,11 @@ class Register extends Component {
       alert('Password must have more than 8 characters.. Invalid!');
     } else if (address == '') {
       alert('Address is empty.. Invalid!');
-    } else {
+    } 
+    // else if (Gender=='') {
+    //   alert('Please Select Gender.. Invalid!');
+    // } 
+    else {
       //this.props.navigation.navigate('MainTabsScreen');
       Axios.post('http://192.168.1.3:3001/api/insert', {
         firstName: firstName,
@@ -169,8 +177,8 @@ class Register extends Component {
           if (data.data == 'wrong') {
             alert('Duplicate User Name. Invalid..!');
           } else {
-            alert('Successful login');
-            this.props.navigation.navigate('MainTabsScreen');
+            alert('Successfull');
+            this.props.navigation.navigate('Login');
           }
         })
         .catch(error => {
@@ -300,7 +308,7 @@ class Register extends Component {
             <Text style={{color: 'red', textAlign: 'center'}}>
               {this.state.addressError}
             </Text>
-            <Icon name="home" color="#3342C8" size={22}></Icon>
+            <Icon name="envelope-square" color="#3342C8" size={22}></Icon>
             <Title
               style={[
                 styles.title,
@@ -365,25 +373,45 @@ class Register extends Component {
               {this.state.passwordError}
             </Text>
 
-            <Icon name="home" color="#3342C8" size={22}></Icon>
+            <Icon name="male" color="#3342C8" size={22}></Icon>
             <Title
               style={[
                 styles.title,
-                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+                {marginLeft: 25, marginTop: -25, marginBottom: 5},
               ]}>
               Gender
             </Title>
-            <TextInput
-              onValueChange={id => {
-                this.setState({Gender: id});
-              }}
-              //underlineColorAndroid={'transparent'}
-            />
-            <View style={styles.genderText}>
-              <RadioButton />
-            </View>
+
+            {this.state.data.map((data, key) => {
+              return (
+                <View style={{marginTop: 4}}>
+                  {this.state.checked == key ? (
+                    <TouchableOpacity style={styles.btn}>
+                      <Image
+                        style={styles.img}
+                        source={require('../../assets/radio.png')}
+                      />
+                      <Text style={styles.btnText}>{data}</Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.setState({checked: key, Gender: data});
+                      }}
+                      style={styles.btn}>
+                      <Image
+                        style={styles.img}
+                        source={require('../../assets/radio1.png')}
+                      />
+
+                      <Text style={styles.btnText}>{data}</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              );
+            })}
           </View>
-          <View style={{marginBottom: 10}}>
+          <View style={{marginBottom: 10, marginTop: 10}}>
             <TouchableOpacity onPress={() => this.submitDetails()}>
               <View style={styles.button_signin}>
                 <Text style={styles.buttonText}>Register</Text>
@@ -442,6 +470,20 @@ const styles = StyleSheet.create({
     marginTop: -30,
     marginLeft: -40,
     marginBottom: 40,
+    color: '#3342C8',
+  },
+  btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 50,
+    marginBottom: 10,
+  },
+  img: {
+    height: 20,
+    width: 20,
+    marginRight: 5,
+  },
+  btnText: {
     color: '#3342C8',
   },
 });
