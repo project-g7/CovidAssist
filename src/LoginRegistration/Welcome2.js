@@ -45,7 +45,7 @@ class Welcome2 extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Sign')}>
             <View style={styles.button_signin}>
-              <Text style={styles.buttonText}>Sign In</Text>
+              <Text style={styles.buttonText}>Next</Text>
             </View>
           </TouchableOpacity>
         </View>

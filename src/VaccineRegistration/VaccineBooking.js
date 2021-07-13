@@ -15,16 +15,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const VaccineBooking = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    // const interval = setInterval(() => {
-      // console.log('This will run every second!');
-      AsyncStorage.multiGet(['username']).then(data => {
-        let username = data[0][1];
-        // console.log(username);
-        fetchData(username);
-      });
-    // }, 2000);
+    //const interval = setInterval(() => {
+    // console.log('This will run every second!');
+    AsyncStorage.multiGet(['username']).then(data => {
+      let username = data[0][1];
+      // console.log(username);
+      fetchData(username);
+    });
+    //}, 2000);
 
-    // return () => clearInterval(interval);
+    //return () => clearInterval(interval);
   }, []);
 
   const fetchData = async username => {
@@ -151,20 +151,19 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '100%',
-    height: '80%',
-    height: 400,
+    height: 540,
     marginTop: 300,
     marginLeft: 25,
     borderStartColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 4,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowOpacity: 0,
+    shadowRadius: 4.65,
 
-    elevation: 5,
+    elevation: 8,
   },
 
   textinput: {
