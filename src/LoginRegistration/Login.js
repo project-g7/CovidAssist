@@ -99,7 +99,7 @@ class Login extends Component {
                 styles.title,
                 {marginLeft: 25, marginTop: -25, marginBottom: -10},
               ]}>
-              Full Name
+              User Name
             </Title>
             <TextInput
               style={styles.textinput}

@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '100%',
-    height: 540,
+    height: 360,
     marginTop: 300,
     marginLeft: 25,
     borderStartColor: 'white',
@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   ScrollView: {
+    marginTop: 20,
     marginLeft: -5,
     marginVertical: 30,
   },

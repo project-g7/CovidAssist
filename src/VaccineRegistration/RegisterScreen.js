@@ -1,5 +1,5 @@
 //Android 14 figma
-import React, {Component} from 'react';
+import React, {useState,Component} from 'react';
 import {
   Text,
   StyleSheet,
@@ -28,6 +28,7 @@ const RegisterScreen = () => {
 };
 
 const RegisterScreenPage = ({navigation}) => {
+  const [check,setCheck] = useState(false);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -43,7 +44,7 @@ const RegisterScreenPage = ({navigation}) => {
           <DatePicker />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{setCheck(!check)}}>
           <View style={styles.buttonNext2}>
             <Text style={styles.butonText1}>Check Availaility</Text>
           </View>
@@ -54,10 +55,11 @@ const RegisterScreenPage = ({navigation}) => {
             <Text style={styles.text1}>Time & Availability</Text>
           </View>
         </View>
-        <TimeAvailable />
+        {check && <TimeAvailable />}
         <View style={{marginTop: -250}}>
           <VaccineBooking />
         </View>
+        <View style={{marginTop: 50, flexDirection:'row'}}>
 
         <TouchableOpacity>
           <View style={styles.buttonNext}>
@@ -70,6 +72,8 @@ const RegisterScreenPage = ({navigation}) => {
             <Text style={styles.butonText}>Cancel</Text>
           </View>
         </TouchableOpacity>
+        </View>
+
       </View>
     </ScrollView>
   );

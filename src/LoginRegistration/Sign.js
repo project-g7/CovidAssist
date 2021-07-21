@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',
     marginBottom: 5,
+    borderWidth: 3,
+    borderColor: '#3342C8',
   },
   button_signup: {
     width: 260,
