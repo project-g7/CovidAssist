@@ -7,6 +7,8 @@ export default class VaccineCenter extends Component {
     super(props);
     this.state = {
       data: [],
+      vaccine_center: '',
+      vaccine_name: '',
       // isLoading: true,
       // PickerValueHolder : '',
     };
@@ -20,23 +22,43 @@ export default class VaccineCenter extends Component {
     let respJson = await resp.json();
     //console.warn(respJson);
     this.setState({data: respJson});
+    console.log(respJson);
   }
-
-  state = {vaccine: ''};
-  showVaccine = option => {
-    if (option !== 'disabled') {
-      this.setState({vaccine: option});
-    }
+  handleChange = event => {
+    this.setState({value: event.target.value});
   };
+
+  handleChangeVaccine = event => {
+    this.setState({vaccine_center: event.target.value});
+  };
+
+  // state = {vaccine: ''};
+  // showVaccine = option => {
+  //   if (option !== 'disabled') {
+  //     this.setState({vaccine: option});
+  //   }
+  // };
   render() {
+    const data = this.state.data;
+    const vaccine_center = this.state.vaccine_center;
+
+    const filterDropdown = data.filter(function (result) {
+      return result.name === vaccine_center;
+    });
+    console.log(filterDropdown);
     return (
       <View style={styles.container}>
         <View style={styles.boxBoder}>
           <View style={styles.body}>
             <Text style={styles.text}></Text>
             <Picker
-              onValueChange={this.showVaccine}
-              selectedValue={this.state.vaccine}>
+              value={this.state.vaccine_center}
+              // onValueChange={this.showVaccine}
+              // selectedValue={this.state.vaccine}>
+              onValueChange={text => {
+                this.setState({vaccine_center: text});
+              }}
+              selectedValue={this.state.vaccine_center}>
               <Picker.Item
                 label="Select Vaccination center"
                 value="disabled"
@@ -45,8 +67,36 @@ export default class VaccineCenter extends Component {
               {/* <Picker.Item label="NIC" value="nic" />
               <Picker.Item label="Drving Licene" value="driving licene" />
               <Picker.Item label="Passport" value="passport" /> */}
-              {this.state.data.map((item, index) => (
-                <Picker.Item key={index} label={item.name} value={item.name} />
+              {this.state.data.map(vaccine_center => (
+                <Picker.Item
+                  key={vaccine_center.center_id}
+                  label={vaccine_center.name}
+                  value={vaccine_center.name}>
+                  {vaccine_center.name}
+                </Picker.Item>
+              ))}
+            </Picker>
+            <Picker
+              onValueChange={text => {
+                this.setState({vaccine_name: text});
+              }}
+              selectedValue={this.state.vaccine_name}>
+              {/* // onValueChange={this.showVaccine}
+              // selectedValue={this.state.vaccine}> */}
+              <Picker.Item
+                label="Select a Vaccine "
+                value="disabled"
+                color="blue"
+              />
+              {/* <Picker.Item label="NIC" value="nic" />
+              <Picker.Item label="Drving Licene" value="driving licene" />
+              <Picker.Item label="Passport" value="passport" /> */}
+              {filterDropdown.map((vaccine_center, index) => (
+                <Picker.Item
+                  key={index}
+                  label={vaccine_center.vaccine_name}
+                  value={vaccine_center.vaccine_name}
+                />
               ))}
             </Picker>
           </View>

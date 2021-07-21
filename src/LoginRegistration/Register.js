@@ -45,7 +45,7 @@ class Register extends Component {
 
   firstNameValidator() {
     if (this.state.firstName == '') {
-      this.setState({firstNameError: "First Name is required."});
+      this.setState({firstNameError: 'First Name is required.'});
     } else if (!name.test(this.state.firstName)) {
       this.setState({firstNameError: "First Name can't have Numbers"});
     } else {
@@ -55,7 +55,7 @@ class Register extends Component {
 
   lastNameValidator() {
     if (this.state.lastName == '') {
-      this.setState({lastNameError: "Last Name is required."});
+      this.setState({lastNameError: 'Last Name is required.'});
     } else if (!name.test(this.state.lastName)) {
       this.setState({lastNameError: "Last Name can't have Numbers"});
     } else {
@@ -64,7 +64,7 @@ class Register extends Component {
   }
   nicValidator() {
     if (this.state.nic == '') {
-      this.setState({nicError: "NIC is required."});
+      this.setState({nicError: 'NIC is required.'});
     } else {
       this.setState({nicError: ''});
     }
@@ -72,7 +72,7 @@ class Register extends Component {
 
   addressValidator() {
     if (this.state.address == '') {
-      this.setState({addressError: "Address is required."});
+      this.setState({addressError: 'Address is required.'});
     } else {
       this.setState({addressError: ''});
     }
@@ -82,14 +82,14 @@ class Register extends Component {
     if (!rx_live.test(this.state.email)) {
       this.setState({emailError: 'Invalid Email'});
     } else if (this.state.email == '') {
-      this.setState({emailError: "Email is required."});
+      this.setState({emailError: 'Email is required.'});
     } else {
       this.setState({emailError: ''});
     }
   }
   userNameValidator() {
     if (this.state.userName == '') {
-      this.setState({UsernameError: "User Name is required."});
+      this.setState({UsernameError: 'User Name is required.'});
     } else {
       this.setState({UsernameError: ''});
     }
@@ -97,7 +97,7 @@ class Register extends Component {
 
   passwordValidator() {
     if (this.state.Password == '') {
-      this.setState({passwordError: "Password is required."});
+      this.setState({passwordError: 'Password is required.'});
     } else if (this.state.password.length < 8) {
       this.setState({passwordError: 'Password must be more than 8 characters'});
     } else {
@@ -107,7 +107,7 @@ class Register extends Component {
 
   numberValidator() {
     if (this.state.contactNumber == '') {
-      this.setState({contactNumberError: "Contact Number is required."});
+      this.setState({contactNumberError: 'Contact Number is required.'});
     } else {
       this.setState({ContactNumberError: ''});
     }
@@ -151,7 +151,8 @@ class Register extends Component {
       alert('Contact Number is empty.. Invalid!');
     } else if (email == '') {
       alert('email is empty.. Invalid!');
-    } if (!rx_live.test(this.state.email)) {
+    }
+    if (!rx_live.test(this.state.email)) {
       alert('Invalid Email.!');
     } else if (userName == '') {
       alert('User Name is empty.. Invalid!');
@@ -161,13 +162,13 @@ class Register extends Component {
       alert('Password must have more than 8 characters.. Invalid!');
     } else if (address == '') {
       alert('Address is empty.. Invalid!');
-    } 
+    }
     // else if (Gender=='') {
     //   alert('Please Select Gender.. Invalid!');
-    // } 
+    // }
     else {
       //this.props.navigation.navigate('MainTabsScreen');
-      Axios.post('http://192.168.1.3:3001/api/insert', {
+      Axios.post('http://192.168.8.100:3001/api/insert', {
         firstName: firstName,
         lastName: lastName,
         nic: nic,

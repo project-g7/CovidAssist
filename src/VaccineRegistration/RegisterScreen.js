@@ -28,6 +28,7 @@ const RegisterScreen = () => {
 };
 
 const RegisterScreenPage = ({navigation}) => {
+  // const selectDate = () => {};
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -35,7 +36,7 @@ const RegisterScreenPage = ({navigation}) => {
           <View style={styles.body}>
             <Text style={styles.text}></Text>
             <VaccineCenter />
-            <VaccinationName />
+            {/* <VaccinationName /> */}
           </View>
         </View>
 
@@ -43,7 +44,11 @@ const RegisterScreenPage = ({navigation}) => {
           <DatePicker />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+        // onPress={() => {
+        //   selectDate();
+        // }}
+        >
           <View style={styles.buttonNext2}>
             <Text style={styles.butonText1}>Check Availaility</Text>
           </View>
