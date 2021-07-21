@@ -90,7 +90,7 @@ const DetailStackScreen = ({navigation}) => (
         <IconI.Button
           name="menu"
           size={25}
-          backgroundColor="#1167b1"
+          backgroundColor="#3342C8"
           onPress={() => navigation.openDrawer()}></IconI.Button>
       ),
     }}>

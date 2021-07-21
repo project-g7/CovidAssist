@@ -56,7 +56,7 @@ class Login extends Component {
   login = () => {
     const {userName, password} = this.state;
 
-    Axios.post('http://192.168.8.100:3001/api/login', {
+    Axios.post('http://192.168.1.103:3001/api/login', {
       userName: userName,
       password: password,
     })
@@ -102,7 +102,7 @@ class Login extends Component {
                 styles.title,
                 {marginLeft: 25, marginTop: -25, marginBottom: -10},
               ]}>
-              Full Name
+              User Name
             </Title>
             <TextInput
               style={styles.textinput}

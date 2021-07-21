@@ -31,7 +31,7 @@ const VaccineBooking = () => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.8.100:3001/api/users?username=${encodedUsername}`,
+      `http://192.168.1.103:3001/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();
@@ -57,8 +57,7 @@ const VaccineBooking = () => {
         {data.map(val => {
           return (
             <Text key={val.first_name} style={styles.textinput}>
-              {val.first_name}
-              {val.last_name}
+              {val.first_name} {val.last_name}
             </Text>
           );
         })}
@@ -152,8 +151,7 @@ const styles = StyleSheet.create({
   credentialText: {
     alignSelf: 'center',
     width: '100%',
-    height: 50,
-    height: 540,
+    height: 360,
     marginTop: 300,
     marginLeft: 25,
     borderStartColor: 'white',
@@ -220,6 +218,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   ScrollView: {
+    marginTop: 20,
     marginLeft: -5,
     marginVertical: 30,
   },
