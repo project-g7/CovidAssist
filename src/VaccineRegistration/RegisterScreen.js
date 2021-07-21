@@ -36,7 +36,7 @@ const RegisterScreenPage = ({navigation}) => {
           <View style={styles.body}>
             <Text style={styles.text}></Text>
             <VaccineCenter />
-            <VaccinationName />
+            {/* <VaccinationName /> */}
           </View>
         </View>
 

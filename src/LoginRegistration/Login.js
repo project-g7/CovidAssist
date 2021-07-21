@@ -62,6 +62,7 @@ class Login extends Component {
     })
       .then(data => {
         console.log(data.data);
+        console.log('aaaa');
         if (data.data == 'wrong') {
           alert('Invalid');
         } else {
@@ -72,6 +73,8 @@ class Login extends Component {
         }
       })
       .catch(error => {
+        console.log('mmmmm');
+        console.log(error);
         alert(error);
       });
   };
