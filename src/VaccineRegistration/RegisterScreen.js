@@ -1,5 +1,5 @@
 //Android 14 figma
-import React, {useState,Component} from 'react';
+import React, {useState, Component} from 'react';
 import {
   Text,
   StyleSheet,
@@ -14,6 +14,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import VaccineBooking from './VaccineBooking';
 import VaccineCenter from './VaccineCenter';
 import TimeAvailable from './TimeAvailable';
+import HomeScreen from './HomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,12 +24,13 @@ const RegisterScreen = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="RegisterScreen">
       <Stack.Screen name="Register" component={RegisterScreenPage} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
 
 const RegisterScreenPage = ({navigation}) => {
-  const [check,setCheck] = useState(false);
+  const [check, setCheck] = useState(false);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -44,7 +46,10 @@ const RegisterScreenPage = ({navigation}) => {
           <DatePicker />
         </View>
 
-        <TouchableOpacity onPress={()=>{setCheck(!check)}}>
+        <TouchableOpacity
+          onPress={() => {
+            setCheck(!check);
+          }}>
           <View style={styles.buttonNext2}>
             <Text style={styles.butonText1}>Check Availaility</Text>
           </View>
@@ -59,21 +64,19 @@ const RegisterScreenPage = ({navigation}) => {
         <View style={{marginTop: -250}}>
           <VaccineBooking />
         </View>
-        <View style={{marginTop: 50, flexDirection:'row'}}>
+        <View style={{marginTop: 50, flexDirection: 'row'}}>
+          <TouchableOpacity>
+            <View style={styles.buttonNext}>
+              <Text style={styles.butonText}>Register</Text>
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>Register</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>Cancel</Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <View style={styles.buttonNext}>
+              <Text style={styles.butonText}>Cancel</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-
       </View>
     </ScrollView>
   );

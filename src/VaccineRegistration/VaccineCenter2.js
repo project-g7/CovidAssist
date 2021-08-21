@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class VaccineCenter extends Component {
   constructor(props) {
@@ -16,23 +15,14 @@ export default class VaccineCenter extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.multiGet(['username']).then(data => {
-      let username = data[0][1];
-      // console.log(username);
-      //fetchData(username);
-      this.apicall(username);
-    });
+    this.apicall();
   }
-  async apicall(username) {
-    const encodedUsername = encodeURIComponent(username);
-    const response = await fetch(
-      `http://192.168.8.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
-      {method: 'GET'},
-    );
-    const users = await response.json();
+  async apicall() {
+    let resp = await fetch('http://192.168.8.101:3000/api/VaccineCenter');
+    let respJson = await resp.json();
     //console.warn(respJson);
-    this.setState({data: users});
-    //console.log(respJson);
+    this.setState({data: respJson});
+    console.log(respJson);
   }
   handleChange = event => {
     this.setState({value: event.target.value});
