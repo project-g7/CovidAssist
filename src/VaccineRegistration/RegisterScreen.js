@@ -15,6 +15,7 @@ import VaccineBooking from './VaccineBooking';
 import VaccineCenter from './VaccineCenter';
 import TimeAvailable from './TimeAvailable';
 import HomeScreen from './HomeScreen';
+//import DatePicker from 'react-native-datepicker';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,26 @@ const RegisterScreen = () => {
 };
 
 const RegisterScreenPage = ({navigation}) => {
+  let [date, setdate] = useState('');
+
+  const handleDate = date => {
+    setdate(date);
+    console.log(date);
+    fetchData(date);
+  };
+  const fetchData = async date => {
+    console.log('abc');
+    const encodedUsername = encodeURIComponent(date);
+    const response = await fetch(
+      `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedUsername}`,
+      {method: 'GET'},
+    );
+    console.log('zzzzzzzzz');
+    const dates = await response.json();
+    setData(dates);
+    console.log('pqr');
+    //console.log(dates);
+  };
   const [check, setCheck] = useState(false);
   return (
     <ScrollView>
@@ -43,11 +64,12 @@ const RegisterScreenPage = ({navigation}) => {
         </View>
 
         <View>
-          <DatePicker />
+          <DatePicker updateDate={handleDate} />
         </View>
 
         <TouchableOpacity
           onPress={() => {
+            handleDate(date);
             setCheck(!check);
           }}>
           <View style={styles.buttonNext2}>
