@@ -26,7 +26,7 @@ export default class VaccineCenter extends Component {
   async apicall(username) {
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
+      `http://192.168.8.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();
@@ -67,6 +67,7 @@ export default class VaccineCenter extends Component {
               // selectedValue={this.state.vaccine}>
               onValueChange={text => {
                 this.setState({vaccine_center: text});
+                this.props.updateVaccine({vaccine_center: text});
               }}
               selectedValue={this.state.vaccine_center}>
               <Picker.Item
@@ -89,6 +90,7 @@ export default class VaccineCenter extends Component {
             <Picker
               onValueChange={text => {
                 this.setState({vaccine_name: text});
+                this.props.updateVaccineName({vaccine_name: text});
               }}
               selectedValue={this.state.vaccine_name}>
               {/* // onValueChange={this.showVaccine}
