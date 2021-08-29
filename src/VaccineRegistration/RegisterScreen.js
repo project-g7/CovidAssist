@@ -1,5 +1,5 @@
 //Android 14 figma
-import React, {useState, Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -16,6 +16,8 @@ import VaccineCenter from './VaccineCenter';
 import TimeAvailable from './TimeAvailable';
 import HomeScreen from './HomeScreen';
 //import DatePicker from 'react-native-datepicker';
+import Axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -31,26 +33,70 @@ const RegisterScreen = () => {
 };
 
 const RegisterScreenPage = ({navigation}) => {
-  let [date, setdate] = useState('');
+  // const [data, setData] = useState([]);
+  const [userName, setUsername] = useState('');
+  useEffect(() => {
+    AsyncStorage.multiGet(['username']).then(data => {
+      let username = data[0][1];
+      console.log(username);
+      setUsername(username);
+      console.log('RRRRRRRRRRRRRRRR');
+      // fetData(username);
+    });
+  }, []);
 
+  const [vaccineName, setVaccineName] = useState('');
+  const [vaccineCenter, setVaccineCenter] = useState('');
+
+  const VaccineRegister = () => {
+    Axios.post('http://192.168.8.101:3000/api/VaccineRegister', {
+      vaccineCenter: vaccineCenter,
+      vaccineName: vaccineName,
+      username: userName,
+    })
+      .then(() => {
+        alert('Booking Successful');
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
+  const handleVaccine = vaccineCenter => {
+    setVaccineCenter(vaccineCenter.vaccine_center);
+    console.log(vaccineCenter.vaccine_center);
+    console.log('reshani');
+  };
+  const handleVaccineName = vaccineName => {
+    setVaccineName(vaccineName);
+    console.log(vaccineName);
+    console.log('dilhari');
+  };
+
+  let [date, setdate] = useState('');
   const handleDate = date => {
     setdate(date);
     console.log(date);
-    fetchData(date);
+    console.log(vaccineCenter);
+    fetchData(date, vaccineCenter);
   };
-  const fetchData = async date => {
+  const fetchData = async (date, vaccineCenter) => {
     console.log('abc');
-    const encodedUsername = encodeURIComponent(date);
+    const encodedDate = encodeURIComponent(date);
+    console.log(encodedDate);
+    const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
+    console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedUsername}`,
+      `http://192.168.8.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
       {method: 'GET'},
     );
     console.log('zzzzzzzzz');
     const dates = await response.json();
-    setData(dates);
+    setdate(dates);
     console.log('pqr');
     //console.log(dates);
   };
+
   const [check, setCheck] = useState(false);
   return (
     <ScrollView>
@@ -58,7 +104,10 @@ const RegisterScreenPage = ({navigation}) => {
         <View style={styles.boxBoder}>
           <View style={styles.body}>
             <Text style={styles.text}></Text>
-            <VaccineCenter />
+            <VaccineCenter
+              updateVaccine={handleVaccine}
+              updateVaccineName={handleVaccineName}
+            />
             {/* <VaccinationName /> */}
           </View>
         </View>
@@ -87,7 +136,10 @@ const RegisterScreenPage = ({navigation}) => {
           <VaccineBooking />
         </View>
         <View style={{marginTop: 50, flexDirection: 'row'}}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              VaccineRegister();
+            }}>
             <View style={styles.buttonNext}>
               <Text style={styles.butonText}>Register</Text>
             </View>
