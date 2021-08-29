@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class VaccineCenter extends Component {
   constructor(props) {
@@ -16,19 +15,14 @@ export default class VaccineCenter extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.multiGet(['username']).then(data => {
-      let username = data[0][1];
-      // console.log(username);
-      //fetchData(username);
-      this.apicall(username);
-    });
+    this.apicall();
   }
   async apicall() {
-    let resp = await fetch('http://192.168.1.103:3000/api/VaccineCenter');
+    let resp = await fetch('http://192.168.8.101:3000/api/VaccineCenter');
     let respJson = await resp.json();
     //console.warn(respJson);
-    this.setState({data: users});
-    //console.log(respJson);
+    this.setState({data: respJson});
+    console.log(respJson);
   }
   handleChange = event => {
     this.setState({value: event.target.value});
@@ -63,7 +57,6 @@ export default class VaccineCenter extends Component {
               // selectedValue={this.state.vaccine}>
               onValueChange={text => {
                 this.setState({vaccine_center: text});
-                this.props.updateVaccine({vaccine_center: text});
               }}
               selectedValue={this.state.vaccine_center}>
               <Picker.Item
@@ -86,7 +79,6 @@ export default class VaccineCenter extends Component {
             <Picker
               onValueChange={text => {
                 this.setState({vaccine_name: text});
-                this.props.updateVaccineName({vaccine_name: text});
               }}
               selectedValue={this.state.vaccine_name}>
               {/* // onValueChange={this.showVaccine}

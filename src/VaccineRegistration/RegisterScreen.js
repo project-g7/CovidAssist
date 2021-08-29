@@ -1,5 +1,5 @@
 //Android 14 figma
-import React, {useState,Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -14,6 +14,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 import VaccineBooking from './VaccineBooking';
 import VaccineCenter from './VaccineCenter';
 import TimeAvailable from './TimeAvailable';
+import HomeScreen from './HomeScreen';
+//import DatePicker from 'react-native-datepicker';
+import Axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -23,28 +27,100 @@ const RegisterScreen = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="RegisterScreen">
       <Stack.Screen name="Register" component={RegisterScreenPage} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
 
 const RegisterScreenPage = ({navigation}) => {
-  const [check,setCheck] = useState(false);
+  // const [data, setData] = useState([]);
+  const [userName, setUsername] = useState('');
+  useEffect(() => {
+    AsyncStorage.multiGet(['username']).then(data => {
+      let username = data[0][1];
+      console.log(username);
+      setUsername(username);
+      console.log('RRRRRRRRRRRRRRRR');
+      // fetData(username);
+    });
+  }, []);
+
+  const [vaccineName, setVaccineName] = useState('');
+  const [vaccineCenter, setVaccineCenter] = useState('');
+
+  const VaccineRegister = () => {
+    Axios.post('http://192.168.8.101:3000/api/VaccineRegister', {
+      vaccineCenter: vaccineCenter,
+      vaccineName: vaccineName,
+      username: userName,
+    })
+      .then(() => {
+        alert('Booking Successful');
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
+  const handleVaccine = vaccineCenter => {
+    setVaccineCenter(vaccineCenter.vaccine_center);
+    console.log(vaccineCenter.vaccine_center);
+    console.log('reshani');
+  };
+  const handleVaccineName = vaccineName => {
+    setVaccineName(vaccineName);
+    console.log(vaccineName);
+    console.log('dilhari');
+  };
+
+  let [date, setdate] = useState('');
+  const handleDate = date => {
+    setdate(date);
+    console.log(date);
+    console.log(vaccineCenter);
+    fetchData(date, vaccineCenter);
+  };
+  const fetchData = async (date, vaccineCenter) => {
+    console.log('abc');
+    const encodedDate = encodeURIComponent(date);
+    console.log(encodedDate);
+    const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
+    console.log(encodeVaccineCenter);
+    const response = await fetch(
+      `http://192.168.8.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      {method: 'GET'},
+    );
+    console.log('zzzzzzzzz');
+    const dates = await response.json();
+    setdate(dates);
+    console.log('pqr');
+    //console.log(dates);
+  };
+
+  const [check, setCheck] = useState(false);
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.boxBoder}>
           <View style={styles.body}>
             <Text style={styles.text}></Text>
-            <VaccineCenter />
+            <VaccineCenter
+              updateVaccine={handleVaccine}
+              updateVaccineName={handleVaccineName}
+            />
             {/* <VaccinationName /> */}
           </View>
         </View>
 
         <View>
-          <DatePicker />
+          <DatePicker updateDate={handleDate} />
         </View>
 
-        <TouchableOpacity onPress={()=>{setCheck(!check)}}>
+        <TouchableOpacity
+          onPress={() => {
+            handleDate(date);
+            setCheck(!check);
+          }}>
           <View style={styles.buttonNext2}>
             <Text style={styles.butonText1}>Check Availaility</Text>
           </View>
@@ -59,21 +135,22 @@ const RegisterScreenPage = ({navigation}) => {
         <View style={{marginTop: -250}}>
           <VaccineBooking />
         </View>
-        <View style={{marginTop: 50, flexDirection:'row'}}>
+        <View style={{marginTop: 50, flexDirection: 'row'}}>
+          <TouchableOpacity
+            onPress={() => {
+              VaccineRegister();
+            }}>
+            <View style={styles.buttonNext}>
+              <Text style={styles.butonText}>Register</Text>
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>Register</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>Cancel</Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <View style={styles.buttonNext}>
+              <Text style={styles.butonText}>Cancel</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-
       </View>
     </ScrollView>
   );

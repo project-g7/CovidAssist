@@ -3,33 +3,12 @@ import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 //import DateTimePicker from 'react-native-modal-datetime-picker';
 import DatePicker from 'react-native-datepicker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class MyDatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
   }
-  // componentDidMount() {
-  //   // AsyncStorage.multiGet(['date']).then(date => {
-  //   //  let dateselect = date[0][1];
-  //   // console.log(username);
-  //   //fetchData(username);
-  //   let dateselect = this.state.date;
-  //   this.apicall(dateselect);
-  //   // });
-  // }
-  // async apicall(dateselect) {
-  //   const encodedDate = encodeURIComponent(dateselect);
-  //   const response = await fetch(
-  //     `http://192.168.8.100:3000/api/VaccineSelecteDate?dateselect=${encodedDate}`,
-  //     {method: 'GET'},
-  //   );
-  //   const users = await response.json();
-  //   //console.warn(respJson);
-  //   // this.setState({data: users});
-  //   //console.log(respJson);
-  // }
   render() {
     return (
       <View style={styles.row}>
@@ -59,7 +38,6 @@ export default class MyDatePicker extends Component {
           }}
           onDateChange={date => {
             this.setState({date: date});
-            this.props.updateDate(date);
           }}
         />
       </View>

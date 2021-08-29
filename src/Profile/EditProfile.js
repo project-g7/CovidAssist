@@ -82,7 +82,11 @@ const EditProfile = ({route, navigation}) => {
   };
   const SaveProfile = () => {
     // console.log(firstName);
+<<<<<<< HEAD
     Axios.put('http://192.168.1.103:3000/api/editprofile', {
+=======
+    Axios.put('http://10.0.2.2:3000/api/editprofile', {
+>>>>>>> 8159f850ca0bfcf487467f6a8bd7e0df149b34b2
       firstName: firstName,
       lastName: lastName,
       nic: nic,
