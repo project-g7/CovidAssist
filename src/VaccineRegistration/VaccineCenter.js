@@ -23,9 +23,13 @@ export default class VaccineCenter extends Component {
       this.apicall(username);
     });
   }
-  async apicall() {
-    let resp = await fetch('http://192.168.1.103:3000/api/VaccineCenter');
-    let respJson = await resp.json();
+  async apicall(username) {
+    const encodedUsername = encodeURIComponent(username);
+    const response = await fetch(
+      `http://192.168.1.104:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
+      {method: 'GET'},
+    );
+    const users = await response.json();
     //console.warn(respJson);
     this.setState({data: users});
     //console.log(respJson);

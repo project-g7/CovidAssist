@@ -115,7 +115,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.text1}>{userName}</Text>
           <Text style={styles.text2}>You are Safe </Text>
           <Text style={styles.text3}>
-            You are Safe You haven`t expoused to a Covid patient
+            You are Safe You haven`t exposed to a Covid patient
           </Text>
         </View>
       </View>

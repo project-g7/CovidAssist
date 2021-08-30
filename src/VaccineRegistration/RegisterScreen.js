@@ -49,7 +49,7 @@ const RegisterScreenPage = ({navigation}) => {
   const [vaccineCenter, setVaccineCenter] = useState('');
 
   const VaccineRegister = () => {
-    Axios.post('http://192.168.8.101:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.1.104:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
@@ -87,11 +87,13 @@ const RegisterScreenPage = ({navigation}) => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.8.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.1.104:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
       {method: 'GET'},
     );
     console.log('zzzzzzzzz');
     const dates = await response.json();
+    console.log(dates);
+    console.log(dates[0]);
     setdate(dates);
     console.log('pqr');
     //console.log(dates);
