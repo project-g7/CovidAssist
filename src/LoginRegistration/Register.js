@@ -8,7 +8,7 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
@@ -32,7 +32,7 @@ class Register extends Component {
       testData: '',
       passwordError: '',
       address: '',
-      tracingKey:'',
+      tracingKey: '',
       UsernameError: '',
       emailError: '',
       addressError: '',
@@ -188,7 +188,7 @@ class Register extends Component {
         password: password,
         address: address,
         Gender: Gender,
-        tracingKey: tracingKey
+        tracingKey: tracingKey,
       })
         .then(data => {
           console.log(data.data);

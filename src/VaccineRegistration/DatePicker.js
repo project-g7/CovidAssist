@@ -9,6 +9,7 @@ export default class MyDatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
+    // console.log(new Date());
   }
   // componentDidMount() {
   //   // AsyncStorage.multiGet(['date']).then(date => {
