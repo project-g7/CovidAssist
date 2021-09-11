@@ -8,7 +8,7 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
@@ -32,7 +32,7 @@ class Register extends Component {
       testData: '',
       passwordError: '',
       address: '',
-      tracingKey:'',
+      tracingKey: '',
       UsernameError: '',
       emailError: '',
       addressError: '',
@@ -128,9 +128,8 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-
     let str = uuid();
-    let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
+    let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, '');
     // this.state.tracingKey = tracingKey;
     // AsyncStorage.multiSet([['tracingKey', tracingKey]]);
 
@@ -177,12 +176,8 @@ class Register extends Component {
     // }
     else {
       //this.props.navigation.navigate('MainTabsScreen');
-<<<<<<< HEAD
+
       Axios.post('http://192.168.8.100:3000/api/insert', {
-=======
-      console.log(tracingKey);
-      Axios.post('http://192.168.1.103:3000/api/insert', {
->>>>>>> 20702e2c46c42fd16d9e2df49fce2f84c5397629
         firstName: firstName,
         lastName: lastName,
         nic: nic,
@@ -192,7 +187,7 @@ class Register extends Component {
         password: password,
         address: address,
         Gender: Gender,
-        tracingKey: tracingKey
+        tracingKey: tracingKey,
       })
         .then(data => {
           console.log(data.data);
