@@ -117,6 +117,7 @@ const RegisterScreen = props => {
     console.log(encodeVaccineCenter);
     const response = await fetch(
       `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+
       {method: 'GET'},
     );
     console.log('#########################################');
@@ -134,6 +135,12 @@ const RegisterScreen = props => {
       }
     }
     // console.log(dates);
+
+    console.log(dates);
+    console.log(dates[0]);
+    setdate(dates);
+    console.log('pqr');
+    //console.log(dates);
   };
 
   return (

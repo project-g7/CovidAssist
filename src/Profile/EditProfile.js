@@ -52,7 +52,11 @@ const EditProfile = ({route, navigation}) => {
     console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
+<<<<<<< HEAD
       `http://192.168.8.100:3000/api/users?username=${encodedUsername}`,
+=======
+      `http://192.168.1.104:3000/api/users?username=${encodedUsername}`,
+>>>>>>> 20702e2c46c42fd16d9e2df49fce2f84c5397629
       {method: 'GET'},
     );
     const users = await response.json();
@@ -82,7 +86,7 @@ const EditProfile = ({route, navigation}) => {
   };
   const SaveProfile = () => {
     // console.log(firstName);
-    Axios.put('http://10.0.2.2:3000/api/editprofile', {
+    Axios.put('http://192.168.1.103:3000/api/editprofile', {
       firstName: firstName,
       lastName: lastName,
       nic: nic,
