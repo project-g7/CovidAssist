@@ -56,7 +56,11 @@ class Login extends Component {
   login = () => {
     const {userName, password} = this.state;
 
+<<<<<<< HEAD
+    Axios.post('http://192.168.8.100:3000/api/login', {
+=======
     Axios.post('http://3.21.100.220:3000/api/login', {
+>>>>>>> 20702e2c46c42fd16d9e2df49fce2f84c5397629
       userName: userName,
       password: password,
     })

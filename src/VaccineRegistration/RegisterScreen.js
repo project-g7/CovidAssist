@@ -19,22 +19,22 @@ import HomeScreen from './HomeScreen';
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 
-const RegisterScreen = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName="RegisterScreen">
-      <Stack.Screen name="Register" component={RegisterScreenPage} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const RegisterScreenPage = ({navigation}) => {
-  // const [data, setData] = useState([]);
+const RegisterScreen = props => {
+  const [idtype, setIdtype] = useState('');
+  const [selection, setSelection] = useState('');
+  const [dosetype, setDosetype] = useState('');
   const [userName, setUsername] = useState('');
+
+  const [vaccineName, setVaccineName] = useState('');
+  const [vaccineCenter, setVaccineCenter] = useState('');
+  const [availableTime, setAvailableTime] = useState([]);
+  const [selectTimeSlot, setSelectTimeSlot] = useState('');
+  const [date, setdate] = useState('');
+
+  const [check, setCheck] = useState(false);
+
   useEffect(() => {
     AsyncStorage.multiGet(['username']).then(data => {
       let username = data[0][1];
@@ -45,14 +45,39 @@ const RegisterScreenPage = ({navigation}) => {
     });
   }, []);
 
-  const [vaccineName, setVaccineName] = useState('');
-  const [vaccineCenter, setVaccineCenter] = useState('');
+  // const type = props.idType;
+
+  // console.log('!!!!!!!!!!!!!');
+  // console.log(type);
+  // console.log('!!!!!!!!!!!!!');
+
+  const dose = props.doseT;
+
+  console.log('DDDDDDDD');
+  console.log(dose);
+  console.log('DDDDDDDD');
+
+  // const DoseType = props.doseType;
+
+  // console.log('TTTTTTTT');
+  // console.log(DoseType);
+  // console.log('TTTTTTTT');
+
+  // setIdtype(type);
+  // setSelection(dose);
+  // console.log(selection);
+  // setDosetype(DoseType);
 
   const VaccineRegister = () => {
-    Axios.post('http://192.168.1.104:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.8.100:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
+      selectTime: selectTimeSlot,
+      date: date,
+      idtype: idtype,
+      selection: selection,
+      dosetype: dosetype,
     })
       .then(() => {
         alert('Booking Successful');
@@ -60,6 +85,11 @@ const RegisterScreenPage = ({navigation}) => {
       .catch(error => {
         alert(error);
       });
+  };
+  const handleTime = selectTimeSlot => {
+    setSelectTimeSlot(selectTimeSlot);
+    console.log(selectTimeSlot);
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
   };
 
   const handleVaccine = vaccineCenter => {
@@ -73,7 +103,6 @@ const RegisterScreenPage = ({navigation}) => {
     console.log('dilhari');
   };
 
-  let [date, setdate] = useState('');
   const handleDate = date => {
     setdate(date);
     console.log(date);
@@ -87,11 +116,26 @@ const RegisterScreenPage = ({navigation}) => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.1.104:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+
       {method: 'GET'},
     );
-    console.log('zzzzzzzzz');
+    console.log('#########################################');
     const dates = await response.json();
+
+    console.log(dates.value);
+    console.log('000000000000000000000000000');
+    if (typeof dates.value == 'undefined') {
+      setAvailableTime(dates);
+    } else {
+      if (dates.value == 'NoAvailbleCenter') {
+        alert('Center is not available');
+      } else if (dates.value == 'NoAvailbleTimeSlot') {
+        alert('TimeSlot is not available');
+      }
+    }
+    // console.log(dates);
+
     console.log(dates);
     console.log(dates[0]);
     setdate(dates);
@@ -99,7 +143,6 @@ const RegisterScreenPage = ({navigation}) => {
     //console.log(dates);
   };
 
-  const [check, setCheck] = useState(false);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -133,7 +176,9 @@ const RegisterScreenPage = ({navigation}) => {
             <Text style={styles.text1}>Time & Availability</Text>
           </View>
         </View>
-        {check && <TimeAvailable />}
+        {check && (
+          <TimeAvailable time={availableTime} updateTime={handleTime} />
+        )}
         <View style={{marginTop: -250}}>
           <VaccineBooking />
         </View>
@@ -147,11 +192,11 @@ const RegisterScreenPage = ({navigation}) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          {/* <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={styles.buttonNext}>
               <Text style={styles.butonText}>Cancel</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </ScrollView>
@@ -212,7 +257,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: '#3342C8',
     alignContent: 'center',
-    marginLeft: 38,
+    marginLeft: 125,
   },
   butonText: {
     color: 'white',

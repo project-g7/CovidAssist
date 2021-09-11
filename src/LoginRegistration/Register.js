@@ -177,8 +177,12 @@ class Register extends Component {
     // }
     else {
       //this.props.navigation.navigate('MainTabsScreen');
+<<<<<<< HEAD
+      Axios.post('http://192.168.8.100:3000/api/insert', {
+=======
       console.log(tracingKey);
       Axios.post('http://192.168.1.103:3000/api/insert', {
+>>>>>>> 20702e2c46c42fd16d9e2df49fce2f84c5397629
         firstName: firstName,
         lastName: lastName,
         nic: nic,

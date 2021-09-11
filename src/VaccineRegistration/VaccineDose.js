@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import RadioGroup from 'react-native-radio-buttons-group';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 const radioButtonsData = [
   {
@@ -9,7 +9,6 @@ const radioButtonsData = [
     value: true,
     color: '#1167b1',
     // selected : true
-
   },
   {
     id: '2',
@@ -35,17 +34,31 @@ const newRadioButtonsData = [
   },
 ];
 
-export default function App() {
+export default function VaccineDose(props) {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
   const [newRadioButtons, setNewRadioButtons] = useState(newRadioButtonsData);
   // const [isYes, setIsYes] = useState(false);
 
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
+    for (let i = 0; i < radioButtonsArray.length; i++) {
+      // console.log(radioButtonsArray[i].selected);
+      if (radioButtonsArray[i].selected) {
+        props.updateDoseType(radioButtonsArray[i].value);
+      }
+    }
+
     // console.log(radioButtonsArray);
   }
   function onPressNewRadioButton(newRadioButtonsArray) {
     setNewRadioButtons(newRadioButtonsArray);
+    for (let i = 0; i < newRadioButtonsArray.length; i++) {
+      // console.log(radioButtonsArray[i].selected);
+      if (newRadioButtonsArray[i].selected) {
+        props.updateDose(newRadioButtonsArray[i].value);
+      }
+    }
+
     // console.log(radioButtonsArray);
   }
 
@@ -55,11 +68,13 @@ export default function App() {
 
   return (
     <View>
-      <RadioGroup
-        radioButtons={radioButtons}
-        onPress={onPressRadioButton}
-        layout="row"
-      />
+      <View style={styles.radio1}>
+        <RadioGroup
+          radioButtons={radioButtons}
+          onPress={onPressRadioButton}
+          layout="row"
+        />
+      </View>
       {selectedButton && (
         <View style={styles.box3}>
           <RadioGroup
@@ -69,18 +84,29 @@ export default function App() {
           />
         </View>
       )}
+      <Text></Text>
+      <Text></Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   box3: {
-    marginLeft: -30,
-    marginTop: 25,
+    marginLeft: -10,
+    marginTop: 20,
     backgroundColor: 'white',
-    width: 200,
+    width: '100%',
     height: 80,
     borderRadius: 8,
     padding: 10,
+    justifyContent: 'center',
+    marginBottom: -50,
+    zIndex: 10,
+  },
+  radio1: {
+    marginTop: 10,
+    marginBottom: -15,
+    zIndex: 10,
+    // marginBottom: -30,
   },
 });

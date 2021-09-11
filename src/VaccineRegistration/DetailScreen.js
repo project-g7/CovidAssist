@@ -21,14 +21,34 @@ const DetailScreen = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="DetailScreen">
       <Stack.Screen name="Detail" component={DetailScreenPage} />
-      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      {/* <Stack.Screen name="RegisterScreen" component={RegisterScreen} /> */}
     </Stack.Navigator>
   );
 };
 
 const DetailScreenPage = ({navigation}) => {
+  const [handlePhoto, sethandlePhoto] = useState('');
+  const [selectDose, setSelectDose] = useState('');
+  const [selectDoseType, setselectDoseType] = useState('');
+
+  const handlePhotoID = handlePhoto => {
+    sethandlePhoto(handlePhoto.vaccine);
+    console.log(handlePhoto.vaccine);
+    console.log('photo type!!!!!!!!!!!!!');
+  };
+  const handleDoseType = selectDose => {
+    setSelectDose(selectDose);
+    console.log(selectDose);
+    console.log('dose type!!!!!!!!!!!!!');
+  };
+  const handleDose = selectDoseType => {
+    setselectDoseType(selectDoseType);
+    console.log(selectDoseType);
+    console.log('dose !!!!!!!!!!!!!');
+  };
+
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.outer}>
       <View style={styles.container}>
         <View style={styles.box}>
           <View style={styles.inner}>
@@ -36,30 +56,40 @@ const DetailScreenPage = ({navigation}) => {
           </View>
         </View>
         <View style={styles.Radio}>
-          <VaccineDose />
+          <VaccineDose
+            updateDoseType={handleDoseType}
+            updateDose={handleDose}
+          />
         </View>
         <View style={styles.box1}>
           <View style={styles.inner}>
             <Text style={styles.text1}>Registration for vaccination</Text>
           </View>
         </View>
-        <View style={styles.box2}>
+        {/* <View style={styles.box2}>
           <View style={styles.inner1}>
             <Text style={styles.text}>
               Photo ID card type, that will bring to Vaccination Center
             </Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={styles.dropdown}>
-          <DropDown />
+          <DropDown updatePhotoID={handlePhotoID} />
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
           <View style={styles.buttonNext}>
             <Text style={styles.butonText}>Next</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        {/* <View style={styles.register}> */}
+        <RegisterScreen
+          idType={handlePhoto}
+          doseT={selectDose}
+          doseType={selectDoseType}
+        />
+        {/* </View> */}
       </View>
     </ScrollView>
   );
@@ -67,17 +97,25 @@ const DetailScreenPage = ({navigation}) => {
 export default DetailScreen;
 
 const styles = StyleSheet.create({
+  outer: {
+    flexGrow: 1,
+    width: '100%',
+    // flexDirection: 'column',
+  },
+  register: {
+    marginLeft: 0,
+  },
   container: {
     width: '100%',
-    height: '100%',
+    height: 1350,
     padding: 5,
-    flexDirection: 'row',
+    // flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
   },
   box: {
     width: '100%',
-    height: '12%',
+    height: 50,
   },
   inner: {
     flex: 1,
@@ -107,10 +145,10 @@ const styles = StyleSheet.create({
   box1: {
     marginTop: 15,
     width: '100%',
-    height: '12%',
+    height: 50,
   },
   box2: {
-    marginTop: -1,
+    marginTop: -108,
     width: '100%',
     height: '10%',
   },
@@ -155,6 +193,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   Radio: {
-    marginLeft: 120,
+    // marginLeft: 120,
+    marginTop: 10,
+    // marginBottom: 10,
   },
 });

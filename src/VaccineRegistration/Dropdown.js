@@ -7,14 +7,15 @@ class DropDown extends Component {
   showVaccine = option => {
     if (option !== 'disabled') {
       this.setState({vaccine: option});
+      this.props.updatePhotoID({vaccine: option});
     }
   };
   render() {
     return (
       <View style={styles.body}>
-        <Text style={styles.text4}>
+        {/* <Text style={styles.text4}>
           Photo ID card type, that will bring to Vaccination
-        </Text>
+        </Text> */}
         <Picker
           onValueChange={this.showVaccine}
           selectedValue={this.state.vaccine}>
@@ -38,9 +39,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   body: {
+    width: '74.5%',
     flex: 1,
     margin: 30,
     marginLeft: 120,
+    marginBottom: 50,
     fontSize: 22,
+    marginTop: 10,
   },
 });
