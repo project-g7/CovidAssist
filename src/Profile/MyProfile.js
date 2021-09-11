@@ -61,7 +61,7 @@ const MyProfile = ({navigation}) => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.1.104:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.1.101:3000/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();

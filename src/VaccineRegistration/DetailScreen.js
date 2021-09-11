@@ -28,7 +28,7 @@ const DetailScreen = () => {
 
 const DetailScreenPage = ({navigation}) => {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.outer}>
       <View style={styles.container}>
         <View style={styles.box}>
           <View style={styles.inner}>
@@ -54,13 +54,18 @@ const DetailScreenPage = ({navigation}) => {
         <View style={styles.dropdown}>
           <DropDown />
         </View>
-
         <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
           <View style={styles.buttonNext}>
             <Text style={styles.butonText}>Next</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> 
+      <View style={styles.container2}>
+        {/* {/* <RegisterScreen/>  */}
       </View>
+
+      </View>
+        {/* <RegisterScreen/> */}
+
     </ScrollView>
   );
 };
@@ -70,17 +75,32 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
+    // flex:1,
     padding: 5,
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
+  },
+  outer:{
+    flexGrow:1
+  },
+  container2: {
+    
+    width: '100%',
+    flexGrow:1,
+    // height: '100%',
+    padding: 5,
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    // backgroundColor: 'white',
   },
   box: {
     width: '100%',
     height: '12%',
   },
   inner: {
-    flex: 1,
+    // flex: 1,
+    height:60,
     backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -103,16 +123,17 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
 
     elevation: 5,
+    marginBottom:-30
   },
   box1: {
     marginTop: 15,
     width: '100%',
-    height: '12%',
+    height: '8%',
   },
   box2: {
-    marginTop: -1,
+    marginTop: -30,
     width: '100%',
-    height: '10%',
+    // height: '10%',
   },
   inner1: {
     flex: 1,
@@ -155,6 +176,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   Radio: {
-    marginLeft: 120,
+    marginTop: 30,
   },
 });

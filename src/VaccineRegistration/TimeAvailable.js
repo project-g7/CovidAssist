@@ -22,6 +22,7 @@ export default function App() {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
 
   function onPressRadioButton(radioButtonsArray) {
+    console.log(radioButtonsArray);
     setRadioButtons(radioButtonsArray);
   }
 

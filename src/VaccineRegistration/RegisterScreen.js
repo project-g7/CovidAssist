@@ -101,7 +101,7 @@ const RegisterScreenPage = ({navigation}) => {
 
   const [check, setCheck] = useState(false);
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.boxBoder}>
           <View style={styles.body}>
@@ -164,6 +164,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
   },
+  scroll:{
+    // height:'100%',
+    // flex: 1,
+  },
   boxBoder: {
     flex: 1,
     marginTop: -60,
@@ -177,8 +181,9 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-
-    padding: 5,
+    height:'100%',
+    // flexGrow:1,
+    // padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     backgroundColor: 'white',
