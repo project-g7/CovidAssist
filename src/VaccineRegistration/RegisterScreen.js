@@ -45,39 +45,22 @@ const RegisterScreen = props => {
     });
   }, []);
 
-  // const type = props.idType;
-
-  // console.log('!!!!!!!!!!!!!');
-  // console.log(type);
-  // console.log('!!!!!!!!!!!!!');
-
   const dose = props.doseT;
 
   console.log('DDDDDDDD');
   console.log(dose);
   console.log('DDDDDDDD');
 
-  // const DoseType = props.doseType;
-
-  // console.log('TTTTTTTT');
-  // console.log(DoseType);
-  // console.log('TTTTTTTT');
-
-  // setIdtype(type);
-  // setSelection(dose);
-  // console.log(selection);
-  // setDosetype(DoseType);
-
   const VaccineRegister = () => {
-    Axios.post('http://192.168.8.100:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.1.101:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
       selectTime: selectTimeSlot,
       date: date,
-      idtype: idtype,
-      selection: selection,
-      dosetype: dosetype,
+      idtype: props.idType,
+      selection: props.doseT,
+      dosetype: props.doseType,
     })
       .then(() => {
         alert('Booking Successful');
@@ -86,6 +69,7 @@ const RegisterScreen = props => {
         alert(error);
       });
   };
+
   const handleTime = selectTimeSlot => {
     setSelectTimeSlot(selectTimeSlot);
     console.log(selectTimeSlot);
@@ -105,10 +89,13 @@ const RegisterScreen = props => {
 
   const handleDate = date => {
     setdate(date);
+    console.log("@@@@@@@");
     console.log(date);
+    console.log("@@@@@@@");
     console.log(vaccineCenter);
     fetchData(date, vaccineCenter);
   };
+
   const fetchData = async (date, vaccineCenter) => {
     console.log('abc');
     const encodedDate = encodeURIComponent(date);
@@ -116,7 +103,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.1.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -138,13 +125,13 @@ const RegisterScreen = props => {
 
     console.log(dates);
     console.log(dates[0]);
-    setdate(dates);
+    // setdate(dates);
     console.log('pqr');
     //console.log(dates);
   };
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.boxBoder}>
           <View style={styles.body}>
@@ -209,6 +196,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
   },
+  scroll:{
+    // height:'100%',
+    // flex: 1,
+  },
   boxBoder: {
     flex: 1,
     marginTop: -60,
@@ -222,8 +213,9 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-
-    padding: 5,
+    height:'100%',
+    // flexGrow:1,
+    // padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     backgroundColor: 'white',

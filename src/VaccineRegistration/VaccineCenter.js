@@ -26,7 +26,7 @@ export default class VaccineCenter extends Component {
   async apicall(username) {
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
+      `http://192.168.1.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
 
       {method: 'GET'},
     );

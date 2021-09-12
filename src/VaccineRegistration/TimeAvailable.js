@@ -35,6 +35,7 @@ export default function TimeAvailable(props) {
   console.log(arr);
 
   function onPressRadioButton(radioButtonsArray) {
+    console.log(radioButtonsArray);
     setRadioButtons(radioButtonsArray);
     console.log(radioButtonsArray);
     console.log('*********************************');
