@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   View,
   Text,
@@ -46,6 +46,11 @@ const DetailScreenPage = ({navigation}) => {
     console.log(selectDoseType);
     console.log('dose !!!!!!!!!!!!!');
   };
+
+  // useEffect(() => {
+    
+  
+  // }, [])
 
   return (
     <ScrollView contentContainerStyle={styles.outer}>
@@ -111,9 +116,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 1350,
     padding: 5,
-    // flexDirection: 'column',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
+
   },
   outer:{
     flexGrow:1
@@ -148,7 +154,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   dropdown: {
-    marginLeft: -100,
+    width:'100%',
+    // marginLeft: -100,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
 
     elevation: 5,
-    marginBottom:-30
+    // marginBottom:-30
   },
   box1: {
     marginTop: 15,
