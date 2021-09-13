@@ -186,8 +186,9 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginLeft: 18,
     marginTop: -18,
-    color: 'black',
-    //color: '#3342C8',
+    // color: 'black',
+    color: '#3342C8',
+    fontWeight: 'bold',
   },
   buttonNext: {
     marginTop: 15,

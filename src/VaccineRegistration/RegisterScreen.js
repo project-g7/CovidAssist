@@ -157,7 +157,7 @@ const RegisterScreen = props => {
           </View>
         </View>
 
-        <View>
+        <View style={styles.dates}>
           <DatePicker updateDate={handleDate} />
         </View>
 
@@ -287,5 +287,8 @@ const styles = StyleSheet.create({
     color: '#3342C8',
     fontSize: 16,
     textAlign: 'center',
+  },
+  dates: {
+    marginTop: -25,
   },
 });
