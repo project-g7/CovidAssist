@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   View,
   Text,
@@ -47,6 +47,11 @@ const DetailScreenPage = ({navigation}) => {
     console.log('dose !!!!!!!!!!!!!');
   };
 
+  // useEffect(() => {
+    
+  
+  // }, [])
+
   return (
     <ScrollView contentContainerStyle={styles.outer}>
       <View style={styles.container}>
@@ -91,6 +96,8 @@ const DetailScreenPage = ({navigation}) => {
         />
         {/* </View> */}
       </View>
+        {/* <RegisterScreen/> */}
+
     </ScrollView>
   );
 };
@@ -109,16 +116,31 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 1350,
     padding: 5,
-    // flexDirection: 'column',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
+
+  },
+  outer:{
+    flexGrow:1
+  },
+  container2: {
+    
+    width: '100%',
+    flexGrow:1,
+    // height: '100%',
+    padding: 5,
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    // backgroundColor: 'white',
   },
   box: {
     width: '100%',
     height: 50,
   },
   inner: {
-    flex: 1,
+    // flex: 1,
+    height:60,
     backgroundColor: '#7674DF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -132,7 +154,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   dropdown: {
-    marginLeft: -100,
+    width:'100%',
+    // marginLeft: -100,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -141,6 +164,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
 
     elevation: 5,
+    // marginBottom:-30
   },
   box1: {
     marginTop: 15,
@@ -150,7 +174,7 @@ const styles = StyleSheet.create({
   box2: {
     marginTop: -108,
     width: '100%',
-    height: '10%',
+    // height: '10%',
   },
   inner1: {
     flex: 1,

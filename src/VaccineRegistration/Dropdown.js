@@ -39,12 +39,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   body: {
-    width: '74.5%',
-    flex: 1,
-    margin: 30,
-    marginLeft: 120,
-    marginBottom: 50,
+    width: '95%',
+    marginLeft: 15,
     fontSize: 22,
-    marginTop: 10,
+    marginTop: 20,
   },
 });

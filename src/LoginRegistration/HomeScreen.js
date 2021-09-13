@@ -28,6 +28,8 @@ const HomeScreen = ({navigation}) => {
 
       }
     }
+    // AsyncStorage.multiSet([["username", "manjitha"]]);
+
       AsyncStorage.multiGet(['username']).then((data) => {
           let username = data[0][1];
           console.log(username);
