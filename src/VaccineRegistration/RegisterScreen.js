@@ -52,7 +52,7 @@ const RegisterScreen = props => {
   console.log('DDDDDDDD');
 
   const VaccineRegister = () => {
-    Axios.post('http://192.168.1.101:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.1.102:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,

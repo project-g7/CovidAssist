@@ -27,7 +27,7 @@ const ViewCertificate = () => {
   }, [])
 
   const fetchData = (username) => {
-    Axios.get('http://192.168.1.101:3000/api/getnic', {
+    Axios.get('http://192.168.1.102:3000/api/getnic', {
       params: {username: username},
     })
       .then(function (response) {
@@ -46,7 +46,7 @@ const ViewCertificate = () => {
     })
       .fetch(
         'GET',
-        `https://codepipeline-us-east-2-557358387976.s3.us-east-2.amazonaws.com//output/certi_${nic}.png`,
+        `https://covidassist-bucket.s3.us-east-2.amazonaws.com//output/certi_${nic}.png`,
       )
       .then(res => {
         CameraRoll.saveToCameraRoll(res.data, 'photo')
@@ -72,7 +72,7 @@ const ViewCertificate = () => {
         <Image
           style={styles.tinyLogo}
           source={{
-            uri: `https://codepipeline-us-east-2-557358387976.s3.us-east-2.amazonaws.com//output/certi_${nic}.png`,
+            uri: `https://covidassist-bucket.s3.us-east-2.amazonaws.com//output/certi_${nic}.png`,
           }}
         />
       </View>
