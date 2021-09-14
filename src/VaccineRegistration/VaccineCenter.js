@@ -15,24 +15,55 @@ export default class VaccineCenter extends Component {
     };
   }
 
-  componentDidMount() {
-    AsyncStorage.multiGet(['username']).then(data => {
-      let username = data[0][1];
-      // console.log(username);
-      //fetchData(username);
-      this.apicall(username);
-    });
+  // componentDidMount() {
+  //   AsyncStorage.multiGet(['username']).then(data => {
+  //     let username = data[0][1];
+  //     // console.log(username);
+  //     //fetchData(username);
+  //     this.apicall(username);
+  //   });
+  // }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (
+      this.props.selection !== prevProps.selection ||
+      this.props.DoseType !== prevProps.DoseType
+    ) {
+      AsyncStorage.multiGet(['username']).then(data => {
+        let username = data[0][1];
+        // console.log(username);
+        //fetchData(username);
+        this.apicall(username);
+      });
+      console.log('-------------');
+      console.log(this.props.selection);
+      console.log(this.props.DoseType);
+      console.log('-------------');
+    }
   }
+
   async apicall(username) {
+    // console.log('.........................');
+    // console.log(props.selection);
+    // console.log('.........................');
     const encodedUsername = encodeURIComponent(username);
+    const encodeSelection = encodeURIComponent(this.props.selection);
+    const encodeDoseType = encodeURIComponent(this.props.DoseType);
+
     const response = await fetch(
-      `http://192.168.1.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}`,
+      `http://192.168.8.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
 
       {method: 'GET'},
     );
     const users = await response.json();
-    //console.warn(respJson);
-    this.setState({data: users});
+    console.warn(users);
+    if (users.length <= 0) {
+      alert('center is not available!!!!!!!!!!!');
+    } else {
+      this.setState({data: users});
+    }
+
     //console.log(respJson);
   }
   handleChange = event => {

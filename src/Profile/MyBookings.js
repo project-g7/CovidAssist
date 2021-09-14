@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [userName, setUsername] = useState('');
-  
 
   useEffect(() => {
     AsyncStorage.multiGet(['username']).then(data => {
@@ -18,7 +17,7 @@ const MyBookings = () => {
 
   const getBookings = username => {
     axios
-      .get('http://192.168.1.101:3000/api/getbookings', {
+      .get('http://192.168.8.101:3000/api/getbookings', {
         params: {username: username},
       })
       .then(function (response) {
@@ -29,17 +28,19 @@ const MyBookings = () => {
       .catch(function (error) {});
   };
 
-  const cancelBooking = (bookingId) => {
-    console.log("cancelll");
+  const cancelBooking = bookingId => {
+    console.log('cancelll');
     console.log(bookingId);
-    axios.get("http://192.168.1.101:3000/api/cancelbooking",{
-      params: {bookingId: bookingId},
-    }).then(function(res){
-      console.log(res.data);
-      getBookings(userName);
-
-    }).catch(function(err){})
-  }
+    axios
+      .get('http://192.168.8.101:3000/api/cancelbooking', {
+        params: {bookingId: bookingId},
+      })
+      .then(function (res) {
+        console.log(res.data);
+        getBookings(userName);
+      })
+      .catch(function (err) {});
+  };
   return (
     <View style={styles.container}>
       <FlatList
@@ -74,7 +75,7 @@ const MyBookings = () => {
                   style={styles.btn}
                   onPress={() => {
                     console.log(item.booking_id);
-                   cancelBooking(item.booking_id);
+                    cancelBooking(item.booking_id);
                   }}>
                   <Text style={styles.btnText}>Cancel Booking</Text>
                 </TouchableOpacity>

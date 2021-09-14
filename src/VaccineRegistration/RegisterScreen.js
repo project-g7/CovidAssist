@@ -51,23 +51,86 @@ const RegisterScreen = props => {
   console.log(dose);
   console.log('DDDDDDDD');
 
-  const VaccineRegister = () => {
-    Axios.post('http://192.168.1.102:3000/api/VaccineRegister', {
-      vaccineCenter: vaccineCenter,
-      vaccineName: vaccineName,
-      username: userName,
-      selectTime: selectTimeSlot,
-      date: date,
-      idtype: props.idType,
-      selection: props.doseT,
-      dosetype: props.doseType,
-    })
-      .then(() => {
-        alert('Booking Successful');
+  const CheckVaccineBooking = () => {
+    if (props.doseT === '') {
+      alert('vaccine doset is required!');
+    } else if (props.idType == '') {
+      alert('ID type select is required!');
+    }
+    // else if(props.doseT== true){
+    //   if(props.doseType==''){
+    //     alert('vaccine center is required!');
+    //   }
+    // }
+    else if (vaccineCenter == '') {
+      alert('Vaccination center select is required!');
+    } else if (vaccineName == '') {
+      alert('Vaccine name select is required!');
+    } else if (date == '') {
+      alert('date is required!');
+    } else if (selectTimeSlot == '') {
+      alert('time is required!');
+    } else {
+      Axios.post('http://192.168.8.101:3000/api/VaccineRegisterCheking', {
+        username: userName,
+        selection: props.doseT,
+        dosetype: props.doseType,
       })
-      .catch(error => {
-        alert(error);
-      });
+        .then(data => {
+          console.log('-----------------------');
+          console.log(data.data);
+          console.log('-----------------------');
+          if (data.data == 'alredyBooking') {
+            alert('Duplicate booking. Invalid..!');
+          } else if (data.data == 'bookingAvailable') {
+            // alert('bookingAvailable');
+            VaccineRegister();
+          }
+        })
+        .catch(error => {
+          alert(error);
+        });
+    }
+  };
+
+  const VaccineRegister = () => {
+    console.log(props.doseT);
+    if (props.doseT === '') {
+      alert('vaccine doset is required!');
+    } else if (props.idType == '') {
+      alert('ID type select is required!');
+    }
+    // else if(props.doseT== true){
+    //   if(props.doseType==''){
+    //     alert('vaccine center is required!');
+    //   }
+    // }
+    else if (vaccineCenter == '') {
+      alert('Vaccination center select is required!');
+    } else if (vaccineName == '') {
+      alert('Vaccine name select is required!');
+    } else if (date == '') {
+      alert('date is required!');
+    } else if (selectTimeSlot == '') {
+      alert('time is required!');
+    } else {
+      Axios.post('http://192.168.8.101:3000/api/VaccineRegister', {
+        vaccineCenter: vaccineCenter,
+        vaccineName: vaccineName,
+        username: userName,
+        selectTime: selectTimeSlot,
+        date: date,
+        idtype: props.idType,
+        selection: props.doseT,
+        dosetype: props.doseType,
+      })
+        .then(() => {
+          alert('Booking Successful!');
+        })
+        .catch(error => {
+          alert(error);
+        });
+    }
   };
 
   const handleTime = selectTimeSlot => {
@@ -89,9 +152,9 @@ const RegisterScreen = props => {
 
   const handleDate = date => {
     setdate(date);
-    console.log("@@@@@@@");
+    console.log('@@@@@@@');
     console.log(date);
-    console.log("@@@@@@@");
+    console.log('@@@@@@@');
     console.log(vaccineCenter);
     fetchData(date, vaccineCenter);
   };
@@ -103,7 +166,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.1.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.8.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -139,12 +202,14 @@ const RegisterScreen = props => {
             <VaccineCenter
               updateVaccine={handleVaccine}
               updateVaccineName={handleVaccineName}
+              selection={props.doseT}
+              DoseType={props.doseType}
             />
             {/* <VaccinationName /> */}
           </View>
         </View>
 
-        <View>
+        <View style={styles.dates}>
           <DatePicker updateDate={handleDate} />
         </View>
 
@@ -172,7 +237,7 @@ const RegisterScreen = props => {
         <View style={{marginTop: 50, flexDirection: 'row'}}>
           <TouchableOpacity
             onPress={() => {
-              VaccineRegister();
+              CheckVaccineBooking();
             }}>
             <View style={styles.buttonNext}>
               <Text style={styles.butonText}>Register</Text>
@@ -196,7 +261,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
   },
-  scroll:{
+  scroll: {
     // height:'100%',
     // flex: 1,
   },
@@ -213,7 +278,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height:'100%',
+    height: '100%',
     // flexGrow:1,
     // padding: 5,
     flexDirection: 'row',
@@ -279,5 +344,8 @@ const styles = StyleSheet.create({
     color: '#3342C8',
     fontSize: 16,
     textAlign: 'center',
+  },
+  dates: {
+    marginTop: -25,
   },
 });

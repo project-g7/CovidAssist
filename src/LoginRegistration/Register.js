@@ -128,7 +128,6 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-
     let tracingKey = uuid();
     // let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
     // this.state.tracingKey = tracingKey;

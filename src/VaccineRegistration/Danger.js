@@ -26,7 +26,7 @@ const Danger = props => {
         },
         {
           text: 'OK',
-          onPress:handleStatus,
+          onPress: handleStatus,
         },
       ],
       {cancelable: false},
