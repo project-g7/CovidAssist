@@ -80,7 +80,7 @@ class ContactTracing extends Component {
       username: this.props.username,
       isLogging: false,
       devicesFound: [],
-      keys:[],
+      keys: [],
     };
   }
 
@@ -88,7 +88,7 @@ class ContactTracing extends Component {
     let currentDate = format(new Date(), 'yyyy-MM-dd');
     console.log(uuid + ' ' + username + ' ' + currentDate);
     axios
-      .get('http://192.168.1.101:3000/api/otherkeys', {
+      .get('http://192.168.8.101:3000/api/otherkeys', {
         params: {username: username, uuid: uuid, date: currentDate},
       })
       .then(function (response) {
@@ -102,7 +102,7 @@ class ContactTracing extends Component {
   addDevice(_uuid, _name, _mac, _data, _rssi, _date) {
     const index = this.state.devicesFound.findIndex(({uuid}) => uuid == _uuid);
     console.log('====================================');
-    console.log("Inside add device");
+    console.log('Inside add device');
     console.log('====================================');
     this.sendKey(_uuid, this.props.username);
     if (index < 0) {
@@ -160,11 +160,13 @@ class ContactTracing extends Component {
       if (event.serviceUuids) {
         for (let i = 0; i < event.serviceUuids.length; i++) {
           if (event.serviceUuids[i]) {
-            let k = this.state.keys.find((key)=>{return key==event.serviceUuids[i]});
+            let k = this.state.keys.find(key => {
+              return key == event.serviceUuids[i];
+            });
             console.log(k);
-            if(typeof k == 'undefined'){
+            if (typeof k == 'undefined') {
               var joined = this.state.keys.concat(event.serviceUuids[i]);
-              this.setState({ keys: joined });
+              this.setState({keys: joined});
 
               this.addDevice(
                 event.serviceUuids[i],

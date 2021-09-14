@@ -14,8 +14,8 @@ import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ViewCertificate = () => {
-  const [nic,setNic] = useState('');
-  const [username,setUsername] = useState('');
+  const [nic, setNic] = useState('');
+  const [username, setUsername] = useState('');
   useEffect(() => {
     AsyncStorage.multiGet(['username']).then(data => {
       let username = data[0][1];
@@ -23,11 +23,10 @@ const ViewCertificate = () => {
       setUsername(username);
       fetchData(username);
     });
-   
-  }, [])
+  }, []);
 
-  const fetchData = (username) => {
-    Axios.get('http://192.168.1.101:3000/api/getnic', {
+  const fetchData = username => {
+    Axios.get('http://192.168.8.101:3000/api/getnic', {
       params: {username: username},
     })
       .then(function (response) {
@@ -36,10 +35,9 @@ const ViewCertificate = () => {
         // console.log(tracingKey + 'trrr');
       })
       .catch(function (error) {});
-  }
+  };
 
-
- const handleDownload = async () => {
+  const handleDownload = async () => {
     RNFetchBlob.config({
       fileCache: true,
       appendExt: 'png',
@@ -54,9 +52,7 @@ const ViewCertificate = () => {
             Alert.alert(
               'Vaccine card',
               'Download Completed!',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
-              ],
+              [{text: 'OK', onPress: () => console.log('OK Pressed')}],
               {cancelable: false},
             );
             console.log(res);

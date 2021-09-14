@@ -128,7 +128,6 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-
     let tracingKey = uuid();
     // let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
     // this.state.tracingKey = tracingKey;
@@ -178,7 +177,7 @@ class Register extends Component {
     else {
       //this.props.navigation.navigate('MainTabsScreen');
       console.log(tracingKey);
-      Axios.post('http://192.168.1.101:3000/api/insert', {
+      Axios.post('http://192.168.8.101:3000/api/insert', {
         firstName: firstName,
         lastName: lastName,
         nic: nic,
