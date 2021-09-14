@@ -9,6 +9,7 @@ class Sign extends Component {
         // let checkVal = AsyncStorage.getItem('username');
         // console.log(checkVal);
     AsyncStorage.multiSet([["username", "logout"]]);
+    AsyncStorage.multiSet([["tracingKey", ""]]);
     // AsyncStorage.multiSet([["username", "manjitha"]]);
     AsyncStorage.multiGet(['username']).then((data) => {
           let username = data[0][1];

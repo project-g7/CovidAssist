@@ -34,7 +34,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const checkStatus = async username => {
-    Axios.get('http://192.168.8.101:3000/api/checkstatus', {
+    Axios.get('http://192.168.1.102:3000/api/checkstatus', {
       params: {username: username},
     })
       .then(function (response) {
@@ -55,11 +55,12 @@ const HomeScreen = ({navigation}) => {
   };
 
   const fetchData = async username => {
-    Axios.get('http://192.168.8.101:3000/api/tracingkey', {
+    Axios.get('http://192.168.1.102:3000/api/tracingkey', {
       params: {username: username},
     })
       .then(function (response) {
         console.log(response.data[0].tracing_key);
+        // AsyncStorage.multiSet([['tracingKey',response.data[0].tracing_key ]]);
         setTracingKey(response.data[0].tracing_key);
         console.log(tracingKey + 'trrr');
       })

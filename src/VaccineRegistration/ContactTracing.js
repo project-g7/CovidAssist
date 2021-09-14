@@ -16,6 +16,9 @@ import update from 'immutability-helper';
 import BLEAdvertiser from 'react-native-ble-advertiser';
 import UUIDGenerator from 'react-native-uuid-generator';
 import {PermissionsAndroid} from 'react-native';
+import Axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // Uses the Apple code to pick up iPhones
 const APPLE_ID = 0x027d;
@@ -88,7 +91,7 @@ class ContactTracing extends Component {
     let currentDate = format(new Date(), 'yyyy-MM-dd');
     console.log(uuid + ' ' + username + ' ' + currentDate);
     axios
-      .get('http://192.168.8.101:3000/api/otherkeys', {
+      .get('http://192.168.1.102:3000/api/otherkeys', {
         params: {username: username, uuid: uuid, date: currentDate},
       })
       .then(function (response) {
@@ -97,6 +100,28 @@ class ContactTracing extends Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  getTracingKey() {
+    let k = '';
+    Axios.get('http://192.168.1.102:3000/api/tracingkey', {
+      params: {username: this.state.username},
+    })
+      .then(function (response) {
+        console.log('====================================');
+        k = response.data[0].tracing_key;
+        console.log(response.data[0].tracing_key);
+        console.log('====================================');
+
+        // setTracingKey(response.data[0].tracing_key);
+        // console.log(tracingKey + 'inside get');
+      })
+      .catch(function (error) {});
+      // console.log("k ="+k);
+    //   setTimeout(() => {
+    // this.start(k);
+        
+    //   }, 2000);
   }
 
   addDevice(_uuid, _name, _mac, _data, _rssi, _date) {
@@ -136,22 +161,39 @@ class ContactTracing extends Component {
   componentDidMount() {
     requestLocationPermission();
 
-    UUIDGenerator.getRandomUUID(newUid => {
-      this.setState({
-        // uuid: newUid.slice(0, -2) + '00'
-        uuid: this.props.dtk,
-      });
+    // UUIDGenerator.getRandomUUID(newUid => {
+    this.setState({
+      // uuid: newUid.slice(0, -2) + '00'
+      uuid: this.props.dtk,
     });
+    // });
+    // this.getTracingKey();
+    // this.start('37a4b8ab-7217-4b24-8caa-3e943a426227');
+    AsyncStorage.multiGet(['tracingKey']).then(data => {
+      let key = data[0][1];
+      console.log("tr key = "+ key);
+      // this.start(key);
+    });
+      // this.start();
+    // this.simulatePress();
 
-    // this.start();
   }
 
   componentWillUnmount() {
     if (this.state.isLogging) this.stop();
   }
 
+  componentDidUpdate(prevProps) {
+  // Typical usage (don't forget to compare props):
+  if (this.props.dtk !== prevProps.dtk) {
+    this.start();
+  }
+}
+
   start() {
+    console.log("Inside start===");
     console.log(this.props.dtk, 'Registering Listener');
+    // console.log(uuid);
     const eventEmitter = new NativeEventEmitter(NativeModules.BLEAdvertiser);
 
     this.onDeviceFound = eventEmitter.addListener('onDeviceFound', event => {
@@ -190,15 +232,15 @@ class ContactTracing extends Component {
       includeDeviceName: false,
       includeTxPowerLevel: false,
     })
-      .then(sucess => console.log(this.state.uuid, 'Adv Successful', sucess))
-      .catch(error => console.log(this.state.uuid, 'Adv Error', error));
+      .then(sucess => console.log(this.props.dtk, 'Adv Successful', sucess))
+      .catch(error => console.log(this.props.dtk, 'Adv Error', error));
 
-    console.log(this.props.dtk, 'Starting Scanner');
+    console.log(this.state.uuid, 'Starting Scanner');
     BLEAdvertiser.scan(MANUF_DATA, {
       scanMode: BLEAdvertiser.SCAN_MODE_LOW_LATENCY,
     })
-      .then(sucess => console.log(this.state.uuid, 'Scan Successful', sucess))
-      .catch(error => console.log(this.state.uuid, 'Scan Error', error));
+      .then(sucess => console.log(this.props.dtk, 'Scan Successful', sucess))
+      .catch(error => console.log(this.props.dtk, 'Scan Error', error));
 
     this.setState({
       isLogging: true,
@@ -239,6 +281,10 @@ class ContactTracing extends Component {
     ).toUpperCase();
   }
 
+
+//   simulatePress() {
+//   this.touchable.props.onPress();
+// }
   render() {
     return (
       <SafeAreaView>
@@ -260,6 +306,7 @@ class ContactTracing extends Component {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
+                ref={component => this.touchable = component} 
                 onPress={() => this.start()}
                 style={styles.startLoggingButtonTouchable}>
                 <Text style={styles.startLoggingButtonText}>Start</Text>
