@@ -5,7 +5,7 @@ import axios from 'axios';
 const Danger = props => {
   const handleStatus = () => {
     axios
-      .get('http://192.168.1.101:3000/api/updatestatus', {
+      .get('http://192.168.8.101:3000/api/updatestatus', {
         params: {username: props.userName},
       })
       .then(function (response) {
@@ -26,7 +26,7 @@ const Danger = props => {
         },
         {
           text: 'OK',
-          onPress:handleStatus,
+          onPress: handleStatus,
         },
       ],
       {cancelable: false},

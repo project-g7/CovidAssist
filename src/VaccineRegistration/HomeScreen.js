@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import LottieView from 'lottie-react-native';
@@ -35,7 +34,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const checkStatus = async username => {
-    Axios.get('http://192.168.1.101:3000/api/checkstatus', {
+    Axios.get('http://192.168.8.101:3000/api/checkstatus', {
       params: {username: username},
     })
       .then(function (response) {
@@ -56,7 +55,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const fetchData = async username => {
-    Axios.get('http://192.168.1.101:3000/api/tracingkey', {
+    Axios.get('http://192.168.8.101:3000/api/tracingkey', {
       params: {username: username},
     })
       .then(function (response) {
