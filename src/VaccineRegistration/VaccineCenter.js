@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Alert,
+} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -59,7 +66,19 @@ export default class VaccineCenter extends Component {
     const users = await response.json();
     console.warn(users);
     if (users.length <= 0) {
-      alert('center is not available!!!!!!!!!!!');
+      Alert.alert(
+        'Warning !!!',
+        'There is no Vaccine Center for the selected dose !!!',
+        [
+          // {
+          //   text: 'Cancel',
+          //   onPress: () => console.log('Cancel Pressed'),
+          //   style: 'cancel',
+          // },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+      );
+      // alert('There is no Vaccine Center for the selected dose !!!');
     } else {
       this.setState({data: users});
     }
