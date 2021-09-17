@@ -6,7 +6,6 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert,
 } from 'react-native';
 import VaccinationName from './VaccinationName';
 import DatePicker from './DatePicker';
@@ -54,24 +53,9 @@ const RegisterScreen = props => {
 
   const CheckVaccineBooking = () => {
     if (props.doseT === '') {
-      Alert.alert(
-        'Warning !!!',
-        'Selecting the Vaccinated Details are mandatory !!!',
-        [
-          // {
-          //   text: 'Cancel',
-          //   onPress: () => console.log('Cancel Pressed'),
-          //   style: 'cancel',
-          // },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-      );
-      // alert('Selecting the Vaccinated Details are mandatory !!!');
+      alert('vaccine doset is required!');
     } else if (props.idType == '') {
-      Alert.alert('Warning !!!', 'Selecting the ID type is mandatory !!!', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
-      // alert('Selecting the ID type is mandatory !!!');
+      alert('ID type select is required!');
     }
     // else if(props.doseT== true){
     //   if(props.doseType==''){
@@ -79,31 +63,15 @@ const RegisterScreen = props => {
     //   }
     // }
     else if (vaccineCenter == '') {
-      Alert.alert(
-        'Warning !!!',
-        'Selecting the Vaccine Center is mandatory !!!',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-      );
-      // alert('Selecting the Vaccine Center is mandatory !!!');
+      alert('Vaccination center select is required!');
     } else if (vaccineName == '') {
-      Alert.alert(
-        'Warning !!!',
-        'Selecting the Vaccine Name is mandatory !!!',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-      );
-      // alert('Selecting the Vaccine Name is mandatory !!!');
+      alert('Vaccine name select is required!');
     } else if (date == '') {
-      Alert.alert('Warning !!!', 'Selecting the Date is mandatory !!!', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
-      // alert('Selecting the Date is mandatory !!!');
+      alert('date is required!');
     } else if (selectTimeSlot == '') {
-      Alert.alert('Warning !!!', 'Selecting the Time Slot is mandatory !!!', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
-      // alert('Selecting the Time Slot is mandatory !!!');
+      alert('time is required!');
     } else {
-      Axios.post('http://192.168.8.100:3000/api/VaccineRegisterCheking', {
+      Axios.post('http://192.168.1.102:3000/api/VaccineRegisterCheking', {
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -113,15 +81,9 @@ const RegisterScreen = props => {
           console.log(data.data);
           console.log('-----------------------');
           if (data.data == 'alredyBooking') {
-            Alert.alert(
-              'Warning !!!',
-              'There is a Duplicate booking. Invalid..!!!',
-              [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-            );
-            // alert(' There is a Duplicate booking. Invalid..!!!');
+            alert('Duplicate booking. Invalid..!');
           } else if (data.data == 'bookingAvailable') {
             // alert('bookingAvailable');
-            console.log('wwwwwwwwwwwwwwwwwwwwwwwww');
             VaccineRegister();
           }
         })
@@ -132,52 +94,43 @@ const RegisterScreen = props => {
   };
 
   const VaccineRegister = () => {
-    // console.log(props.doseT);
-    console.log('xxxxxxxxxxxxxxxxxxxxxx');
-    // if (props.doseT === '') {
-    //   alert('Selecting the Vaccinated Details are mandatory !!!');
-    // } else if (props.idType == '') {
-    //   alert('Selecting the ID type is mandatory !!!');
-    // } else if (props.doseT == true) {
-    //   if (props.doseType == '') {
+    console.log(props.doseT);
+    if (props.doseT === '') {
+      alert('vaccine doset is required!');
+    } else if (props.idType == '') {
+      alert('ID type select is required!');
+    }
+    // else if(props.doseT== true){
+    //   if(props.doseType==''){
     //     alert('vaccine center is required!');
     //   }
     // }
-    // // else if(props.doseT== true){
-    // //   if(props.doseType==''){
-    // //     alert('vaccine center is required!');
-    // //   }
-    // // }
-    // else if (vaccineCenter == '') {
-    //   alert('Selecting the Vaccine Center is mandatory !!!');
-    // } else if (vaccineName == '') {
-    //   alert('Selecting the Vaccine Name is mandatory !!!');
-    // } else if (date == '') {
-    //   alert('Selecting the Date is mandatory !!!');
-    // } else if (selectTimeSlot == '') {
-    //   alert('Selecting the Time Slot is mandatory !!!');
-    // } else {
-    Axios.post('http://192.168.8.100:3000/api/VaccineRegister', {
-      vaccineCenter: vaccineCenter,
-      vaccineName: vaccineName,
-      username: userName,
-      selectTime: selectTimeSlot,
-      date: date,
-      idtype: props.idType,
-      selection: props.doseT,
-      dosetype: props.doseType,
-    })
-      .then(() => {
-        Alert.alert('Successful!!!', 'Booking is Successful !!!', [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-        console.log('vvvvvvvvvvvvvvvvvvvvvvv');
-        // alert('Booking is Successful !!!');
+    else if (vaccineCenter == '') {
+      alert('Vaccination center select is required!');
+    } else if (vaccineName == '') {
+      alert('Vaccine name select is required!');
+    } else if (date == '') {
+      alert('date is required!');
+    } else if (selectTimeSlot == '') {
+      alert('time is required!');
+    } else {
+      Axios.post('http://192.168.1.102:3000/api/VaccineRegister', {
+        vaccineCenter: vaccineCenter,
+        vaccineName: vaccineName,
+        username: userName,
+        selectTime: selectTimeSlot,
+        date: date,
+        idtype: props.idType,
+        selection: props.doseT,
+        dosetype: props.doseType,
       })
-      .catch(error => {
-        alert(error);
-      });
-    // }
+        .then(() => {
+          alert('Booking Successful!');
+        })
+        .catch(error => {
+          alert(error);
+        });
+    }
   };
 
   const handleTime = selectTimeSlot => {
@@ -213,7 +166,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.1.102:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -226,9 +179,9 @@ const RegisterScreen = props => {
       setAvailableTime(dates);
     } else {
       if (dates.value == 'NoAvailbleCenter') {
-        alert('There is no Vaccine Center for the selected date !!!');
+        alert('Center is not available');
       } else if (dates.value == 'NoAvailbleTimeSlot') {
-        alert('There is no Vaccine Center for the selected date !!!');
+        alert('TimeSlot is not available');
       }
     }
     // console.log(dates);
