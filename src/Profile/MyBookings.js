@@ -32,7 +32,7 @@ const MyBookings = () => {
     console.log('cancelll');
     console.log(bookingId);
     axios
-      .get('http://192.168.8.101:3000/api/cancelbooking', {
+      .get('http://192.168.8.100:3000/api/cancelbooking', {
         params: {bookingId: bookingId},
       })
       .then(function (res) {

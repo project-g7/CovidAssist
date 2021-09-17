@@ -56,7 +56,7 @@ class Login extends Component {
   login = () => {
     const {userName, password} = this.state;
 
-    Axios.post('http://192.168.1.102:3000/api/login', {
+    Axios.post('http://192.168.8.100:3000/api/login', {
       userName: userName,
       password: password,
     })
@@ -69,7 +69,7 @@ class Login extends Component {
           alert('Successful login');
           this.props.navigation.navigate('MainTabsScreen');
           AsyncStorage.multiSet([['username', this.state.userName]]);
-        AsyncStorage.multiSet([['tracingKey',data.data[0].tracing_key]]);
+          AsyncStorage.multiSet([['tracingKey', data.data[0].tracing_key]]);
 
           console.log(this.state.userName);
         }
