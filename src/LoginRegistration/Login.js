@@ -58,7 +58,7 @@ class Login extends Component {
   login = () => {
     const {userName, password} = this.state;
 
-    Axios.post('http://192.168.8.100:3000/api/login', {
+    Axios.post('http://192.168.1.102:3000/api/login', {
       userName: userName,
       password: password,
     })
@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
   button_signin: {
     width: 250,
     borderRadius: 12,
+    // marginTop:110,
     paddingVertical: 10,
     paddingHorizontal: 8,
     backgroundColor: '#3342C8',

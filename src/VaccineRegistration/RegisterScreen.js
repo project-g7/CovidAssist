@@ -166,7 +166,7 @@ const RegisterScreen = props => {
     // } else if (selectTimeSlot == '') {
     //   alert('Selecting the Time Slot is mandatory !!!');
     // } else {
-    Axios.post('http://192.168.8.100:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.1.102:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
