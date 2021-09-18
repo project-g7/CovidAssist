@@ -11,7 +11,7 @@ import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
 const Danger = props => {
-  const {t,i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   // i18n.changeLanguage(props.language);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Danger = props => {
   const handleStatus = () => {
     console.log('status');
     axios
-      .get('http://192.168.8.100:3000/api/updatestatus', {
+      .get('http://192.168.8.101:3000/api/updatestatus', {
         params: {username: props.userName},
       })
       .then(function (response) {
@@ -52,11 +52,11 @@ const Danger = props => {
     <View style={styles.box}>
       <View style={styles.inner}>
         <Text style={styles.text1}>{props.userName}</Text>
-        <Text style={styles.text2}>{t("danger")}</Text>
-        <Text style={styles.text3}>{t("dangermsg")}</Text>
+        <Text style={styles.text2}>{t('danger')}</Text>
+        <Text style={styles.text3}>{t('dangermsg')}</Text>
         <AnimatedTouchable onPress={setAlert}>
           <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>{t("dangerbtn")}</Text>
+            <Text style={styles.butonText}>{t('dangerbtn')}</Text>
           </View>
         </AnimatedTouchable>
       </View>
