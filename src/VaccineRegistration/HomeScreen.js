@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, Animated} from 'react-native';
 import LottieView from 'lottie-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
@@ -17,6 +17,7 @@ const HomeScreen = ({navigation}) => {
   const [showSafe, setShowSafe] = useState(true);
   const [showDanger, setShowDanger] = useState(false);
   const [status, setStatus] = useState(0);
+  const [language,setLanguage] = useState('');
 
   useEffect(() => {
     // BackgroundTask.schedule();
@@ -29,7 +30,14 @@ const HomeScreen = ({navigation}) => {
       // setRPK(dailyTracingKey,username);
       setInterval(() => {
         // checkStatus(username);
-      }, 2000);
+      }, 4000);
+    });
+    navigation.addListener('focus', payload => {
+      AsyncStorage.multiGet(['language']).then(data => {
+        console.log('------');
+        console.log(data[0][1]);
+        setLanguage(data[0][1]);
+      });
     });
   }, []);
 
@@ -69,16 +77,20 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {showSafe && <Safe userName={userName} />}
-      {showDanger && <Danger userName={userName} />}
+      {/* <Animated.View> */}
+
+      {showSafe && <Safe userName={userName} language={language}/>}
+      {showDanger && <Danger userName={userName} language={language} />}
+      {/* </Animated.View> */}
       {/* <View> */}
 
-      {/* <LottieView
+      <LottieView
         style={styles.anime}
         source={require('../../assets/40375-health-loader-radar.json')}
         autoPlay
         loop
-      /> */}
+      />
+
       {/* </View> */}
       <ContactTracing dtk={tracingKey} username={userName} />
     </View>

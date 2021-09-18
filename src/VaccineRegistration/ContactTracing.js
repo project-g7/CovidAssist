@@ -288,7 +288,7 @@ class ContactTracing extends Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.body}>
+        {/* <View style={styles.body}>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>BLE Advertiser Demo</Text>
             <Text style={styles.sectionDescription}>
@@ -334,7 +334,7 @@ class ContactTracing extends Component {
               <Text style={styles.startLoggingButtonText}>Clear Devices</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </SafeAreaView>
     );
   }

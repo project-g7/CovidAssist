@@ -24,15 +24,15 @@ class Sign extends Component {
         {
           <Image
             style={{
-              height: 200,
-              width: 200,
+              height: 220,
+              width: 220,
               marginBottom: 16,
               marginTop: 20,
             }}
-            source={require('../../assets/logo.jpg')}
+            source={require('../../assets/logoNew.png')}
           />
         }
-        <View style={{marginTop: '50%'}}>
+        <View style={{marginTop: '45%'}}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Login')}>
             <View style={styles.button_signin}>

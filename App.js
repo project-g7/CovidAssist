@@ -21,6 +21,7 @@ import MainTabsScreen from './src/VaccineRegistration/MainTabsScreen';
 import MyProfileStackScreen from './src/Profile/MyProfileStackScreen'
 import MyBookingsStackScreen from './src/Profile/MyBookingsStackScreen'
 import ViewCertificateStackScreen from './src/Profile/ViewCertificateStackScreen'
+import LanguageStackScreen from './src/Profile/LanguageStackScreen'
 import EditProfileStackScreen from './src/Profile/EditProfileStackScreen'
 import { LogBox } from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView,DrawerItem,DrawerItemList, DrawerContentComponentProps} from '@react-navigation/drawer';
@@ -50,6 +51,7 @@ const Home = () => {
       <Drawer.Screen name="My Profile" component={MyProfileStackScreen} />
       <Drawer.Screen name="My Bookings" component={MyBookingsStackScreen} />
       <Drawer.Screen name="Vaccine Card" component={ViewCertificateStackScreen} />
+      <Drawer.Screen name="Change Language" component={LanguageStackScreen} />
       {/* <Drawer.Screen name="View C" component={MyBookingsStackScreen} /> */}
       <Drawer.Screen name="EditProfile" component={EditProfileStackScreen} options={ {drawerLabel:()=>null}}/>
     </Drawer.Navigator>

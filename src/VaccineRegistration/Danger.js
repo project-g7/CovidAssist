@@ -1,9 +1,26 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  Animated,
+} from 'react-native';
 import axios from 'axios';
+import {useTranslation} from 'react-i18next';
 
 const Danger = props => {
+  const {t,i18n} = useTranslation();
+  // i18n.changeLanguage(props.language);
+
+  useEffect(() => {
+    i18n.changeLanguage(props.language);
+  }, []);
+
+  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
   const handleStatus = () => {
+    console.log('status');
     axios
       .get('http://192.168.1.102:3000/api/updatestatus', {
         params: {username: props.userName},
@@ -35,13 +52,13 @@ const Danger = props => {
     <View style={styles.box}>
       <View style={styles.inner}>
         <Text style={styles.text1}>{props.userName}</Text>
-        <Text style={styles.text2}>You are in Danger </Text>
-        <Text style={styles.text3}>You have exposed to a Covid patient</Text>
-        <TouchableOpacity onPress={setAlert}>
+        <Text style={styles.text2}>{t("danger")}</Text>
+        <Text style={styles.text3}>{t("dangermsg")}</Text>
+        <AnimatedTouchable onPress={setAlert}>
           <View style={styles.buttonNext}>
-            <Text style={styles.butonText}>Mark as Safe</Text>
+            <Text style={styles.butonText}>{t("dangerbtn")}</Text>
           </View>
-        </TouchableOpacity>
+        </AnimatedTouchable>
       </View>
     </View>
   );
@@ -62,6 +79,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '35%',
     padding: 5,
+    zIndex: 10,
   },
   inner: {
     flex: 1,
@@ -91,7 +109,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonNext: {
-    marginTop: 20,
+    marginTop: 10,
     width: 120,
     borderRadius: 10,
     paddingVertical: 10,

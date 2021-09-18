@@ -1,0 +1,27 @@
+{
+    "translation":{
+        "welcomeText" : "You haven`t exposed to a Covid patient",
+        "safe": "You are Safe",
+        "dangermsg": "You have exposed to a Covid patient",
+        "danger": "You are in Danger",
+        "dangerbtn" : "Mark as Safe",
+        "areYouVaccinated" : "Are You Vaccinated before?",
+        "yes":"Yes",
+        "no" : "No",
+        "dose1": "Dose1",
+        "dose2" : "Dose2",
+        "registrationforVaccine" : "Registration for vaccination",
+        "selectid": "please select ID",
+        "nic": "NIC",
+        "driving" : "Driving License",
+        "passport" : "Passport",
+        "check":"Check Availability",
+        "time" : "Time & Availability",
+        "registerforVaccine" : "You will be registering for the Vaccine",
+        "fullname": "Full Name",
+        "nicNum" : "NIC Number",
+        "contactNumber" : "Contact Number",
+        "address" : "Address",
+        "register" : "Register"
+    }
+}

@@ -215,7 +215,7 @@ class Register extends Component {
                 marginBottom: 16,
                 marginTop: 20,
               }}
-              source={require('../../assets/logo.jpg')}
+              source={require('../../assets/logoNew.png')}
             />
           }
           <View style={styles.regform}>

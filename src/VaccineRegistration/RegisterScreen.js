@@ -18,10 +18,13 @@ import HomeScreen from './HomeScreen';
 //import DatePicker from 'react-native-datepicker';
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useTranslation} from 'react-i18next'
 
 // const Stack = createStackNavigator();
 
 const RegisterScreen = props => {
+  const {t,i18n} = useTranslation();
+
   const [idtype, setIdtype] = useState('');
   const [selection, setSelection] = useState('');
   const [dosetype, setDosetype] = useState('');
@@ -44,6 +47,12 @@ const RegisterScreen = props => {
       // fetData(username);
     });
   }, []);
+
+  useEffect(() => {
+    
+     i18n.changeLanguage(props.language);
+
+  }, [props.language])
 
   const dose = props.doseT;
 
@@ -71,7 +80,7 @@ const RegisterScreen = props => {
     } else if (selectTimeSlot == '') {
       alert('time is required!');
     } else {
-      Axios.post('http://192.168.8.101:3000/api/VaccineRegisterCheking', {
+      Axios.post('http://192.168.1.102:3000/api/VaccineRegisterCheking', {
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -114,7 +123,7 @@ const RegisterScreen = props => {
     } else if (selectTimeSlot == '') {
       alert('time is required!');
     } else {
-      Axios.post('http://192.168.8.101:3000/api/VaccineRegister', {
+      Axios.post('http://192.168.1.102:3000/api/VaccineRegister', {
         vaccineCenter: vaccineCenter,
         vaccineName: vaccineName,
         username: userName,
@@ -166,7 +175,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.8.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.1.102:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -204,6 +213,7 @@ const RegisterScreen = props => {
               updateVaccineName={handleVaccineName}
               selection={props.doseT}
               DoseType={props.doseType}
+              language={props.language}
             />
             {/* <VaccinationName /> */}
           </View>
@@ -219,20 +229,20 @@ const RegisterScreen = props => {
             setCheck(!check);
           }}>
           <View style={styles.buttonNext2}>
-            <Text style={styles.butonText1}>Check Availaility</Text>
+            <Text style={styles.butonText1}>{t("check")}</Text>
           </View>
         </TouchableOpacity>
 
         <View style={styles.box}>
           <View style={styles.inner}>
-            <Text style={styles.text1}>Time & Availability</Text>
+            <Text style={styles.text1}>{t("time")}</Text>
           </View>
         </View>
         {check && (
           <TimeAvailable time={availableTime} updateTime={handleTime} />
         )}
         <View style={{marginTop: -250}}>
-          <VaccineBooking />
+          <VaccineBooking language={props.language}/>
         </View>
         <View style={{marginTop: 50, flexDirection: 'row'}}>
           <TouchableOpacity
@@ -240,7 +250,7 @@ const RegisterScreen = props => {
               CheckVaccineBooking();
             }}>
             <View style={styles.buttonNext}>
-              <Text style={styles.butonText}>Register</Text>
+              <Text style={styles.butonText}> {t("register")}</Text>
             </View>
           </TouchableOpacity>
 

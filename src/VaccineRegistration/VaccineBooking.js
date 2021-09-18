@@ -11,8 +11,12 @@ import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButton from './RadioButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useTranslation} from 'react-i18next'
 
-const VaccineBooking = () => {
+
+const VaccineBooking = (props) => {
+  const {t,i18n} = useTranslation();
+
   const [data, setData] = useState([]);
   useEffect(() => {
     //const interval = setInterval(() => {
@@ -27,11 +31,17 @@ const VaccineBooking = () => {
     //return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    
+    i18n.changeLanguage(props.language);
+
+  }, [props.language])
+
   const fetchData = async username => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.8.101:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.1.102:3000/api/users?username=${encodedUsername}`,
 
       {method: 'GET'},
     );
@@ -42,7 +52,7 @@ const VaccineBooking = () => {
   return (
     <View style={styles.credentialText}>
       <Text style={styles.headText}>
-        You will be registering for the Vaccine
+        {t("registerforVaccine")}
       </Text>
       <ScrollView style={styles.ScrollView}>
         <View style={{marginTop: 1, marginLeft: 20}}>
@@ -53,7 +63,7 @@ const VaccineBooking = () => {
             styles.title,
             {marginLeft: 55, marginTop: -30, marginBottom: -10},
           ]}>
-          Full Name
+          {t("fullname")}
         </Title>
         {data.map(val => {
           return (
@@ -70,7 +80,7 @@ const VaccineBooking = () => {
             styles.title,
             {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
-          NIC Number
+          {t("nicNum")}
         </Title>
         {data.map(val => {
           return (
@@ -87,7 +97,7 @@ const VaccineBooking = () => {
             styles.title,
             {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
-          Contact Number
+          {t("contactNumber")}
         </Title>
         {data.map(val => {
           return (
@@ -104,7 +114,7 @@ const VaccineBooking = () => {
             styles.title,
             {marginLeft: 55, marginTop: -25, marginBottom: -10},
           ]}>
-          Address
+          {t("address")}
         </Title>
 
         {data.map(val => {
