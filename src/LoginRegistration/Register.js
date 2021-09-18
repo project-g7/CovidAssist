@@ -43,6 +43,7 @@ class Register extends Component {
       Gender: '',
       data: ['Male', 'Female'],
       Checked: 0,
+      GenderError: 'Gender is required.',
     };
   }
 
@@ -111,8 +112,17 @@ class Register extends Component {
   numberValidator() {
     if (this.state.contactNumber == '') {
       this.setState({contactNumberError: 'Contact Number is required.'});
+    } else if (this.state.contactNumber.length != 10) {
+      this.setState({ContactNumberError: 'Invalid Number'});
     } else {
       this.setState({ContactNumberError: ''});
+    }
+  }
+  GenderValidator() {
+    if (this.state.Gender == '') {
+      this.setState({GenderError: 'Gender is required.'});
+    } else {
+      this.setState({GenderError: ''});
     }
   }
 
@@ -128,8 +138,10 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
+
     let tracingKey = uuid();
     // let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
+
     // this.state.tracingKey = tracingKey;
     // AsyncStorage.multiSet([['tracingKey', tracingKey]]);
 
@@ -144,7 +156,8 @@ class Register extends Component {
       address,
       Gender,
     } = this.state;
-
+    console.log('nuwan');
+    console.log(Gender);
     if (firstName == '') {
       alert('First Name is empty.. Invalid!');
     } else if (!name.test(this.state.firstName)) {
@@ -157,6 +170,8 @@ class Register extends Component {
       alert('NIC is empty.. Invalid!');
     } else if (contactNumber == '') {
       alert('Contact Number is empty.. Invalid!');
+    } else if (contactNumber.length != 10) {
+      alert('Invalid Contact Number!');
     } else if (email == '') {
       alert('email is empty.. Invalid!');
     }
@@ -170,12 +185,15 @@ class Register extends Component {
       alert('Password must have more than 8 characters.. Invalid!');
     } else if (address == '') {
       alert('Address is empty.. Invalid!');
+    } else if (Gender == '') {
+      alert('Please Select Gender.. Invalid!');
     }
     // else if (Gender=='') {
     //   alert('Please Select Gender.. Invalid!');
     // }
     else {
       //this.props.navigation.navigate('MainTabsScreen');
+
       console.log(tracingKey);
       Axios.post('http://192.168.1.102:3000/api/insert', {
         firstName: firstName,
@@ -414,6 +432,7 @@ class Register extends Component {
                     <TouchableOpacity
                       onPress={() => {
                         this.setState({checked: key, Gender: data});
+                        this.GenderValidator();
                       }}
                       style={styles.btn}>
                       <Image
@@ -427,6 +446,9 @@ class Register extends Component {
                 </View>
               );
             })}
+            <Text style={{color: 'red', textAlign: 'center'}}>
+              {this.state.GenderError}
+            </Text>
           </View>
           <View style={{marginBottom: 10, marginTop: 10}}>
             <TouchableOpacity onPress={() => this.submitDetails()}>
