@@ -138,8 +138,10 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-    let str = uuid();
-    let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, '');
+
+    let tracingKey = uuid();
+    // let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
+
     // this.state.tracingKey = tracingKey;
     // AsyncStorage.multiSet([['tracingKey', tracingKey]]);
 
@@ -192,7 +194,9 @@ class Register extends Component {
     else {
       //this.props.navigation.navigate('MainTabsScreen');
 
-      Axios.post('http://192.168.1.3:3001/api/insert', {
+      console.log(tracingKey);
+      Axios.post('http://192.168.8.100:3000/api/insert', {
+
         firstName: firstName,
         lastName: lastName,
         nic: nic,
@@ -230,7 +234,7 @@ class Register extends Component {
                 marginBottom: 16,
                 marginTop: 20,
               }}
-              source={require('../../assets/logo.jpg')}
+              source={require('../../assets/logoNew.png')}
             />
           }
           <View style={styles.regform}>

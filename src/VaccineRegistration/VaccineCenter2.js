@@ -18,7 +18,8 @@ export default class VaccineCenter extends Component {
     this.apicall();
   }
   async apicall() {
-    let resp = await fetch('http://192.168.1.104:3000/api/VaccineCenter');
+    let resp = await fetch('http://192.168.1.102:3000/api/VaccineCenter');
+
     let respJson = await resp.json();
     //console.warn(respJson);
     this.setState({data: respJson});

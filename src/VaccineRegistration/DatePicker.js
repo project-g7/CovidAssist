@@ -9,6 +9,8 @@ export default class MyDatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
+
+    // console.log(new Date());
   }
   // componentDidMount() {
   //   // AsyncStorage.multiGet(['date']).then(date => {
@@ -33,9 +35,9 @@ export default class MyDatePicker extends Component {
   render() {
     return (
       <View style={styles.row}>
-        <Text style={styles.label}>set date</Text>
+        <Text style={styles.label}>Select Date</Text>
         <DatePicker
-          style={{width: 400}}
+          style={{width: 380}}
           date={this.state.date}
           mode="date"
           placeholder="select date"
@@ -52,7 +54,7 @@ export default class MyDatePicker extends Component {
               marginLeft: 0,
             },
             dateInput: {
-              marginLeft: 26,
+              // marginLeft: 26,
               marginRight: 13,
             },
             // ... You can check the source to find the other keys.
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
   label: {
     marginTop: 100,
     fontSize: 18,
-    marginLeft: 30,
+    // marginLeft: 30,
     color: 'blue',
   },
   container: {

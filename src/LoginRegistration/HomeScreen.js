@@ -28,6 +28,8 @@ const HomeScreen = ({navigation}) => {
 
       }
     }
+    // AsyncStorage.multiSet([["username", "manjitha"]]);
+
       AsyncStorage.multiGet(['username']).then((data) => {
           let username = data[0][1];
           console.log(username);
@@ -55,7 +57,7 @@ console.log(checkPage);
           marginLeft: '15%',
           marginRight: '10%',
         }}
-        source={require('../../assets/logo.jpg')}
+        source={require('../../assets/logoNew.png')}
       />
     </View>
   );

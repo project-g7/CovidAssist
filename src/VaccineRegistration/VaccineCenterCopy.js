@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  FlatList,
-  Alert,
-} from 'react-native';
+import {Text, StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,27 +10,18 @@ export default class VaccineCenter extends Component {
       data: [],
       vaccine_center: '',
       vaccine_name: '',
-      language : true,
       // isLoading: true,
       // PickerValueHolder : '',
     };
   }
 
   // componentDidMount() {
-  //   // AsyncStorage.multiGet(['username']).then(data => {
-  //   //   let username = data[0][1];
-  //   //   // console.log(username);
-  //   //   //fetchData(username);
-  //   //   this.apicall(username);
-  //   // });
-  //   // this.setState({language: this.props.language});
-  //   console.log(this.props.language+"www");
-  //   if(this.props.language == 'en'){
-  //     this.setState({language: true});
-  //   }else{
-  //     this.setState({language: false});
-  //   }
-
+  //   AsyncStorage.multiGet(['username']).then(data => {
+  //     let username = data[0][1];
+  //     // console.log(username);
+  //     //fetchData(username);
+  //     this.apicall(username);
+  //   });
   // }
 
   componentDidUpdate(prevProps) {
@@ -57,10 +41,6 @@ export default class VaccineCenter extends Component {
       console.log(this.props.DoseType);
       console.log('-------------');
     }
-
-    if(this.props.language !== prevProps.language){
-       this.setState({language: this.state.language});
-    }
   }
 
   async apicall(username) {
@@ -79,19 +59,7 @@ export default class VaccineCenter extends Component {
     const users = await response.json();
     console.warn(users);
     if (users.length <= 0) {
-      // Alert.alert(
-      //   'Warning !!!',
-      //   'There is no Vaccine Center for the selected dose !!!',
-      //   [
-      //     // {
-      //     //   text: 'Cancel',
-      //     //   onPress: () => console.log('Cancel Pressed'),
-      //     //   style: 'cancel',
-      //     // },
-      //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-      //   ],
-      // );
-      alert('There is no Vaccine Center for the selected dose !!!');
+      alert('center is not available!!!!!!!!!!!');
     } else {
       this.setState({data: users});
     }
@@ -135,7 +103,7 @@ export default class VaccineCenter extends Component {
               }}
               selectedValue={this.state.vaccine_center}>
               <Picker.Item
-                label="Select Vaccine Center"
+                label="Select Vaccination center"
                 value="disabled"
                 color="blue"
               />
