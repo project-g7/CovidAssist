@@ -17,18 +17,27 @@ export default class VaccineCenter extends Component {
       data: [],
       vaccine_center: '',
       vaccine_name: '',
+      language : true,
       // isLoading: true,
       // PickerValueHolder : '',
     };
   }
 
   // componentDidMount() {
-  //   AsyncStorage.multiGet(['username']).then(data => {
-  //     let username = data[0][1];
-  //     // console.log(username);
-  //     //fetchData(username);
-  //     this.apicall(username);
-  //   });
+  //   // AsyncStorage.multiGet(['username']).then(data => {
+  //   //   let username = data[0][1];
+  //   //   // console.log(username);
+  //   //   //fetchData(username);
+  //   //   this.apicall(username);
+  //   // });
+  //   // this.setState({language: this.props.language});
+  //   console.log(this.props.language+"www");
+  //   if(this.props.language == 'en'){
+  //     this.setState({language: true});
+  //   }else{
+  //     this.setState({language: false});
+  //   }
+
   // }
 
   componentDidUpdate(prevProps) {
@@ -48,6 +57,10 @@ export default class VaccineCenter extends Component {
       console.log(this.props.DoseType);
       console.log('-------------');
     }
+
+    if(this.props.language !== prevProps.language){
+       this.setState({language: this.state.language});
+    }
   }
 
   async apicall(username) {
@@ -59,7 +72,7 @@ export default class VaccineCenter extends Component {
     const encodeDoseType = encodeURIComponent(this.props.DoseType);
 
     const response = await fetch(
-      `http://192.168.8.100:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+      `http://192.168.1.102:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
 
       {method: 'GET'},
     );
@@ -122,7 +135,7 @@ export default class VaccineCenter extends Component {
               }}
               selectedValue={this.state.vaccine_center}>
               <Picker.Item
-                label="Select Vaccination center"
+                label="Select Vaccine Center"
                 value="disabled"
                 color="blue"
               />

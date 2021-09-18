@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  Dimensions
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
@@ -22,6 +23,7 @@ class Login extends Component {
       UsernameError: '',
     };
   }
+
 
   passwordValidator() {
     if (this.state.password == '') {
@@ -69,7 +71,8 @@ class Login extends Component {
           alert('Successful login');
           this.props.navigation.navigate('MainTabsScreen');
           AsyncStorage.multiSet([['username', this.state.userName]]);
-          AsyncStorage.multiSet([['tracingKey', data.data[0].tracing_key]]);
+          AsyncStorage.multiSet([['language', 'en']]);
+        AsyncStorage.multiSet([['tracingKey',data.data[0].tracing_key]]);
 
           console.log(this.state.userName);
         }
@@ -94,7 +97,7 @@ class Login extends Component {
                 marginTop: 10,
                 marginLeft: 5,
               }}
-              source={require('../../assets/logo.jpg')}
+              source={require('../../assets/logoNew.png')}
             />
           }
           <View style={styles.credentialText}>
@@ -143,7 +146,7 @@ class Login extends Component {
             </Text>
           </View>
 
-          <View style={{marginTop: '30%'}}>
+          <View style={{marginTop: '15%'}}>
             <TouchableOpacity onPress={() => this.login()}>
               <View style={styles.button_signin}>
                 <Text style={styles.buttonText}>Sign In</Text>
@@ -159,6 +162,10 @@ class Login extends Component {
     );
   }
 }
+
+
+  let deviceWidth = Dimensions.get('window').width;
+  let deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   view: {
     flex: 1,
@@ -181,9 +188,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bodyText: {
-    fontSize: 20,
+    fontSize: 17,
     alignContent: 'flex-start',
-    marginLeft: 20,
+    // marginLeft: 20,
     marginBottom: 10,
     textAlign: 'center',
     color: '#3342C8',

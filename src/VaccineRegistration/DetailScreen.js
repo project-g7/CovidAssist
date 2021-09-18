@@ -12,6 +12,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import RegisterScreen from './RegisterScreen';
 import VaccineDose from './VaccineDose';
 import Dose from './Dose';
+import {useTranslation} from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Stack = createStackNavigator();
 
@@ -27,9 +30,11 @@ const DetailScreen = () => {
 };
 
 const DetailScreenPage = ({navigation}) => {
+  const {t,i18n} = useTranslation();
   const [handlePhoto, sethandlePhoto] = useState('');
   const [selectDose, setSelectDose] = useState('');
   const [selectDoseType, setselectDoseType] = useState('');
+  const [language,setLanguage] = useState('');
 
   const handlePhotoID = handlePhoto => {
     sethandlePhoto(handlePhoto.vaccine);
@@ -47,28 +52,34 @@ const DetailScreenPage = ({navigation}) => {
     console.log('dose !!!!!!!!!!!!!');
   };
 
-  // useEffect(() => {
-    
+  useEffect(() => {
+      AsyncStorage.multiGet(['language']).then(data => {
+      console.log("###");
+      console.log(data[0][1]);
+      i18n.changeLanguage(data[0][1]);
+      setLanguage(data[0][1]);
+    });
   
-  // }, [])
+  }, [])
 
   return (
     <ScrollView contentContainerStyle={styles.outer}>
       <View style={styles.container}>
         <View style={styles.box}>
           <View style={styles.inner}>
-            <Text style={styles.text1}>Are You Vaccinated before?</Text>
+            <Text style={styles.text1}>{t("areYouVaccinated")}</Text>
           </View>
         </View>
         <View style={styles.Radio}>
           <VaccineDose
             updateDoseType={handleDoseType}
             updateDose={handleDose}
+            language={language}
           />
         </View>
         <View style={styles.box1}>
           <View style={styles.inner}>
-            <Text style={styles.text1}>Registration for vaccination</Text>
+            <Text style={styles.text1}>{t("registrationforVaccine")}</Text>
           </View>
         </View>
         {/* <View style={styles.box2}>
@@ -80,7 +91,7 @@ const DetailScreenPage = ({navigation}) => {
         </View> */}
 
         <View style={styles.dropdown}>
-          <DropDown updatePhotoID={handlePhotoID} />
+          <DropDown updatePhotoID={handlePhotoID} language={language}/>
         </View>
 
         {/* <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
@@ -93,6 +104,7 @@ const DetailScreenPage = ({navigation}) => {
           idType={handlePhoto}
           doseT={selectDose}
           doseType={selectDoseType}
+          language={language}
         />
         {/* </View> */}
       </View>

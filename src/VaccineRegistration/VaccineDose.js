@@ -1,18 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import RadioGroup from 'react-native-radio-buttons-group';
 import {StyleSheet, View, Text} from 'react-native';
+import {useTranslation} from 'react-i18next'
+
+export default function VaccineDose(props) {
+const {t,i18n} = useTranslation();
+
+useEffect(() => {
+  console.log(props.language+"llll");
+  i18n.changeLanguage(props.language);
+
+}, [])
 
 const radioButtonsData = [
   {
     id: '1', // acts as primary key, should be unique and non-empty string
-    label: 'Yes',
+    label: `${t("yes")}`,
     value: true,
     color: '#1167b1',
     // selected : true
   },
   {
     id: '2',
-    label: 'No',
+    label: `${t("no")}`,
     value: false,
     color: '#1167b1',
     // selected : true
@@ -22,19 +32,18 @@ const radioButtonsData = [
 const newRadioButtonsData = [
   {
     id: '1', // acts as primary key, should be unique and non-empty string
-    label: 'Dose1',
+    label: `${t("dose1")}`,
     value: 'dose1',
     color: '#1167b1',
   },
   {
     id: '2',
-    label: 'Dose2',
+    label: `${t("dose2")}`,
     value: 'dose2',
     color: '#1167b1',
   },
 ];
 
-export default function VaccineDose(props) {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
   const [newRadioButtons, setNewRadioButtons] = useState(newRadioButtonsData);
   // const [isYes, setIsYes] = useState(false);

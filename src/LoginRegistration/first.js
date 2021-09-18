@@ -11,7 +11,7 @@ class App extends Component {
    
     return (
       <View style={styles.view}>
-        <Image style={{height: 250, width: '80%', marginBottom: 100, marginTop: 100}} source={require('./logo.jpg')} />
+        <Image style={{height: 250, width: '80%', marginBottom: 100, marginTop: 100}} source={require('../../assets/logoNew.png')} />
         <Image style={{height: 200, width: '100%'}} source={require('./ns.jpg')} />
         <Image style={{height: 100, width: '100%'}} source={require('./ns2.png')} />
       </View>

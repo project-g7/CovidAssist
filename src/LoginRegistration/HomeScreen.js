@@ -57,7 +57,7 @@ console.log(checkPage);
           marginLeft: '15%',
           marginRight: '10%',
         }}
-        source={require('../../assets/logo.jpg')}
+        source={require('../../assets/logoNew.png')}
       />
     </View>
   );

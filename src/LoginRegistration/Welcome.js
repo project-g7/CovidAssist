@@ -56,7 +56,7 @@ class Welcome extends Component {
                 marginBottom: 16,
                 marginTop: 20,
               }}
-              source={require('../../assets/logo.jpg')}
+              source={require('../../assets/logoNew.png')}
             />
           }
           <Text style={styles.headText}>How CovidAssist Works</Text>
@@ -98,8 +98,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bodyText: {
-    fontSize: 18,
-    alignContent: 'flex-start',
+    fontSize: 17,
+    // alignContent: 'justify',
+    textAlign:'center',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
