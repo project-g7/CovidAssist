@@ -7,7 +7,7 @@ import {
   Image,
   TextInput,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
@@ -23,7 +23,6 @@ class Login extends Component {
       UsernameError: '',
     };
   }
-
 
   passwordValidator() {
     if (this.state.password == '') {
@@ -58,7 +57,7 @@ class Login extends Component {
   login = () => {
     const {userName, password} = this.state;
 
-    Axios.post('http://192.168.8.100:3000/api/login', {
+    Axios.post('http://192.168.8.101:3000/api/login', {
       userName: userName,
       password: password,
     })
@@ -72,7 +71,7 @@ class Login extends Component {
           this.props.navigation.navigate('MainTabsScreen');
           AsyncStorage.multiSet([['username', this.state.userName]]);
           AsyncStorage.multiSet([['language', 'en']]);
-        AsyncStorage.multiSet([['tracingKey',data.data[0].tracing_key]]);
+          AsyncStorage.multiSet([['tracingKey', data.data[0].tracing_key]]);
 
           console.log(this.state.userName);
         }
@@ -163,9 +162,8 @@ class Login extends Component {
   }
 }
 
-
-  let deviceWidth = Dimensions.get('window').width;
-  let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   view: {
     flex: 1,
@@ -188,7 +186,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bodyText: {
-    fontSize: 17,
+    fontSize: 19,
     alignContent: 'flex-start',
     // marginLeft: 20,
     marginBottom: 10,
@@ -199,6 +197,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '60%',
     marginTop: 12,
+    height: 'auto',
   },
   textinput: {
     alignSelf: 'stretch',
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'normal',
     color: '#3342C8',
   },

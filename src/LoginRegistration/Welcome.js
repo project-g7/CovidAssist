@@ -13,35 +13,32 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {createStackNavigator} from '@react-navigation/stack';
 // import third from './third';
 class Welcome extends Component {
-
-  componentDidMount(){
-    const storeData = async() => {
+  componentDidMount() {
+    const storeData = async () => {
       try {
-      // console.log("ffdd");
-        await AsyncStorage.setItem('appStatus', "2");
-
+        // console.log("ffdd");
+        await AsyncStorage.setItem('appStatus', '2');
       } catch (e) {
         // saving error
       }
-    }
-    
+    };
+
     const getData = async () => {
-        console.log("sss");
+      console.log('sss');
       try {
         const value = await AsyncStorage.getItem('appStatus');
-        if(value !== null) {
+        if (value !== null) {
           // value previously stored
 
           console.log(value);
         }
-      } catch(e) {
+      } catch (e) {
         // error reading value
       }
-    }
-  storeData();
-  getData();
-      AsyncStorage.multiSet([["appStatus", "2"]]);
-  
+    };
+    storeData();
+    getData();
+    AsyncStorage.multiSet([['appStatus', '2']]);
   }
 
   render(navigation) {
@@ -96,21 +93,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'auto',
+    padding: 1,
   },
   bodyText: {
-    fontSize: 17,
+    fontSize: 20,
     // alignContent: 'justify',
-    textAlign:'center',
+    textAlign: 'center',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   headText: {
-    fontSize: 25,
+    fontSize: 30,
     marginBottom: 25,
     marginTop: 0,
     marginLeft: 10,
     fontWeight: 'bold',
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   button_signin: {
     width: 200,
