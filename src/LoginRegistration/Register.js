@@ -113,9 +113,9 @@ class Register extends Component {
     if (this.state.contactNumber == '') {
       this.setState({contactNumberError: 'Contact Number is required.'});
     } else if (this.state.contactNumber.length != 10) {
-      this.setState({ContactNumberError: 'Invalid Number'});
+      this.setState({contactNumberError: 'Invalid Number'});
     } else {
-      this.setState({ContactNumberError: ''});
+      this.setState({contactNumberError: ''});
     }
   }
   GenderValidator() {
@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'normal',
     color: '#3342C8',
   },

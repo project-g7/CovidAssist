@@ -17,7 +17,7 @@ const MyBookings = () => {
 
   const getBookings = username => {
     axios
-      .get('http://192.168.1.102:3000/api/getbookings', {
+      .get('http://192.168.8.101:3000/api/getbookings', {
         params: {username: username},
       })
       .then(function (response) {
@@ -32,7 +32,7 @@ const MyBookings = () => {
     console.log('cancelll');
     console.log(bookingId);
     axios
-      .get('http://192.168.1.102:3000/api/cancelbooking', {
+      .get('http://192.168.8.101:3000/api/cancelbooking', {
         params: {bookingId: bookingId},
       })
       .then(function (res) {
@@ -48,24 +48,35 @@ const MyBookings = () => {
         renderItem={({item}) => (
           <View style={styles.item}>
             <View style={styles.row}>
-              <Text style={styles.title}>Center :</Text>
-              <Text style={styles.center}>{item.name}</Text>
+              <View>
+                <Text style={styles.title}>Center :</Text>
+                <Text style={styles.center}>{item.name}</Text>
+              </View>
+            </View>
+
+            <View style={styles.row}>
+              <View style={{marginTop: 20}}>
+                <Text style={styles.title}>Date :</Text>
+                <Text style={styles.center}>{item.date.substring(0, 10)}</Text>
+              </View>
             </View>
             <View style={styles.row}>
-              <Text style={styles.title}>Date :</Text>
-              <Text style={styles.center}>{item.date.substring(0, 10)}</Text>
+              <View style={{marginTop: 20}}>
+                <Text style={styles.title}>Time :</Text>
+                <Text style={styles.center}>{item.time}</Text>
+              </View>
             </View>
             <View style={styles.row}>
-              <Text style={styles.title}>Time :</Text>
-              <Text style={styles.center}>{item.time}</Text>
+              <View style={{marginTop: 20}}>
+                <Text style={styles.title}>Vaccine :</Text>
+                <Text style={styles.center}>{item.vaccine_name}</Text>
+              </View>
             </View>
             <View style={styles.row}>
-              <Text style={styles.title}>Vaccine :</Text>
-              <Text style={styles.center}>{item.vaccine_name}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.title}>Dose :</Text>
-              <Text style={styles.center}>{item.dose}</Text>
+              <View style={{marginTop: 20}}>
+                <Text style={styles.title}>Dose :</Text>
+                <Text style={styles.center}>{item.dose}</Text>
+              </View>
             </View>
             <View style={styles.btnContainer}>
               {item.status ? (
@@ -98,21 +109,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   item: {
+    flex: 1,
     padding: 20,
-    backgroundColor: '#0EA2F0',
-    borderRadius: 10,
+    // backgroundColor: '#0EA2F0',
+    borderRadius: 15,
     marginTop: 20,
+    borderColor: 'green',
+    backgroundColor: 'white',
+    // height: '100%',
+    // borderColor: 'red',
+    borderColor: 'blue',
+    borderWidth: 5,
   },
   center: {
-    color: '#fff',
-    fontSize: 17,
-    marginLeft: 10,
-    marginTop: 3,
+    // color: '#fff',
+    // fontSize: 17,
+    // marginLeft: 10,
+    // marginTop: 3,
+    // color: 'black',
+    fontSize: 18,
+    color: 'black',
+    fontWeight: '500',
+    marginLeft: 100,
+    marginTop: -25,
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   date: {
-    color: '#fff',
+    // color: '#fff',
     fontSize: 18,
     marginTop: 5,
+    color: 'black',
   },
   row: {
     display: 'flex',
@@ -120,11 +146,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: '#fff',
-    fontSize: 18,
+    // color: '#fff',
+    fontSize: 20,
+    color: 'black',
+    // fontFamily: 'Cochin',
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   btn: {
-    marginTop: 20,
+    marginTop: 50,
     width: 150,
     borderRadius: 10,
     paddingVertical: 10,

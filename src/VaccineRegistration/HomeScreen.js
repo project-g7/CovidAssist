@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
   const [showSafe, setShowSafe] = useState(true);
   const [showDanger, setShowDanger] = useState(false);
   const [status, setStatus] = useState(0);
-  const [language,setLanguage] = useState('');
+  const [language, setLanguage] = useState('');
 
   useEffect(() => {
     // BackgroundTask.schedule();
@@ -79,7 +79,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       {/* <Animated.View> */}
 
-      {showSafe && <Safe userName={userName} language={language}/>}
+      {showSafe && <Safe userName={userName} language={language} />}
       {showDanger && <Danger userName={userName} language={language} />}
       {/* </Animated.View> */}
       {/* <View> */}

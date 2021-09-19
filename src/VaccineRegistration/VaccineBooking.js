@@ -11,11 +11,10 @@ import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButton from './RadioButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useTranslation} from 'react-i18next'
+import {useTranslation} from 'react-i18next';
 
-
-const VaccineBooking = (props) => {
-  const {t,i18n} = useTranslation();
+const VaccineBooking = props => {
+  const {t, i18n} = useTranslation();
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -32,16 +31,14 @@ const VaccineBooking = (props) => {
   }, []);
 
   useEffect(() => {
-    
     i18n.changeLanguage(props.language);
-
-  }, [props.language])
+  }, [props.language]);
 
   const fetchData = async username => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.1.102:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.8.101:3000/api/users?username=${encodedUsername}`,
 
       {method: 'GET'},
     );
@@ -50,86 +47,88 @@ const VaccineBooking = (props) => {
     // console.log(data);
   };
   return (
-    <View style={styles.main}>
-     <Text style={styles.headText}>
-        {t("registerforVaccine")}
-      </Text>
     <View style={styles.credentialText}>
-     
-      <View style={styles.ScrollView}>
-        <View style={{marginTop: 1, marginLeft: 20}}>
-          <Icon name="user" color="#3342C8" size={23}></Icon>
-        </View>
-        <Title
-          style={[
-            styles.title,
-            {marginLeft: 55, marginTop: -30, marginBottom: -10},
-          ]}>
-          {t("fullname")}
-        </Title>
-        {data.map(val => {
-          return (
-            <Text key={val.first_name} style={styles.textinput}>
-              {val.first_name} {val.last_name}
-            </Text>
-          );
-        })}
-        <View style={{marginTop: 20, marginLeft: 20}}>
-          <Icon name="user" color="#3342C8" size={23}></Icon>
-        </View>
-        <Title
-          style={[
-            styles.title,
-            {marginLeft: 55, marginTop: -25, marginBottom: -10},
-          ]}>
-          {t("nicNum")}
-        </Title>
-        {data.map(val => {
-          return (
-            <Text key={val.nic} style={styles.textinput}>
-              {val.nic}
-            </Text>
-          );
-        })}
-        <View style={{marginTop: 20, marginLeft: 20}}>
-          <Icon name="phone" color="#3342C8" size={23}></Icon>
-        </View>
-        <Title
-          style={[
-            styles.title,
-            {marginLeft: 55, marginTop: -25, marginBottom: -10},
-          ]}>
-          {t("contactNumber")}
-        </Title>
-        {data.map(val => {
-          return (
-            <Text key={val.contact_number} style={styles.textinput}>
-              {val.contact_number}
-            </Text>
-          );
-        })}
-        <View style={{marginTop: 20, marginLeft: 20}}>
-          <Icon name="home" color="#3342C8" size={23}></Icon>
-        </View>
-        <Title
-          style={[
-            styles.title,
-            {marginLeft: 55, marginTop: -25, marginBottom: -10},
-          ]}>
-          {t("address")}
-        </Title>
+      <Text style={styles.headText}>{t('registerforVaccine')}</Text>
+      <ScrollView style={styles.ScrollView}>
+        <View style={styles.heder}>
+          <View style={{marginTop: 30, marginLeft: 20}}>
+            <Icon name="user" color="#3342C8" size={23}></Icon>
+          </View>
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 55, marginTop: -30, marginBottom: -10},
+            ]}>
+            {t('fullname')}
+          </Title>
+          {data.map(val => {
+            return (
+              <Text key={val.first_name} style={styles.textinput}>
+                {val.first_name} {val.last_name}
+              </Text>
+            );
+          })}
+          <View style={{marginTop: 20, marginLeft: 20}}>
+            <Icon name="user" color="#3342C8" size={23}></Icon>
+          </View>
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 55, marginTop: -25, marginBottom: -10},
+            ]}>
+            {t('nicNum')}
+          </Title>
+          {data.map(val => {
+            return (
+              <Text key={val.nic} style={styles.textinput}>
+                {val.nic}
+              </Text>
+            );
+          })}
+          <View style={{marginTop: 20, marginLeft: 20}}>
+            <Icon name="phone" color="#3342C8" size={23}></Icon>
+          </View>
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 55, marginTop: -25, marginBottom: -10},
+            ]}>
+            {t('contactNumber')}
+          </Title>
+          {data.map(val => {
+            return (
+              <Text key={val.contact_number} style={styles.textinput}>
+                {val.contact_number}
+              </Text>
+            );
+          })}
+          <View style={{marginTop: 20, marginLeft: 20}}>
+            <Icon name="home" color="#3342C8" size={23}></Icon>
+          </View>
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 55, marginTop: -25, marginBottom: -10},
+            ]}>
+            {t('address')}
+          </Title>
 
-        {data.map(val => {
-          return (
-            <Text key={val.address} style={styles.textinput}>
-              {val.address}
-            </Text>
-          );
-        })}
-        {/* <View style={{marginTop: 20}}>
+          {data.map(val => {
+            return (
+              <Text key={val.address} style={styles.textinput}>
+                {val.address}
+              </Text>
+            );
+          })}
+          <Title
+            style={[
+              styles.title,
+              {marginLeft: 55, marginTop: -25, marginBottom: 20},
+            ]}></Title>
+          {/* <View style={{marginTop: 20}}>
           <Icon name="home" color="#3342C8" size={25}></Icon>
         </View> */}
-        {/* <Title
+          {/* <Title
           style={[
             styles.title,
             {marginLeft: 25, marginTop: -25, marginBottom: -10},
@@ -140,11 +139,11 @@ const VaccineBooking = (props) => {
            onChangeText={value => this.setState({Gender: value})}
            underlineColorAndroid={'transparent'}
         /> */}
-        {/* <View style={styles.genderText}>
+          {/* <View style={styles.genderText}>
           <RadioButton />
         </View> */}
 
-        {/* <TouchableOpacity>
+          {/* <TouchableOpacity>
           <View style={styles.buttonNext}>
             <Text style={styles.butonText}>Register</Text>
           </View>
@@ -155,29 +154,36 @@ const VaccineBooking = (props) => {
             <Text style={styles.butonText}>Cancel</Text>
           </View>
         </TouchableOpacity> */}
-      </View>
-    </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 export default VaccineBooking;
 const styles = StyleSheet.create({
+  heder: {
+    borderColor: 'blue',
+    borderWidth: 3,
+    height: 'auto',
+    marginTop: 10,
+  },
   credentialText: {
     // alignSelf: 'center',
     width: '100%',
-    height: 360,
-    // marginTop: 300,
-    marginLeft: 35,
-    borderStartColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0,
-    shadowRadius: 4.65,
-    borderRadius:15,
-    elevation: 4,
+    height: 'auto',
+    marginTop: 300,
+    marginLeft: 25,
+
+    // borderStartColor: 'white',
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 4,
+    // },
+    // shadowOpacity: 0,
+    // shadowRadius: 4.65,
+
+    // elevation: 8,
   },
 
   textinput: {
@@ -202,8 +208,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 15,
     // color: 'black',
-    color: '#3342C8',
-    fontWeight: 'bold',
+    color: 'blue',
+
+    // fontWeight: 'bold'
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   buttonNext: {
     marginTop: 15,
