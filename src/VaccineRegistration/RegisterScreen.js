@@ -288,7 +288,7 @@ const RegisterScreen = props => {
         {check && (
           <TimeAvailable time={availableTime} updateTime={handleTime} />
         )}
-        <View style={{marginTop: -250}}>
+        <View>
           <VaccineBooking language={props.language}/>
         </View>
         <View style={{marginTop: 50, flexDirection: 'row'}}>

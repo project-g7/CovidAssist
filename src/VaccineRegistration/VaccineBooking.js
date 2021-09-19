@@ -50,11 +50,13 @@ const VaccineBooking = (props) => {
     // console.log(data);
   };
   return (
-    <View style={styles.credentialText}>
-      <Text style={styles.headText}>
+    <View style={styles.main}>
+     <Text style={styles.headText}>
         {t("registerforVaccine")}
       </Text>
-      <ScrollView style={styles.ScrollView}>
+    <View style={styles.credentialText}>
+     
+      <View style={styles.ScrollView}>
         <View style={{marginTop: 1, marginLeft: 20}}>
           <Icon name="user" color="#3342C8" size={23}></Icon>
         </View>
@@ -153,18 +155,19 @@ const VaccineBooking = (props) => {
             <Text style={styles.butonText}>Cancel</Text>
           </View>
         </TouchableOpacity> */}
-      </ScrollView>
+      </View>
+    </View>
     </View>
   );
 };
 export default VaccineBooking;
 const styles = StyleSheet.create({
   credentialText: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
     width: '100%',
     height: 360,
-    marginTop: 300,
-    marginLeft: 25,
+    // marginTop: 300,
+    marginLeft: 35,
     borderStartColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
@@ -173,8 +176,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0,
     shadowRadius: 4.65,
-
-    elevation: 8,
+    borderRadius:15,
+    elevation: 4,
   },
 
   textinput: {
@@ -193,9 +196,11 @@ const styles = StyleSheet.create({
   },
   headText: {
     fontSize: 20,
-    textAlign: 'left',
-    marginLeft: 18,
-    marginTop: -18,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    marginLeft: 24,
+    marginTop: 20,
+    marginBottom: 15,
     // color: 'black',
     color: '#3342C8',
     fontWeight: 'bold',
@@ -252,4 +257,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginLeft: '9%',
   },
+  main:{
+    display:'flex',
+    flexDirection:'column',
+    // marginTop:150,
+    justifyContent:'center',
+    alignItems:'center',
+    alignContent:'center'
+  }
 });

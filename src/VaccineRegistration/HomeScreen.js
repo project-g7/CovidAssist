@@ -29,7 +29,7 @@ const HomeScreen = ({navigation}) => {
       // setKeys(tracingKey, username);
       // setRPK(dailyTracingKey,username);
       setInterval(() => {
-        checkStatus(username);
+        // checkStatus(username);
       }, 4000);
     });
     navigation.addListener('focus', payload => {
