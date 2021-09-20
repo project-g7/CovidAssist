@@ -64,11 +64,26 @@ class Register extends Component {
       this.setState({lastNameError: "Last Name can't have Numbers"});
     } else {
       this.setState({lastNameError: ''});
+      console.log(this.state.lastName.slice(-1));
     }
   }
   nicValidator() {
     if (this.state.nic == '') {
       this.setState({nicError: 'NIC is required.'});
+    } else if (this.state.nic.slice(-1) == 'V') {
+      if (this.state.nic.length != 10) {
+        this.setState({nicError: 'Invalid Id type'});
+      } else {
+        this.setState({nicError: ''});
+      }
+    } else if (this.state.nic.slice(-1) == 'v') {
+      if (this.state.nic.length != 10) {
+        this.setState({nicError: 'Invalid Id type'});
+      } else {
+        this.setState({nicError: ''});
+      }
+    } else if (this.state.nic.length != 12) {
+      this.setState({nicError: 'Invalid Id type'});
     } else {
       this.setState({nicError: ''});
     }
@@ -138,7 +153,6 @@ class Register extends Component {
   // }
 
   submitDetails = () => {
-
     let tracingKey = uuid();
     // let tracingKey = str.replace(/[^a-zA-Z0-9 ]/g, "");
 
