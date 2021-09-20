@@ -4,8 +4,9 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 //import DateTimePicker from 'react-native-modal-datetime-picker';
 import DatePicker from 'react-native-datepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { withTranslation } from 'react-i18next';
 
-export default class MyDatePicker extends Component {
+class MyDatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -35,9 +36,9 @@ export default class MyDatePicker extends Component {
   render() {
     return (
       <View style={styles.row}>
-        <Text style={styles.label}>Select Date</Text>
+        <Text style={styles.label}>{this.props.t("selectDate")}</Text>
         <DatePicker
-          style={{width: 380}}
+          style={{width: 360, alignSelf:'center'}}
           date={this.state.date}
           mode="date"
           placeholder="select date"
@@ -106,14 +107,17 @@ export default class MyDatePicker extends Component {
   // }
 }
 
+export default withTranslation()(MyDatePicker);
+
 const styles = StyleSheet.create({
   row: {
-    marginTop: 50,
-    marginLeft: -100,
+    marginLeft:10,
+    marginTop:10
   },
   label: {
-    marginTop: 100,
-    fontSize: 18,
+    marginLeft: 17,
+    marginBottom:5,
+    fontSize: 16,
     // marginLeft: 30,
     color: 'blue',
   },

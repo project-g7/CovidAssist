@@ -45,7 +45,7 @@ const EditProfile = ({route, navigation}) => {
     // console.log(lastName);
 
     // }, 2000);
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   const fetchData = async username => {
@@ -292,6 +292,7 @@ const EditProfile = ({route, navigation}) => {
                 alignItems: 'center',
                 flexDirection: 'row',
                 justifyContent: 'space-around',
+                marginBottom: 35
               }}>
               <TouchableOpacity
                 onPress={() => {
@@ -321,6 +322,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
+    height:'100%',
+    backgroundColor:'white',
     paddingHorizontal: 30,
     marginBottom: 25,
   },

@@ -110,7 +110,7 @@ const RegisterScreen = props => {
       ]);
       // alert('Selecting the Time Slot is mandatory !!!');
     } else {
-      Axios.post('http://192.168.1.3:3001/api/VaccineRegisterCheking', {
+      Axios.post('http://192.168.1.101:3000/api/VaccineRegisterCheking', {
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -164,7 +164,7 @@ const RegisterScreen = props => {
     // } else if (selectTimeSlot == '') {
     //   alert('Selecting the Time Slot is mandatory !!!');
     // } else {
-    Axios.post('http://192.168.1.3:3001/api/VaccineRegister', {
+    Axios.post('http://192.168.1.101:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
@@ -220,7 +220,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.1.3:3001/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.1.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -265,7 +265,7 @@ const RegisterScreen = props => {
         </View>
 
         <View style={styles.dates}>
-          <DatePicker updateDate={handleDate} />
+          <DatePicker updateDate={handleDate} language={props.language}/>
         </View>
 
         <TouchableOpacity
@@ -286,10 +286,10 @@ const RegisterScreen = props => {
         {check && (
           <TimeAvailable time={availableTime} updateTime={handleTime} />
         )}
-        <View style={{marginTop: -250}}>
+        <View>
           <VaccineBooking language={props.language} />
         </View>
-        <View style={{marginTop: 50, flexDirection: 'row'}}>
+        <View>
           <TouchableOpacity
             onPress={() => {
               CheckVaccineBooking();
@@ -323,20 +323,22 @@ const styles = StyleSheet.create({
   boxBoder: {
     flex: 1,
     marginTop: -60,
+    marginLeft:10,
     borderColor: 'red',
   },
   body: {
-    flex: 1,
-    margin: 30,
+    justifyContent:'center',
+    // flex: 1,
+    // margin: 30,
     width: 300,
-    height: 1,
+    // height: 1,
   },
   container: {
     width: '100%',
     height: 'auto',
     // flexGrow:1,
     // padding: 5,
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
   },
@@ -361,15 +363,15 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   buttonNext: {
-    marginTop: -20,
-    marginBottom: 1,
-    width: 150,
+    // marginBottom: 1,
+    width: 'auto',
     borderRadius: 10,
     paddingVertical: 10,
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
     backgroundColor: '#3342C8',
-    alignContent: 'center',
-    marginLeft: 125,
+    // alignContent: 'center',
+    alignSelf:'center'
+    // marginLeft: 125,
   },
   butonText: {
     color: 'white',
@@ -401,6 +403,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   dates: {
-    marginTop: -25,
+    // marginTop: -25,
   },
 });

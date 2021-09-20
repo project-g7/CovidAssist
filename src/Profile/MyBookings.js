@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [userName, setUsername] = useState('');
+  const [date,setDate] = useState('');
 
   useEffect(() => {
     AsyncStorage.multiGet(['username']).then(data => {
@@ -17,11 +18,15 @@ const MyBookings = () => {
 
   const getBookings = username => {
     axios
-      .get('http://192.168.1.3:3001/api/getbookings', {
+      .get('http://192.168.1.101:3000/api/getbookings', {
         params: {username: username},
       })
       .then(function (response) {
         console.log(response.data);
+        // let dbDate = new Date(response.data.date.toISOString().substring(0, 10));
+        // dbDate.setDate(dbDate.getDate() + 1);
+        // let newDate = dbDate.toISOString().substring(0, 10);
+        // setDate(newDate);
         setBookings(response.data);
         console.log('Successss');
       })
@@ -32,7 +37,7 @@ const MyBookings = () => {
     console.log('cancelll');
     console.log(bookingId);
     axios
-      .get('http://192.168.1.3:3001/api/cancelbooking', {
+      .get('http://192.168.1.101:3000/api/cancelbooking', {
         params: {bookingId: bookingId},
       })
       .then(function (res) {
@@ -57,7 +62,8 @@ const MyBookings = () => {
             <View style={styles.row}>
               <View style={{marginTop: 20}}>
                 <Text style={styles.title}>Date :</Text>
-                <Text style={styles.center}>{item.date.substring(0, 10)}</Text>
+                <Text style={styles.center}>{new Date(new Date(item.date.substring(0, 10)).setDate(new Date(item.date.substring(0, 10)).getDate() + 1)).toISOString().substring(0, 10)}</Text>
+                {/* <Text style={styles.center}>{item.date}</Text> */}
               </View>
             </View>
             <View style={styles.row}>

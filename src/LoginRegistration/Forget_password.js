@@ -60,7 +60,7 @@ class Forget_password extends Component {
     } else if (password2 != password) {
       alert('Not matching Passwords.. Invalid!');
     } else {
-      Axios.post('http://192.168.1.3:3001/api/forgotpass', {
+      Axios.post('http://192.168.1.101:3000/api/forgotpass', {
         userName: userName,
         password: password,
         password2: password2,
