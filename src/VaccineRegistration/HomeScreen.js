@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
   const [showSafe, setShowSafe] = useState(true);
   const [showDanger, setShowDanger] = useState(false);
   const [status, setStatus] = useState(0);
-  const [language,setLanguage] = useState('');
+  const [language, setLanguage] = useState('');
 
   useEffect(() => {
     // BackgroundTask.schedule();
@@ -42,7 +42,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const checkStatus = async username => {
-    Axios.get('http://192.168.8.100:3000/api/checkstatus', {
+    Axios.get('http://192.168.8.101:3000/api/checkstatus', {
       params: {username: username},
     })
       .then(function (response) {
@@ -63,7 +63,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const fetchData = async username => {
-    Axios.get('http://192.168.8.100:3000/api/tracingkey', {
+    Axios.get('http://192.168.8.101:3000/api/tracingkey', {
       params: {username: username},
     })
       .then(function (response) {
@@ -79,7 +79,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.container}>
       {/* <Animated.View> */}
 
-      {showSafe && <Safe userName={userName} language={language}/>}
+      {showSafe && <Safe userName={userName} language={language} />}
       {showDanger && <Danger userName={userName} language={language} />}
       {/* </Animated.View> */}
       {/* <View> */}

@@ -195,7 +195,8 @@ class Register extends Component {
       //this.props.navigation.navigate('MainTabsScreen');
 
       console.log(tracingKey);
-      Axios.post('http://192.168.8.100:3000/api/insert', {
+
+      Axios.post('http://192.168.8.101:3000/api/insert', {
 
         firstName: firstName,
         lastName: lastName,
@@ -502,7 +503,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'normal',
     color: '#3342C8',
   },

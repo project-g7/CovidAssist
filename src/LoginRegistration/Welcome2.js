@@ -61,20 +61,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bodyText: {
-    fontSize: 17,
+    fontSize: 20,
     // alignContent: 'flex-start',
+
     // textAlign:'center',
+    textAlign: 'justify',
+    // marginTop: 5,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
-    textAlign: 'justify',
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
+
   },
   headText: {
-    fontSize: 25,
+    fontSize: 30,
     marginBottom: 25,
     marginTop: 0,
     marginLeft: 10,
     fontWeight: 'bold',
+    fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
   },
   button_signin: {
     width: 200,

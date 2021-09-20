@@ -17,7 +17,7 @@ export default class VaccineCenter extends Component {
       data: [],
       vaccine_center: '',
       vaccine_name: '',
-      language : true,
+      language: true,
       // isLoading: true,
       // PickerValueHolder : '',
     };
@@ -58,8 +58,8 @@ export default class VaccineCenter extends Component {
       console.log('-------------');
     }
 
-    if(this.props.language !== prevProps.language){
-       this.setState({language: this.state.language});
+    if (this.props.language !== prevProps.language) {
+      this.setState({language: this.state.language});
     }
   }
 
@@ -72,7 +72,7 @@ export default class VaccineCenter extends Component {
     const encodeDoseType = encodeURIComponent(this.props.DoseType);
 
     const response = await fetch(
-      `http://192.168.1.102:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+      `http://192.168.8.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
 
       {method: 'GET'},
     );
