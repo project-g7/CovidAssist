@@ -61,7 +61,7 @@ const MyProfile = ({navigation}) => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.1.102:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.1.101:3000/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();
@@ -276,6 +276,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   userInfoSection: {
+    backgroundColor:'white',
+    height:'100%',
     paddingHorizontal: 30,
     marginBottom: 25,
   },
@@ -328,7 +330,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     backgroundColor: '#3342C8',
-    marginBottom: 5,
+    marginBottom: 35,
     alignContent: 'center',
     // marginLeft: 100,
   },

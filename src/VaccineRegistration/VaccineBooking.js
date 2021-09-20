@@ -38,7 +38,7 @@ const VaccineBooking = props => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.8.101:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.1.101:3000/api/users?username=${encodedUsername}`,
 
       {method: 'GET'},
     );
@@ -162,6 +162,7 @@ const VaccineBooking = props => {
 export default VaccineBooking;
 const styles = StyleSheet.create({
   heder: {
+    width:'100%',
     borderColor: 'blue',
     borderWidth: 3,
     height: 'auto',
@@ -171,8 +172,8 @@ const styles = StyleSheet.create({
     // alignSelf: 'center',
     width: '100%',
     height: 'auto',
-    marginTop: 300,
-    marginLeft: 25,
+    // marginTop: 300,
+    // marginLeft: 25,
 
     // borderStartColor: 'white',
     // shadowColor: '#000',
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     textAlignVertical: 'center',
-    marginLeft: 24,
+    // marginLeft: 24,
     marginTop: 20,
     marginBottom: 15,
     // color: 'black',
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
   },
   ScrollView: {
     marginTop: 20,
-    marginLeft: -5,
+    // marginLeft: -5,
     marginVertical: 30,
   },
   title: {

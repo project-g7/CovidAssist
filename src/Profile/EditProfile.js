@@ -52,7 +52,7 @@ const EditProfile = ({route, navigation}) => {
     console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.1.102:3000/api/users?username=${encodedUsername}`,
+      `http://192.168.1.101:3000/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();
@@ -292,6 +292,7 @@ const EditProfile = ({route, navigation}) => {
                 alignItems: 'center',
                 flexDirection: 'row',
                 justifyContent: 'space-around',
+                marginBottom: 35
               }}>
               <TouchableOpacity
                 onPress={() => {
@@ -321,6 +322,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
+    height:'100%',
+    backgroundColor:'white',
     paddingHorizontal: 30,
     marginBottom: 25,
   },

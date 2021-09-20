@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { withTranslation } from 'react-i18next';
 
-export default class VaccineCenter extends Component {
+class VaccineCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +19,7 @@ export default class VaccineCenter extends Component {
       vaccine_center: '',
       vaccine_name: '',
       language: true,
+
       // isLoading: true,
       // PickerValueHolder : '',
     };
@@ -72,7 +74,7 @@ export default class VaccineCenter extends Component {
     const encodeDoseType = encodeURIComponent(this.props.DoseType);
 
     const response = await fetch(
-      `http://192.168.8.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+      `http://192.168.1.101:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
 
       {method: 'GET'},
     );
@@ -135,7 +137,7 @@ export default class VaccineCenter extends Component {
               }}
               selectedValue={this.state.vaccine_center}>
               <Picker.Item
-                label="Select Vaccine Center"
+                label= {this.props.t("selectCenter")}
                 value="disabled"
                 color="blue"
               />
@@ -160,7 +162,7 @@ export default class VaccineCenter extends Component {
               {/* // onValueChange={this.showVaccine}
               // selectedValue={this.state.vaccine}> */}
               <Picker.Item
-                label="Select a Vaccine "
+                label={this.props.t("selectVaccine")}
                 value="disabled"
                 color="blue"
               />
@@ -186,18 +188,21 @@ export default class VaccineCenter extends Component {
   }
 }
 
+export default withTranslation()(VaccineCenter);
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '65%',
+    // height: '65%',
     padding: 5,
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
+    // zIndex:10
   },
   boxBoder: {
     flex: 1,
-    marginTop: -60,
-    marginLeft: -50,
+    // marginTop: -60,
+    // marginLeft: -50,
   },
   text: {
     fontSize: 20,
@@ -205,7 +210,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    margin: 30,
+    // margin: 30,
     width: 380,
   },
 });

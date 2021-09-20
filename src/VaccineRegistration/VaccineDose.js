@@ -10,7 +10,7 @@ useEffect(() => {
   console.log(props.language+"llll");
   i18n.changeLanguage(props.language);
 
-}, [])
+}, [props.language,radioButtons])
 
 const radioButtonsData = [
   {
@@ -82,6 +82,7 @@ const newRadioButtonsData = [
           radioButtons={radioButtons}
           onPress={onPressRadioButton}
           layout="row"
+          language={props.language}
         />
       </View>
       {selectedButton && (
@@ -90,6 +91,8 @@ const newRadioButtonsData = [
             radioButtons={newRadioButtons}
             onPress={onPressNewRadioButton}
             layout="column"
+            language={props.language}
+
           />
         </View>
       )}
