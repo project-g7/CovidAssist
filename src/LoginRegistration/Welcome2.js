@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
   bodyText: {
     fontSize: 17,
     // alignContent: 'flex-start',
-    textAlign:'center',
+    // textAlign:'center',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
+    textAlign: 'justify',
   },
   headText: {
     fontSize: 25,
