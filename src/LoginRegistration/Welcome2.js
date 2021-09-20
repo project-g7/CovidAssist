@@ -63,12 +63,15 @@ const styles = StyleSheet.create({
   bodyText: {
     fontSize: 20,
     // alignContent: 'flex-start',
-    textAlign: 'center',
+
+    // textAlign:'center',
+    textAlign: 'justify',
     // marginTop: 5,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
     fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
+
   },
   headText: {
     fontSize: 30,

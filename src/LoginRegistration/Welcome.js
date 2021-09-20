@@ -57,12 +57,12 @@ class Welcome extends Component {
             />
           }
           <Text style={styles.headText}>How CovidAssist Works</Text>
-          <Text style={styles.bodyText}>
+          {/* <Text style={styles.bodyText}>
             Bluetooth signals are used to determine you’re near another
             CovidAssist user.
-          </Text>
-          <Text style={styles.bodyText}>
-            Every instance of close contact between you and other CovidAssit
+          </Text> */}
+          <Text style={styles.bodyText}> Bluetooth signals are used to determine you’re near another
+            CovidAssist user.Every instance of close contact between you and other CovidAssit
             users is noted to create contact data. This information is encrypted
             and only stored in your phone.
           </Text>
@@ -99,11 +99,14 @@ const styles = StyleSheet.create({
   bodyText: {
     fontSize: 20,
     // alignContent: 'justify',
-    textAlign: 'center',
+
+    // textAlign:'center',
+    textAlign: 'justify',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
     fontFamily: 'Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
+
   },
   headText: {
     fontSize: 30,
