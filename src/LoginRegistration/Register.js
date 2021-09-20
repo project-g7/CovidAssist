@@ -29,8 +29,10 @@ class Register extends Component {
       nic: '',
       userName: '',
       password: '',
+      password2: '',
       testData: '',
       passwordError: '',
+      password2Error: '',
       address: '',
       tracingKey: '',
       UsernameError: '',
@@ -121,6 +123,15 @@ class Register extends Component {
       this.setState({passwordError: 'Password must be more than 8 characters'});
     } else {
       this.setState({passwordError: ''});
+    }
+  }
+  confirmpasswordValidator() {
+    if (this.state.Password2 == '') {
+      this.setState({password2Error: 'Password is required.'});
+    } else if (this.state.password2 != this.state.password) {
+      this.setState({password2Error: 'Confirm Password not matching'});
+    } else {
+      this.setState({password2Error: ''});
     }
   }
 
@@ -420,6 +431,28 @@ class Register extends Component {
             />
             <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
               {this.state.passwordError}
+            </Text>
+            <Icon name="lock" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Confirm Password
+            </Title>
+            <TextInput
+              style={styles.textinput}
+              placeholder="Confirm Password"
+              name="password2"
+              secureTextEntry={true}
+              onBlur={() => this.confirmpasswordValidator()}
+              onChangeText={text => {
+                this.setState({password2: text});
+              }}
+              underlineColorAndroid={'transparent'}
+            />
+            <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
+              {this.state.password2Error}
             </Text>
 
             <Icon name="male" color="#3342C8" size={22}></Icon>
