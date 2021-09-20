@@ -42,7 +42,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const checkStatus = async username => {
-    Axios.get('http://192.168.8.101:3000/api/checkstatus', {
+    Axios.get('http://192.168.1.3:3001/api/checkstatus', {
       params: {username: username},
     })
       .then(function (response) {
@@ -63,7 +63,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const fetchData = async username => {
-    Axios.get('http://192.168.8.101:3000/api/tracingkey', {
+    Axios.get('http://192.168.1.3:3001/api/tracingkey', {
       params: {username: username},
     })
       .then(function (response) {

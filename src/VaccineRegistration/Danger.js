@@ -22,7 +22,7 @@ const Danger = props => {
   const handleStatus = () => {
     console.log('status');
     axios
-      .get('http://192.168.8.101:3000/api/updatestatus', {
+      .get('http://192.168.1.3:3001/api/updatestatus', {
         params: {username: props.userName},
       })
       .then(function (response) {
