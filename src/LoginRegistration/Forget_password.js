@@ -73,6 +73,7 @@ class Forget_password extends Component {
             alert('Link Send to email');
             console.log(data.data);
             console.log('found');
+            this.props.navigation.navigate('Login');
             // this.props.navigation.navigate('Link Send to email');
           }
         })
