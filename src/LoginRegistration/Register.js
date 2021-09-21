@@ -178,73 +178,211 @@ class Register extends Component {
       email,
       userName,
       password,
+      password2,
       address,
       Gender,
     } = this.state;
     console.log('nuwan');
     console.log(Gender);
-    if (firstName == '') {
-      alert('First Name is empty.. Invalid!');
-    } else if (!name.test(this.state.firstName)) {
-      alert('First name Invalid.!');
-    } else if (lastName == '') {
-      alert('Last Name is empty.. Invalid!');
-    } else if (!name.test(this.state.lastName)) {
-      alert('Last name Invalid.!');
-    } else if (nic == '') {
-      alert('NIC is empty.. Invalid!');
-    } else if (contactNumber == '') {
-      alert('Contact Number is empty.. Invalid!');
-    } else if (contactNumber.length != 10) {
-      alert('Invalid Contact Number!');
-    } else if (email == '') {
-      alert('email is empty.. Invalid!');
-    }
-    if (!rx_live.test(this.state.email)) {
-      alert('Invalid Email.!');
-    } else if (userName == '') {
-      alert('User Name is empty.. Invalid!');
-    } else if (password == '') {
-      alert('Password is empty.. Invalid!');
-    } else if (password.length < 8) {
-      alert('Password must have more than 8 characters.. Invalid!');
-    } else if (address == '') {
-      alert('Address is empty.. Invalid!');
-    } else if (Gender == '') {
-      alert('Please Select Gender.. Invalid!');
-    }
-    // else if (Gender=='') {
-    //   alert('Please Select Gender.. Invalid!');
-    // }
-    else {
-      //this.props.navigation.navigate('MainTabsScreen');
 
-      console.log(tracingKey);
-      Axios.post('http://192.168.1.101:3000/api/insert', {
-        firstName: firstName,
-        lastName: lastName,
-        nic: nic,
-        contactNumber: contactNumber,
-        email: email,
-        userName: userName,
-        password: password,
-        address: address,
-        Gender: Gender,
-        tracingKey: tracingKey,
-      })
-        .then(data => {
-          console.log(data.data);
-          if (data.data == 'wrong') {
-            alert('Duplicate User Name. Invalid..!');
+    Axios.post('http://192.168.1.3:3001/api/dupnic', {
+      nic: nic,
+    })
+      .then(data => {
+        console.log(data.data);
+        if (data.data == 'wrong') {
+          alert('Duplicate nic. Invalid..!');
+        } else {
+          if (firstName == '') {
+            alert('First Name is empty.. Invalid!');
+          } else if (!name.test(this.state.firstName)) {
+            alert('First name Invalid.!');
+          } else if (lastName == '') {
+            alert('Last Name is empty.. Invalid!');
+          } else if (!name.test(this.state.lastName)) {
+            alert('Last name Invalid.!');
+          } else if (nic == '') {
+            alert('NIC is empty.. Invalid!');
+          } else if (this.state.nic.slice(-1) == 'v') {
+            if (this.state.nic.length != 10) {
+              alert('Invalid NIC1!');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.1.3:3001/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
+          } else if (this.state.nic.slice(-1) == 'V') {
+            if (this.state.nic.length != 10) {
+              alert('Invalid NIC2!');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.1.3:3001/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
           } else {
-            alert('Successfull');
-            this.props.navigation.navigate('Login');
+            if (this.state.nic.length != 12) {
+              alert('Invalid NIC9');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.1.3:3001/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
           }
-        })
-        .catch(error => {
-          alert(error);
-        });
-    }
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
   render() {
     return (
