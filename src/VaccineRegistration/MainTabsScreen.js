@@ -27,7 +27,8 @@ const MainTabScreen = () => (
           backgroundColor="#3342C8"
           onPress={() => navigation.openDrawer()}></Icon.Button>
       ),
-    }}>
+    }}
+    barStyle={{ backgroundColor: '#3342C8' }}>
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}

@@ -185,7 +185,7 @@ class Register extends Component {
     console.log('nuwan');
     console.log(Gender);
 
-    Axios.post('http://192.168.1.3:3001/api/dupnic', {
+    Axios.post('http://192.168.43.14:3000/api/dupnic', {
       nic: nic,
     })
       .then(data => {
@@ -235,7 +235,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.1.3:3001/api/insert', {
+                Axios.post('http://192.168.43.14:3000/api/insert', {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,
@@ -293,7 +293,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.1.3:3001/api/insert', {
+                Axios.post('http://192.168.43.14:3000/api/insert', {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,
@@ -351,7 +351,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.1.3:3001/api/insert', {
+                Axios.post('http://192.168.43.14:3000/api/insert', {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,

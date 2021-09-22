@@ -54,7 +54,7 @@ export async function requestLocationPermission() {
 
     if (!blueoothActive) {
       await Alert.alert(
-        'Example requires bluetooth to be enabled',
+        'Requires bluetooth to be enabled',
         'Would you like to enable Bluetooth?',
         [
           {
@@ -90,7 +90,7 @@ class ContactTracing extends Component {
     let currentDate = format(new Date(), 'yyyy-MM-dd');
     console.log(uuid + ' ' + username + ' ' + currentDate);
     axios
-      .get('http://192.168.1.101:3000/api/otherkeys', {
+      .get('http://192.168.43.14:3000/api/otherkeys', {
         params: {username: username, uuid: uuid, date: currentDate},
       })
       .then(function (response) {
@@ -103,7 +103,7 @@ class ContactTracing extends Component {
 
   getTracingKey() {
     let k = '';
-    Axios.get('http://192.168.1.101:3000/api/tracingkey', {
+    Axios.get('http://192.168.43.14:3000/api/tracingkey', {
       params: {username: this.state.username},
     })
       .then(function (response) {

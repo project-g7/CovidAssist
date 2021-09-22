@@ -110,7 +110,7 @@ const RegisterScreen = props => {
       ]);
       // alert('Selecting the Time Slot is mandatory !!!');
     } else {
-      Axios.post('http://192.168.1.101:3000/api/VaccineRegisterCheking', {
+      Axios.post('http://192.168.43.14:3000/api/VaccineRegisterCheking', {
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -164,7 +164,7 @@ const RegisterScreen = props => {
     // } else if (selectTimeSlot == '') {
     //   alert('Selecting the Time Slot is mandatory !!!');
     // } else {
-    Axios.post('http://192.168.1.101:3000/api/VaccineRegister', {
+    Axios.post('http://192.168.43.14:3000/api/VaccineRegister', {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
@@ -175,7 +175,7 @@ const RegisterScreen = props => {
       dosetype: props.doseType,
     })
       .then(() => {
-        Alert.alert('Successful!!!', 'Booking is Successful !!!', [
+        Alert.alert('Successful!', 'Booking is Successful ! ', [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ]);
         console.log('vvvvvvvvvvvvvvvvvvvvvvv');
@@ -220,7 +220,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.1.101:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `http://192.168.43.14:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
@@ -233,9 +233,9 @@ const RegisterScreen = props => {
       setAvailableTime(dates);
     } else {
       if (dates.value == 'NoAvailbleCenter') {
-        alert('There is no Vaccine Center for the selected date !!!');
+        alert('There is no Vaccine Center for the selected date!');
       } else if (dates.value == 'NoAvailbleTimeSlot') {
-        alert('There is no Vaccine Center for the selected date !!!');
+        alert('There is no Vaccine Center for the selected date!');
       }
     }
     // console.log(dates);

@@ -18,7 +18,7 @@ const MyBookings = () => {
 
   const getBookings = username => {
     axios
-      .get('http://192.168.1.101:3000/api/getbookings', {
+      .get('http://192.168.43.14:3000/api/getbookings', {
         params: {username: username},
       })
       .then(function (response) {
@@ -37,7 +37,7 @@ const MyBookings = () => {
     console.log('cancelll');
     console.log(bookingId);
     axios
-      .get('http://192.168.1.101:3000/api/cancelbooking', {
+      .get('http://192.168.43.14:3000/api/cancelbooking', {
         params: {bookingId: bookingId},
       })
       .then(function (res) {
