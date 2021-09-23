@@ -185,6 +185,7 @@ class Register extends Component {
     console.log('nuwan');
     console.log(Gender);
 
+
     Axios.post('http://192.168.43.14:3000/api/dupnic', {
       nic: nic,
     })
@@ -319,6 +320,7 @@ class Register extends Component {
                   });
               }
             }
+
           } else {
             if (this.state.nic.length != 12) {
               alert('Invalid NIC9');

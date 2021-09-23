@@ -26,7 +26,9 @@ const ViewCertificate = () => {
   }, []);
 
   const fetchData = username => {
-    Axios.get('http://192.168.43.14:3000/api/getnic', {
+
+    Axios.get('http://192.168.8.100:3000/api/getnic', {
+
       params: {username: username},
     })
       .then(function (response) {

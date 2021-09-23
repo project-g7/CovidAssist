@@ -52,7 +52,9 @@ export default class VaccineCenter extends Component {
     const encodeDoseType = encodeURIComponent(this.props.DoseType);
 
     const response = await fetch(
-      `http://192.168.1.3:3001/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+
+      `http://192.168.8.100:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+
 
       {method: 'GET'},
     );

@@ -38,7 +38,9 @@ const VaccineBooking = props => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.43.14:3000/api/users?username=${encodedUsername}`,
+
+      `http://192.168.8.100:3000/api/users?username=${encodedUsername}`,
+
 
       {method: 'GET'},
     );
