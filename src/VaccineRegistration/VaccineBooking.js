@@ -38,7 +38,9 @@ const VaccineBooking = props => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
+
       `http://192.168.8.100:3000/api/users?username=${encodedUsername}`,
+
 
       {method: 'GET'},
     );
@@ -162,17 +164,18 @@ const VaccineBooking = props => {
 export default VaccineBooking;
 const styles = StyleSheet.create({
   heder: {
+    width:'100%',
     borderColor: 'blue',
     borderWidth: 3,
     height: 'auto',
     marginTop: 10,
   },
   credentialText: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
     width: '100%',
     height: 'auto',
-    marginTop: 300,
-    marginLeft: 25,
+    // marginTop: 300,
+    // marginLeft: 25,
 
     // borderStartColor: 'white',
     // shadowColor: '#000',
@@ -202,9 +205,11 @@ const styles = StyleSheet.create({
   },
   headText: {
     fontSize: 20,
-    textAlign: 'left',
-    marginLeft: 18,
-    marginTop: -18,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    // marginLeft: 24,
+    marginTop: 20,
+    marginBottom: 15,
     // color: 'black',
     color: 'blue',
 
@@ -242,7 +247,7 @@ const styles = StyleSheet.create({
   },
   ScrollView: {
     marginTop: 20,
-    marginLeft: -5,
+    // marginLeft: -5,
     marginVertical: 30,
   },
   title: {
@@ -263,4 +268,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginLeft: '9%',
   },
+  main:{
+    display:'flex',
+    flexDirection:'column',
+    // marginTop:150,
+    justifyContent:'center',
+    alignItems:'center',
+    alignContent:'center'
+  }
 });

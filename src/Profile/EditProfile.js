@@ -45,7 +45,7 @@ const EditProfile = ({route, navigation}) => {
     // console.log(lastName);
 
     // }, 2000);
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   const fetchData = async username => {
@@ -53,6 +53,7 @@ const EditProfile = ({route, navigation}) => {
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
       `http://192.168.8.100:3000/api/users?username=${encodedUsername}`,
+
       {method: 'GET'},
     );
     const users = await response.json();
@@ -82,7 +83,9 @@ const EditProfile = ({route, navigation}) => {
   };
   const SaveProfile = () => {
     // console.log(firstName);
+
     Axios.put('http://192.168.8.100:3000/api/editprofile', {
+
       firstName: firstName,
       lastName: lastName,
       nic: nic,
@@ -292,6 +295,7 @@ const EditProfile = ({route, navigation}) => {
                 alignItems: 'center',
                 flexDirection: 'row',
                 justifyContent: 'space-around',
+                marginBottom: 35
               }}>
               <TouchableOpacity
                 onPress={() => {
@@ -321,6 +325,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
+    height:'100%',
+    backgroundColor:'white',
     paddingHorizontal: 30,
     marginBottom: 25,
   },

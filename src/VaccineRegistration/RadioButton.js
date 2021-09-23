@@ -44,7 +44,7 @@ export default function App() {
     <RadioGroup
       radioButtons={radioButtons}
       onPress={onPressRadioButton}
-      layout="row"
+      layout="column"
     />
   );
 }

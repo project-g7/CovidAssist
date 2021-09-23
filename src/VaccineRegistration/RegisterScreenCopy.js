@@ -71,7 +71,9 @@ const RegisterScreen = props => {
     } else if (selectTimeSlot == '') {
       alert('time is required!');
     } else {
+
       Axios.post('http://192.168.8.100:3000/api/VaccineRegisterCheking', {
+
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -114,7 +116,9 @@ const RegisterScreen = props => {
     } else if (selectTimeSlot == '') {
       alert('time is required!');
     } else {
+
       Axios.post('http://192.168.8.100:3000/api/VaccineRegister', {
+
         vaccineCenter: vaccineCenter,
         vaccineName: vaccineName,
         username: userName,
@@ -166,7 +170,9 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
+
       `http://192.168.8.100:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+
 
       {method: 'GET'},
     );

@@ -26,7 +26,9 @@ const ViewCertificate = () => {
   }, []);
 
   const fetchData = username => {
+
     Axios.get('http://192.168.8.100:3000/api/getnic', {
+
       params: {username: username},
     })
       .then(function (response) {
@@ -85,10 +87,10 @@ export default ViewCertificate;
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: 350,
-    height: 500,
+    width: 380,
+    height: 530,
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 10,
   },
   imageContainer: {
     display: 'flex',
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonNext: {
-    marginTop: 20,
+    marginTop: 10,
     width: 150,
     borderRadius: 10,
     paddingVertical: 10,

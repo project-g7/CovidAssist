@@ -29,8 +29,10 @@ class Register extends Component {
       nic: '',
       userName: '',
       password: '',
+      password2: '',
       testData: '',
       passwordError: '',
+      password2Error: '',
       address: '',
       tracingKey: '',
       UsernameError: '',
@@ -64,11 +66,26 @@ class Register extends Component {
       this.setState({lastNameError: "Last Name can't have Numbers"});
     } else {
       this.setState({lastNameError: ''});
+      console.log(this.state.lastName.slice(-1));
     }
   }
   nicValidator() {
     if (this.state.nic == '') {
       this.setState({nicError: 'NIC is required.'});
+    } else if (this.state.nic.slice(-1) == 'V') {
+      if (this.state.nic.length != 10) {
+        this.setState({nicError: 'Invalid Id type'});
+      } else {
+        this.setState({nicError: ''});
+      }
+    } else if (this.state.nic.slice(-1) == 'v') {
+      if (this.state.nic.length != 10) {
+        this.setState({nicError: 'Invalid Id type'});
+      } else {
+        this.setState({nicError: ''});
+      }
+    } else if (this.state.nic.length != 12) {
+      this.setState({nicError: 'Invalid Id type'});
     } else {
       this.setState({nicError: ''});
     }
@@ -106,6 +123,15 @@ class Register extends Component {
       this.setState({passwordError: 'Password must be more than 8 characters'});
     } else {
       this.setState({passwordError: ''});
+    }
+  }
+  confirmpasswordValidator() {
+    if (this.state.Password2 == '') {
+      this.setState({password2Error: 'Password is required.'});
+    } else if (this.state.password2 != this.state.password) {
+      this.setState({password2Error: 'Confirm Password not matching'});
+    } else {
+      this.setState({password2Error: ''});
     }
   }
 
@@ -152,74 +178,213 @@ class Register extends Component {
       email,
       userName,
       password,
+      password2,
       address,
       Gender,
     } = this.state;
     console.log('nuwan');
     console.log(Gender);
-    if (firstName == '') {
-      alert('First Name is empty.. Invalid!');
-    } else if (!name.test(this.state.firstName)) {
-      alert('First name Invalid.!');
-    } else if (lastName == '') {
-      alert('Last Name is empty.. Invalid!');
-    } else if (!name.test(this.state.lastName)) {
-      alert('Last name Invalid.!');
-    } else if (nic == '') {
-      alert('NIC is empty.. Invalid!');
-    } else if (contactNumber == '') {
-      alert('Contact Number is empty.. Invalid!');
-    } else if (contactNumber.length != 10) {
-      alert('Invalid Contact Number!');
-    } else if (email == '') {
-      alert('email is empty.. Invalid!');
-    }
-    if (!rx_live.test(this.state.email)) {
-      alert('Invalid Email.!');
-    } else if (userName == '') {
-      alert('User Name is empty.. Invalid!');
-    } else if (password == '') {
-      alert('Password is empty.. Invalid!');
-    } else if (password.length < 8) {
-      alert('Password must have more than 8 characters.. Invalid!');
-    } else if (address == '') {
-      alert('Address is empty.. Invalid!');
-    } else if (Gender == '') {
-      alert('Please Select Gender.. Invalid!');
-    }
-    // else if (Gender=='') {
-    //   alert('Please Select Gender.. Invalid!');
-    // }
-    else {
-      //this.props.navigation.navigate('MainTabsScreen');
 
-      console.log(tracingKey);
 
-      Axios.post('http://192.168.8.100:3000/api/insert', {
-        firstName: firstName,
-        lastName: lastName,
-        nic: nic,
-        contactNumber: contactNumber,
-        email: email,
-        userName: userName,
-        password: password,
-        address: address,
-        Gender: Gender,
-        tracingKey: tracingKey,
-      })
-        .then(data => {
-          console.log(data.data);
-          if (data.data == 'wrong') {
-            alert('Duplicate User Name. Invalid..!');
+    Axios.post('http://192.168.43.14:3000/api/dupnic', {
+      nic: nic,
+    })
+      .then(data => {
+        console.log(data.data);
+        if (data.data == 'wrong') {
+          alert('Duplicate nic. Invalid..!');
+        } else {
+          if (firstName == '') {
+            alert('First Name is empty.. Invalid!');
+          } else if (!name.test(this.state.firstName)) {
+            alert('First name Invalid.!');
+          } else if (lastName == '') {
+            alert('Last Name is empty.. Invalid!');
+          } else if (!name.test(this.state.lastName)) {
+            alert('Last name Invalid.!');
+          } else if (nic == '') {
+            alert('NIC is empty.. Invalid!');
+          } else if (this.state.nic.slice(-1) == 'v') {
+            if (this.state.nic.length != 10) {
+              alert('Invalid NIC1!');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.43.14:3000/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
+          } else if (this.state.nic.slice(-1) == 'V') {
+            if (this.state.nic.length != 10) {
+              alert('Invalid NIC2!');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.43.14:3000/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
+
           } else {
-            alert('Successfull');
-            this.props.navigation.navigate('Login');
+            if (this.state.nic.length != 12) {
+              alert('Invalid NIC9');
+            } else {
+              if (contactNumber == '') {
+                alert('Contact Number is empty.. Invalid!');
+              } else if (contactNumber.length != 10) {
+                alert('Invalid Contact Number!');
+              } else if (email == '') {
+                alert('email is empty.. Invalid!');
+              } else if (!rx_live.test(this.state.email)) {
+                alert('Invalid Email.!');
+              } else if (userName == '') {
+                alert('User Name is empty.. Invalid!');
+              } else if (password == '') {
+                alert('Password is empty.. Invalid!');
+              } else if (password.length < 8) {
+                alert('Password must have more than 8 characters.. Invalid!');
+              } else if (password != password2) {
+                alert('Confirm Password not matching.. Invalid!');
+              } else if (address == '') {
+                alert('Address is empty.. Invalid!');
+              } else if (Gender == '') {
+                alert('Please Select Gender.. Invalid!');
+              }
+              // else if (Gender=='') {
+              //   alert('Please Select Gender.. Invalid!');
+              // }
+              else {
+                //this.props.navigation.navigate('MainTabsScreen');
+                console.log('yes');
+                console.log(tracingKey);
+                Axios.post('http://192.168.43.14:3000/api/insert', {
+                  firstName: firstName,
+                  lastName: lastName,
+                  nic: nic,
+                  contactNumber: contactNumber,
+                  email: email,
+                  userName: userName,
+                  password: password,
+                  address: address,
+                  Gender: Gender,
+                  tracingKey: tracingKey,
+                })
+                  .then(data => {
+                    console.log(data.data);
+                    if (data.data == 'wrong') {
+                      alert('Duplicate User Name. Invalid..!');
+                    } else {
+                      alert('Successfull');
+                      this.props.navigation.navigate('Login');
+                    }
+                  })
+                  .catch(error => {
+                    alert(error);
+                  });
+              }
+            }
           }
-        })
-        .catch(error => {
-          alert(error);
-        });
-    }
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
   render() {
     return (
@@ -406,6 +571,28 @@ class Register extends Component {
             />
             <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
               {this.state.passwordError}
+            </Text>
+            <Icon name="lock" color="#3342C8" size={22}></Icon>
+            <Title
+              style={[
+                styles.title,
+                {marginLeft: 25, marginTop: -25, marginBottom: -10},
+              ]}>
+              Confirm Password
+            </Title>
+            <TextInput
+              style={styles.textinput}
+              placeholder="Confirm Password"
+              name="password2"
+              secureTextEntry={true}
+              onBlur={() => this.confirmpasswordValidator()}
+              onChangeText={text => {
+                this.setState({password2: text});
+              }}
+              underlineColorAndroid={'transparent'}
+            />
+            <Text style={{color: 'red', marginBottom: 15, textAlign: 'center'}}>
+              {this.state.password2Error}
             </Text>
 
             <Icon name="male" color="#3342C8" size={22}></Icon>

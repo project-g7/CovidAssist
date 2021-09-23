@@ -56,7 +56,7 @@ export default function TimeAvailable(props) {
 const styles = StyleSheet.create({
   timeAvail: {
     marginLeft: 50,
-    marginTop: -20,
+    marginTop: 20,
     backgroundColor: 'white',
     width: 300,
     height: 150,

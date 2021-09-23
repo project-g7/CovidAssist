@@ -22,6 +22,9 @@
         "nicNum" : "NIC Number",
         "contactNumber" : "Contact Number",
         "address" : "Address",
-        "register" : "Register"
+        "register" : "Register",
+        "selectCenter" : "Select Vaccine Center",
+        "selectVaccine" : "Select a Vaccine",
+        "selectDate" : "Select a Date"
     }
 }
