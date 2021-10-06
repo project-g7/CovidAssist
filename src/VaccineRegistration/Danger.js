@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
+import {url} from '../config'
 
 const Danger = props => {
   const {t, i18n} = useTranslation();
@@ -22,9 +23,7 @@ const Danger = props => {
   const handleStatus = () => {
     console.log('status');
     axios
-
-      .get('http://192.168.8.100:3000/api/updatestatus', {
-
+      .get(`${url.BASE_URL}/api/updatestatus`, {
         params: {username: props.userName},
       })
       .then(function (response) {

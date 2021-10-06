@@ -15,6 +15,8 @@ import Axios from 'axios';
 import RadioButton from '../VaccineRegistration/RadioButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Value} from 'react-native-reanimated';
+import {url} from '../config'
+
 const rx_live = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 const name = /^[a-zA-Z]+[a-zA-Z]+$/;
 //import MainTabScreen from '../VaccineRegistration/MainTabsScreen';
@@ -186,7 +188,7 @@ class Register extends Component {
     console.log(Gender);
 
 
-    Axios.post('http://192.168.43.14:3000/api/dupnic', {
+    Axios.post(`${url.BASE_URL}/api/dupnic`, {
       nic: nic,
     })
       .then(data => {
@@ -236,7 +238,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.43.14:3000/api/insert', {
+                Axios.post(`${url.BASE_URL}/api/insert`, {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,
@@ -294,7 +296,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.43.14:3000/api/insert', {
+                Axios.post(`${url.BASE_URL}/api/insert`, {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,
@@ -353,7 +355,7 @@ class Register extends Component {
                 //this.props.navigation.navigate('MainTabsScreen');
                 console.log('yes');
                 console.log(tracingKey);
-                Axios.post('http://192.168.43.14:3000/api/insert', {
+                Axios.post(`${url.BASE_URL}/api/insert`, {
                   firstName: firstName,
                   lastName: lastName,
                   nic: nic,

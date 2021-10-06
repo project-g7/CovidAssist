@@ -21,6 +21,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Iconf from 'react-native-vector-icons/FontAwesome';
 import EditProfile from './EditProfile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {url} from '../config'
 
 const Stack = createStackNavigator();
 
@@ -61,9 +62,7 @@ const MyProfile = ({navigation}) => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-
-      `http://192.168.8.100:3000/api/users?username=${encodedUsername}`,
-
+      `${url.BASE_URL}/api/users?username=${encodedUsername}`,
       {method: 'GET'},
     );
     const users = await response.json();

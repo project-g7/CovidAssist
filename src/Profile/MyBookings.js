@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {url} from '../config'
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -18,9 +19,7 @@ const MyBookings = () => {
 
   const getBookings = username => {
     axios
-
-      .get('http://192.168.8.100:3000/api/getbookings', {
-
+      .get(`${url.BASE_URL}/api/getbookings`, {
         params: {username: username},
       })
       .then(function (response) {
@@ -39,9 +38,7 @@ const MyBookings = () => {
     console.log('cancelll');
     console.log(bookingId);
     axios
-
-      .get('http://192.168.8.100:3000/api/cancelbooking', {
-
+      .get(`${url.BASE_URL}/api/cancelbooking`, {
         params: {bookingId: bookingId},
       })
       .then(function (res) {

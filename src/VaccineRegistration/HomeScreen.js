@@ -8,6 +8,7 @@ import BackgroundTask from 'react-native-background-task';
 import ContactTracing from './ContactTracing';
 import Safe from './Safe';
 import Danger from './Danger';
+import {url} from '../config'
 
 const HomeScreen = ({navigation}) => {
   const [userName, setUserName] = useState('');
@@ -42,9 +43,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const checkStatus = async username => {
-
-    Axios.get('http://192.168.8.100:3000/api/checkstatus', {
-
+    Axios.get(`${url.BASE_URL}/api/checkstatus`, {
       params: {username: username},
     })
       .then(function (response) {
@@ -65,9 +64,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const fetchData = async username => {
-
-    Axios.get('http://192.168.8.100:3000/api/tracingkey', {
-
+    Axios.get(`${url.BASE_URL}/api/tracingkey`, {
       params: {username: username},
     })
       .then(function (response) {

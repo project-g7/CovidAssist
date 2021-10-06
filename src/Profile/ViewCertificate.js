@@ -12,6 +12,7 @@ import CameraRoll from '@react-native-community/cameraroll';
 import RNFetchBlob from 'rn-fetch-blob';
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {url} from '../config'
 
 const ViewCertificate = () => {
   const [nic, setNic] = useState('');
@@ -27,8 +28,7 @@ const ViewCertificate = () => {
 
   const fetchData = username => {
 
-    Axios.get('http://192.168.8.100:3000/api/getnic', {
-
+    Axios.get(`${url.BASE_URL}/api/getnic`, {
       params: {username: username},
     })
       .then(function (response) {

@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import {url} from '../config'
 
 class DropDown extends Component {
   constructor(props) {
@@ -16,8 +17,7 @@ class DropDown extends Component {
   }
   async apicall() {
 
-    let resp = await fetch('http://192.168.8.100:3000/api/VaccineName');
-
+    let resp = await fetch(`${url.BASE_URL}/api/VaccineName`);
     let respJson = await resp.json();
     //console.warn(respJson);
     this.setState({data: respJson});
