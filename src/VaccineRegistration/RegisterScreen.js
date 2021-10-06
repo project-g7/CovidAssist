@@ -165,6 +165,7 @@ const RegisterScreen = props => {
     // } else if (selectTimeSlot == '') {
     //   alert('Selecting the Time Slot is mandatory !!!');
     // } else {
+
     Axios.post(`${url.BASE_URL}/api/VaccineRegister`, {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
@@ -222,6 +223,7 @@ const RegisterScreen = props => {
     console.log(encodeVaccineCenter);
     const response = await fetch(
       `${url.BASE_URL}/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+
 
       {method: 'GET'},
     );

@@ -27,6 +27,7 @@ const ViewCertificate = () => {
   }, []);
 
   const fetchData = username => {
+
     Axios.get(`${url.BASE_URL}/api/getnic`, {
       params: {username: username},
     })

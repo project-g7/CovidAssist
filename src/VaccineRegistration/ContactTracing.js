@@ -104,6 +104,7 @@ class ContactTracing extends Component {
 
   getTracingKey() {
     let k = '';
+    
     Axios.get(`${url.BASE_URL}/api/tracingkey`, {
       params: {username: this.state.username},
     })

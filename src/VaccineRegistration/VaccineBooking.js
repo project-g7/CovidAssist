@@ -40,7 +40,6 @@ const VaccineBooking = props => {
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
       `${url.BASE_URL}/api/users?username=${encodedUsername}`,
-
       {method: 'GET'},
     );
     const users = await response.json();

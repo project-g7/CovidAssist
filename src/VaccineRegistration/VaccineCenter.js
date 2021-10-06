@@ -76,7 +76,6 @@ class VaccineCenter extends Component {
 
     const response = await fetch(
       `${url.BASE_URL}/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
-
       {method: 'GET'},
     );
     const users = await response.json();

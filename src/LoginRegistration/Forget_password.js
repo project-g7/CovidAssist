@@ -133,7 +133,7 @@ class Forget_password extends Component {
                 styles.title,
                 {marginLeft: 25, marginTop: -25, marginBottom: -10},
               ]}>
-             New Password
+              New Password
             </Title>
             <TextInput
               style={styles.textinput}

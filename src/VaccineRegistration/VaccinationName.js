@@ -16,6 +16,7 @@ class DropDown extends Component {
     this.apicall();
   }
   async apicall() {
+
     let resp = await fetch(`${url.BASE_URL}/api/VaccineName`);
     let respJson = await resp.json();
     //console.warn(respJson);
