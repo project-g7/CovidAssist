@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {url} from '../config'
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -56,8 +57,8 @@ class Login extends Component {
 
   login = () => {
     const {userName, password} = this.state;
-
-    Axios.post('http://192.168.43.14:3000/api/login', {
+    console.log(url);
+    Axios.post(`${url.BASE_URL}/api/login`, {
       userName: userName,
       password: password,
     })

@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {url} from '../config'
+
 class Forget_password extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +62,7 @@ class Forget_password extends Component {
     } else if (password2 != password) {
       alert('Not matching Passwords.. Invalid!');
     } else {
-      Axios.post('http://192.168.43.14:3000/api/forgotpass', {
+      Axios.post(`${url.BASE_URL}/api/forgotpass`, {
         userName: userName,
         password: password,
         password2: password2,

@@ -18,6 +18,7 @@ import UUIDGenerator from 'react-native-uuid-generator';
 import {PermissionsAndroid} from 'react-native';
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {url} from '../config'
 
 // Uses the Apple code to pick up iPhones
 const APPLE_ID = 0x027d;
@@ -90,7 +91,7 @@ class ContactTracing extends Component {
     let currentDate = format(new Date(), 'yyyy-MM-dd');
     console.log(uuid + ' ' + username + ' ' + currentDate);
     axios
-      .get('http://192.168.43.14:3000/api/otherkeys', {
+      .get(`${url.BASE_URL}/api/otherkeys`, {
         params: {username: username, uuid: uuid, date: currentDate},
       })
       .then(function (response) {
@@ -103,7 +104,7 @@ class ContactTracing extends Component {
 
   getTracingKey() {
     let k = '';
-    Axios.get('http://192.168.43.14:3000/api/tracingkey', {
+    Axios.get(`${url.BASE_URL}/api/tracingkey`, {
       params: {username: this.state.username},
     })
       .then(function (response) {

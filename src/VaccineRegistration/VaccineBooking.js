@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButton from './RadioButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
+import {url} from '../config'
 
 const VaccineBooking = props => {
   const {t, i18n} = useTranslation();
@@ -38,7 +39,7 @@ const VaccineBooking = props => {
     // console.log(username);
     const encodedUsername = encodeURIComponent(username);
     const response = await fetch(
-      `http://192.168.43.14:3000/api/users?username=${encodedUsername}`,
+      `${url.BASE_URL}/api/users?username=${encodedUsername}`,
 
       {method: 'GET'},
     );

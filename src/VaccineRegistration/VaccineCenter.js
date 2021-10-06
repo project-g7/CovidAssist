@@ -10,6 +10,7 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withTranslation } from 'react-i18next';
+import {url} from '../config'
 
 class VaccineCenter extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class VaccineCenter extends Component {
     const encodeDoseType = encodeURIComponent(this.props.DoseType);
 
     const response = await fetch(
-      `http://192.168.43.14:3000/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
+      `${url.BASE_URL}/api/VaccineCenterDistrict?username=${encodedUsername}&selection=${encodeSelection}&doseType=${encodeDoseType}`,
 
       {method: 'GET'},
     );

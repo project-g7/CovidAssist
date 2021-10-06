@@ -20,6 +20,7 @@ import HomeScreen from './HomeScreen';
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
+import {url} from '../config'
 
 // const Stack = createStackNavigator();
 
@@ -110,7 +111,7 @@ const RegisterScreen = props => {
       ]);
       // alert('Selecting the Time Slot is mandatory !!!');
     } else {
-      Axios.post('http://192.168.43.14:3000/api/VaccineRegisterCheking', {
+      Axios.post(`${url.BASE_URL}/api/VaccineRegisterCheking`, {
         username: userName,
         selection: props.doseT,
         dosetype: props.doseType,
@@ -164,7 +165,7 @@ const RegisterScreen = props => {
     // } else if (selectTimeSlot == '') {
     //   alert('Selecting the Time Slot is mandatory !!!');
     // } else {
-    Axios.post('http://192.168.43.14:3000/api/VaccineRegister', {
+    Axios.post(`${url.BASE_URL}/api/VaccineRegister`, {
       vaccineCenter: vaccineCenter,
       vaccineName: vaccineName,
       username: userName,
@@ -220,7 +221,7 @@ const RegisterScreen = props => {
     const encodeVaccineCenter = encodeURIComponent(vaccineCenter);
     console.log(encodeVaccineCenter);
     const response = await fetch(
-      `http://192.168.43.14:3000/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
+      `${url.BASE_URL}/api/VaccineSelecteDate?date=${encodedDate}&vaccineCenter=${encodeVaccineCenter}`,
 
       {method: 'GET'},
     );
